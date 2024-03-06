@@ -1,0 +1,34 @@
+{
+	"name": "wolfnet-computing/md-reader",
+	"description": "A basic Markdown reader for PHP that accepts configuration and receives Markdown content as a passed URL (GET/POST)",
+	"homepage": "https://wolfnet-computing.com/index.php?page=/projects/PHP-MD-Reader",
+	"license": "Apache-2.0",
+	"authors": [
+        {
+            "name": "John Wolfe",
+            "role": "Founder and Developer"
+        }
+    ],
+	"support": {
+        "email": "wolfnet-computing@outlook.com",
+		"wiki": "https://github.com/WolfNet-Computing/PHP-MD-Reader/wiki",
+        "source": "https://github.com/WolfNet-Computing/PHP-MD-Reader",
+		"docs": "https://github.com/WolfNet-Computing/PHP-MD-Reader/wiki"
+    },
+	"funding": [
+        {
+            "type": "other",
+            "url": "https://wolfnet-computing.com/index.php?page=/donate"
+        }
+    ],
+	"require": {
+		"php": ">=8.0"
+	},
+	"autoload": {
+		"psr-4": {"WolfNet-Computing\\MD-Reader\\": "src/"}
+	},
+	"archive": {
+        "name": "PHP-MD-Reader",
+		"exclude": ["/composer.lock", "/.git", "/.git*"]
+    }
+}
