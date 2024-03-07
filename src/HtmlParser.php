@@ -2,8 +2,8 @@
 	namespace WolfNet_Computing\MD_Reader;
 
 	class HtmlParser {
-		private $FindMDNewline = "/ {2}/u";
-		private $FindMDHeader1 = '/^\u0023 /u';
+		private $FindMDNewline = "/( ){2}/";
+		private $FindMDHeader1 = '/^(# )/';
 		private $OriginalFileContent;
 
 		function __construct($file) {
