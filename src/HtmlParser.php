@@ -74,10 +74,7 @@
 				}
 				# Check for any Markdown Links...
 				if (preg_match_all($this->FindMDLink, $array[$i], $linkarray, PREG_SET_ORDER) > 0) {
-					for ($i = 0; $i < count($linkarray); $i++) {
-						var_dump($linkarray[$i]);
-						echo "<br>";
-					}
+					var_dump($linkarray);
 				}
 				# Next to split the string by the markdown double space newline and append the HTML newline to the end of each of the strings in the resulting array...
 				$array[$i] = preg_replace($this->FindMDNewline, '<br>', $array[$i]);
