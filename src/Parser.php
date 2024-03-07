@@ -17,18 +17,13 @@
 		function Parse() {
 			$array = explode("\n", $this->OriginalFileContent);
 			foreach ($array as $i => $line) {
-				echo 'gettype($array[$i]) returns: ' . gettype($array[$i]) . '<br>';
-				echo $array[$i] . '<br>';
-				# First to split the string by the markdown double space newline and append the HTML newline to the end of each of the strings in the resulting array...
-				preg_replace($this->FindMDNewline, '<br>', $array[$i]);
 				# Check for the Markdown Header level 1, remove it and add the h1 opening and closing tags for HTML...
-				echo preg_match($this->FindMDHeader1, $array[$i]) . '<br>';
 				if (preg_match($this->FindMDHeader1, $array[$i]) == 1) {
-					echo preg_replace($this->FindMDHeader1, '<h1>', $array[$i]) . '<br>';
 					preg_replace($this->FindMDHeader1, '<h1>', $array[$i]);
 					$array[$i] .= '</h1>';
-					echo $array[$i] . '<br>';
 				}
+				# Next to split the string by the markdown double space newline and append the HTML newline to the end of each of the strings in the resulting array...
+				preg_replace($this->FindMDNewline, '<br>', $array[$i]);
 			}
 			return $array;
 		}
