@@ -22,6 +22,7 @@
 			for ($i = 0; $i < count($array); ++$i) {
 				$array[$i] = $array[$i] . '<br>';
 			}
+			return $array;
 		}
 	}
 ?>
