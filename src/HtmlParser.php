@@ -31,8 +31,4 @@
 			return $array;
 		}
 	}
-
-	function Heading1() {
-		
-	}
 ?>
