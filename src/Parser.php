@@ -21,7 +21,7 @@
 			# First to split the string by the markdown double space newline and append the HTML newline to the end of each of the strings in the resulting array.
 			$array = explode('  ', $HtmlString);
 			for ($i = 0; $i < count($array); ++$i) {
-				$array[$i] = $array[$i] . '<br>';
+				$array[$i] .= '<br>';
 			}
 			return $array;
 		}
