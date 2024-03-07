@@ -1,6 +1,6 @@
 # PHP MD Reader  
   
-## Requirements
+## Requires
 A PHP enabled webserver that you also have file upload and command line access to.
    
 ## Installation  
