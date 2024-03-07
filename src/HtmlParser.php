@@ -11,7 +11,7 @@
 		private $FindMDHeader5 = '/^(##### )/';
 		private $FindMDHeader6 = '/^(###### )/';
 		private $FindMDLink1 = '/\[.+\]\((?:http|https)\:\/{2}.+\)/';
-		private $FindMDLink2 = '/\[.+\]\(.{1,2}\/.+\)/';
+		private $FindMDLink2 = '/\[.+\]\(.{0,2}\/.+\)/';
 
 		function __construct($file) {
 			$mdfile = fopen($file, 'r') or die('Unable to open file!');
