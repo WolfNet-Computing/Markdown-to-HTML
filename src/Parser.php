@@ -2,9 +2,8 @@
 	namespace WolfNet_Computing\MD_Reader;
 
 	class Parser {
-		private $FindMDNewline = "/\s{2,}/";
+		private $FindMDNewline = '/\s{2,}/';
 		private $OriginalFileContent;
-		private $OutputFormat;
 
 		function __construct($file) {
 			$mdfile = fopen($file, 'r') or die('Unable to open file!');
