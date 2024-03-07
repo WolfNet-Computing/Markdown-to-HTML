@@ -10,7 +10,8 @@
 		private $FindMDHeader4 = '/^(#### )/';
 		private $FindMDHeader5 = '/^(##### )/';
 		private $FindMDHeader6 = '/^(###### )/';
-		private $FindMDLink = '/\[.+\]\(((http|https):\/\/(.+))\)/';
+		private $FindMDLink1 = '/\[[.]\]\(((http|https):\/\/(.+))\)/';
+		private $FindMDLink2 = '/\[[.]\]\(\.{1,2}\)/';
 
 		function __construct($file) {
 			$mdfile = fopen($file, 'r') or die('Unable to open file!');
@@ -73,7 +74,13 @@
 					$array[$i] = $array[$i] . '</h6><br>';
 				}
 				# Check for any Markdown Links...
-				if (preg_match_all($this->FindMDLink, $array[$i], $linkarray) > 0) {
+				if (preg_match_all($this->FindMDLink1, $array[$i], $linkarray) > 0) {
+					for ($j = 0; $j < count($linkarray); $j++) {
+						var_dump($linkarray[$j]);
+						echo "<br>";
+					}
+				}
+				if (preg_match_all($this->FindMDLink2, $array[$i], $linkarray) > 0) {
 					for ($j = 0; $j < count($linkarray); $j++) {
 						var_dump($linkarray[$j]);
 						echo "<br>";
