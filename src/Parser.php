@@ -17,6 +17,7 @@
 
 		function ParseHTML() {
 			echo '<p>';
+			echo gettype($this->OriginalFileContent) . '<br>';
 			var_dump($this->OriginalFileContent);
 			echo '</p>';
 		}
