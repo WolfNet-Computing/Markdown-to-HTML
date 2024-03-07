@@ -4,6 +4,7 @@
 	class Parser {
 		private $FindMDNewline = "/\s+/";
 		private $OriginalFileContent;
+		private $OutputFormat;
 
 		function __construct($file, $OutputType) {
 			$mdfile = fopen($file, 'r') or die('Unable to open file!');
@@ -11,7 +12,7 @@
 			fclose($mdfile);
 			clearstatcache();
 			if ($OutputType == 'HTML') {
-				return $this->ParseHTML($this->OriginalFileContent);
+				$this->OutputFormat = $OutputType;
 			} else {
 				die('Unrecognised output format!');
 			}
