@@ -22,7 +22,6 @@
 					$array[$i] = preg_replace($this->FindMDHeader1, '<h1>', $array[$i]);
 					# Need to remove the Markdown newline character so it isn't processed later as we are adding our own manually here...
 					$array[$i] = preg_replace($this->FindMDNewline, '', $array[$i]);
-					$array[$i] = preg_replace("/\\n/", '', $array[$i]);
 					$array[$i] = $array[$i] . '</h1><br>';
 					echo '$array[$i] = ' . $array[$i] . ', $i = ' . $i;
 				}
