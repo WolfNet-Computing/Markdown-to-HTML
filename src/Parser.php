@@ -4,7 +4,7 @@
 	class Parser {
 		public $OriginalFileContent;
 
-		public function __construct($file, $OutputType) {
+		function __construct($file, $OutputType) {
 			$mdfile = fopen($file, 'r') or die('Unable to open file!');
 			$OriginalFileContent = fread($mdfile,filesize($file));
 			fclose($mdfile);
@@ -15,7 +15,7 @@
 			}
 		}
 
-		public function ParseHTML() {
+		function ParseHTML() {
 			echo '<p>';
 			var_dump($OriginalFileContent);
 			echo '</p>';
