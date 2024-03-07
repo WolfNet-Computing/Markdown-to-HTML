@@ -1,5 +1,5 @@
 <?php
-	namespace WolfNet-Computing\MD-Reader;
+	namespace 'WolfNet-Computing\\MD-Reader';
 
 	class Parser {
 		public $OriginalFileContent;
