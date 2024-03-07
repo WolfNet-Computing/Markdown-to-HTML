@@ -1,9 +1,9 @@
 <?php
 	namespace WolfNet_Computing\MD_Reader;
 
-	class Parser {
+	class HtmlParser {
 		private $FindMDNewline = '/ {2}/';
-		private $FindMDHeader1 = '/# /';
+		private $FindMDHeader1 = "/# /";
 		private $OriginalFileContent;
 
 		function __construct($file) {
@@ -14,8 +14,8 @@
 		}
 
 		# Returns the HTML formatted array of lines contained in the $HtmlFormattedMarkdown array...
-		function Parse() {
-			$array = explode('\n', $this->OriginalFileContent);
+		function DisplayFormatted() {
+			$array = explode("\n", $this->OriginalFileContent);
 			for ($i = 0; $i < count($array); ++$i) {
 				# Check for the Markdown Header level 1, remove it and add the h1 opening and closing tags for HTML...
 				if (preg_match($this->FindMDHeader1, $array[$i]) == 1) {
@@ -30,5 +30,9 @@
 			}
 			return $array;
 		}
+	}
+
+	function Heading1() {
+		
 	}
 ?>
