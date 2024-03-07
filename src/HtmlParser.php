@@ -4,6 +4,7 @@
 	class HtmlParser {
 		private $FindMDNewline = "/( ){2}/";
 		private $FindMDHeader1 = '/^(# )/';
+		private $FindMDHeader2 = '/^(## )/';
 		private $OriginalFileContent;
 
 		function __construct($file) {
@@ -25,7 +26,14 @@
 					# Need to remove the Markdown newline character so it isn't processed later as we are adding our own manually here...
 					$array[$i] = preg_replace($this->FindMDNewline, "", $array[$i]);
 					$array[$i] = $array[$i] . '</h1><br>';
-					echo '$array[$i] = ' . $array[$i] . ', $i = ' . $i . "\n";
+				}
+				# Check for the Markdown Header level 2, remove it and add the h1 opening and closing tags for HTML...
+				if (preg_match($this->FindMDHeader2, $array[$i]) == 1) {
+					# Need to remove the carriage returns and line feeds...
+					$array[$i] = preg_replace($this->FindMDHeader2, '<h2>', $array[$i]);
+					# Need to remove the Markdown newline character so it isn't processed later as we are adding our own manually here...
+					$array[$i] = preg_replace($this->FindMDNewline, "", $array[$i]);
+					$array[$i] = $array[$i] . '</h2><br>';
 				}
 				# Next to split the string by the markdown double space newline and append the HTML newline to the end of each of the strings in the resulting array...
 				$array[$i] = preg_replace($this->FindMDNewline, '<br>', $array[$i]);
