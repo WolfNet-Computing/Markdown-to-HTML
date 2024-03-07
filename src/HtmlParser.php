@@ -3,7 +3,7 @@
 
 	class HtmlParser {
 		private $FindMDNewline = '/\u{0020}{2}/u';
-		private $FindMDHeader1 = "/^\u{0023}\u{0020}/u";
+		private $FindMDHeader1 = '/^\u{0023}\u{0020}/u';
 		private $OriginalFileContent;
 
 		function __construct($file) {
@@ -15,7 +15,7 @@
 
 		# Returns the HTML formatted array of lines contained in the $HtmlFormattedMarkdown array...
 		function DisplayFormatted() {
-			$array = explode("\n", $this->OriginalFileContent);
+			$array = explode('\n', $this->OriginalFileContent);
 			for ($i = 0; $i < count($array); ++$i) {
 				# Check for the Markdown Header level 1, remove it and add the h1 opening and closing tags for HTML...
 				if (preg_match($this->FindMDHeader1, $array[$i]) == 1) {
