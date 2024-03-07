@@ -16,7 +16,7 @@
 		# Returns the HTML formatted array of lines contained in the $HtmlFormattedMarkdown array...
 		function DisplayFormatted() {
 			$array = explode("\n", $this->OriginalFileContent);
-			for ($i = 0; $i < count($array); ++$i) {
+			for ($i = 0; $i < count($array); $i++) {
 				# Check for the Markdown Header level 1, remove it and add the h1 opening and closing tags for HTML...
 				if (preg_match($this->FindMDHeader1, $array[$i]) == 1) {
 					$array[$i] = preg_replace($this->FindMDHeader1, '<h1>', $array[$i]);
