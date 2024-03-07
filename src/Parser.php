@@ -23,6 +23,7 @@
 					# Need to remove the Markdown newline character so it isn't processed later as we are adding our own manually here...
 					preg_replace($this->FindMDNewline, '', $array[$i]);
 					$array[$i] .= '</h1><br>';
+					echo $array;
 				}
 				# Next to split the string by the markdown double space newline and append the HTML newline to the end of each of the strings in the resulting array...
 				preg_replace($this->FindMDNewline, '<br>', $array[$i]);
