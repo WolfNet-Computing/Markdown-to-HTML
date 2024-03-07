@@ -77,7 +77,6 @@
 					for ($j = 0; $j < count($linkarray); $j++) {
 						var_dump($linkarray[$j]);
 						echo "<br>";
-						break;
 					}
 				}
 				# Next to split the string by the markdown double space newline and append the HTML newline to the end of each of the strings in the resulting array...
