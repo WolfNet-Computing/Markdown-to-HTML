@@ -73,8 +73,7 @@
 					$array[$i] = $array[$i] . '</h6><br>';
 				}
 				# Check for any Markdown Links...
-				if (preg_match($this->FindMDLink, $array[$i]) == 1) {
-					preg_match_all($this->FindMDLink, $array[$i], $linkarray);
+				if (preg_match_all($this->FindMDLink, $array[$i], $linkarray) > 0) {
 					for ($i = 0; $i < count($linkarray); $i++) {
 						echo $linkarray[$i] . "<br>";
 					}
