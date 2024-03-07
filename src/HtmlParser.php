@@ -2,6 +2,7 @@
 	namespace WolfNet_Computing\MD_Reader;
 
 	class HtmlParser {
+		private $OriginalFileContent;
 		private $FindMDNewline = "/( ){2}/";
 		private $FindMDHeader1 = '/^(# )/';
 		private $FindMDHeader2 = '/^(## )/';
@@ -9,7 +10,7 @@
 		private $FindMDHeader4 = '/^(#### )/';
 		private $FindMDHeader5 = '/^(##### )/';
 		private $FindMDHeader6 = '/^(###### )/';
-		private $OriginalFileContent;
+		private $FindMDLink = '/(\[(.+\]\(.+\))/';
 
 		function __construct($file) {
 			$mdfile = fopen($file, 'r') or die('Unable to open file!');
@@ -70,6 +71,10 @@
 					# Need to remove the Markdown newline character so it isn't processed later as we are adding our own manually here...
 					$array[$i] = preg_replace($this->FindMDNewline, "", $array[$i]);
 					$array[$i] = $array[$i] . '</h6><br>';
+				}
+				# Check for any Markdown Links, remove it and add the h1 opening and closing tags for HTML...
+				if (preg_match($this->FindMDLink, $array[$i]) == 1) {
+					echo preg_grep($this->FindMDLink, $array[$i]) . "<br>";
 				}
 				# Next to split the string by the markdown double space newline and append the HTML newline to the end of each of the strings in the resulting array...
 				$array[$i] = preg_replace($this->FindMDNewline, '<br>', $array[$i]);
