@@ -6,10 +6,10 @@
 
 		function __construct($file, $OutputType) {
 			$mdfile = fopen($file, 'r') or die('Unable to open file!');
-			$OriginalFileContent = fread($mdfile,filesize($file));
+			$this->$OriginalFileContent = fread($mdfile,filesize($file));
 			fclose($mdfile);
 			if ($OutputType == 'HTML') {
-				ParseHTML($OriginalFileContent);
+				$this->ParseHTML($this->$OriginalFileContent);
 			} else {
 				die('Unrecognised output format!');
 			}
@@ -17,7 +17,7 @@
 
 		function ParseHTML() {
 			echo '<p>';
-			var_dump($OriginalFileContent);
+			var_dump($this->$OriginalFileContent);
 			echo '</p>';
 		}
 	}
