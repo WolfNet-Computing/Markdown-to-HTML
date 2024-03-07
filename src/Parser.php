@@ -4,12 +4,6 @@
 	class Parser {
 		public $OriginalFileContent;
 
-		public function ParseHTML() {
-			echo '<p>';
-			var_dump($OriginalFileContent);
-			echo '</p>';
-		}
-
 		public function __construct($file, $OutputType) {
 			$mdfile = fopen($file, 'r') or die('Unable to open file!');
 			$OriginalFileContent = fread($mdfile,filesize($file));
@@ -19,6 +13,12 @@
 			} else {
 				die('Unrecognised output format!');
 			}
+		}
+
+		public function ParseHTML() {
+			echo '<p>';
+			var_dump($OriginalFileContent);
+			echo '</p>';
 		}
 	}
 ?>
