@@ -24,7 +24,7 @@
 					$array[$i] = preg_replace($this->FindMDNewline, '', $array[$i]);
 					$array[$i] = preg_replace("/\n/", '', $array[$i]);
 					$array[$i] = $array[$i] . '</h1><br>';
-					echo $array[$i];
+					echo '$array[$i] = ' . $array[$i] . ', $i = ' . $i;
 				}
 				# Next to split the string by the markdown double space newline and append the HTML newline to the end of each of the strings in the resulting array...
 				$array[$i] = preg_replace($this->FindMDNewline, '<br>', $array[$i]);
