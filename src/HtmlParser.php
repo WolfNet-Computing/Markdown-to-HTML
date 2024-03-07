@@ -73,8 +73,8 @@
 					$array[$i] = $array[$i] . '</h6><br>';
 				}
 				# Check for any Markdown Links...
-				if (preg_match_all($this->FindMDLink, $array[$i], $linkarray, PREG_SET_ORDER) > 0) {
-					var_dump($linkarray);
+				if (preg_match_all($this->FindMDLink, $array[$i], $linkarray) > 0) {
+					print_r($linkarray);
 				}
 				# Next to split the string by the markdown double space newline and append the HTML newline to the end of each of the strings in the resulting array...
 				$array[$i] = preg_replace($this->FindMDNewline, '<br>', $array[$i]);
