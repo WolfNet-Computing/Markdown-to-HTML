@@ -4,7 +4,7 @@
 	class Parser {
 		public $OriginalFileContent;
 
-		private function ParseHTML() {
+		public function ParseHTML() {
 			echo '<p>';
 			var_dump($OriginalFileContent);
 			echo '</p>';
