@@ -17,9 +17,9 @@
 
 		# Returns the HTML formatted array of lines contained in the $HtmlFormattedMarkdown array.
 		function ParseHTML() {
-			explode("  ", $this->OriginalFileContent);
-			echo gettype($this->OriginalFileContent) . '<br>';
-			var_dump($this->OriginalFileContent);
+			$temp = explode("  ", $this->OriginalFileContent);
+			echo gettype($temp) . '<br>';
+			var_dump($temp);
 		}
 	}
 ?>
