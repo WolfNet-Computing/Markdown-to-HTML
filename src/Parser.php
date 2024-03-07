@@ -17,9 +17,11 @@
 
 		# Returns the HTML formatted array of lines contained in the $HtmlFormattedMarkdown array.
 		function ParseHTML() {
+			# First to split the string by the markdown double space newline and append the HTML newline to the end of each of the strings in the resulting array.
 			$temp = explode("  ", $this->OriginalFileContent);
-			echo gettype($temp) . '<br>';
-			var_dump($temp);
+			for ($i = 0; $i < count($array); ++$i) {
+				$array[$i] = $array[$i] . '<br>';
+			}
 		}
 	}
 ?>
