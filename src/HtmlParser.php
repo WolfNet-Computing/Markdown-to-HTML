@@ -4,7 +4,6 @@
 	class HtmlParser {
 		private $FindMDNewline = "/( ){2}/";
 		private $FindMDHeader1 = '/^(# )/';
-		private $FindMDHeader1 = '/^(# )/';
 		private $OriginalFileContent;
 
 		function __construct($file) {
