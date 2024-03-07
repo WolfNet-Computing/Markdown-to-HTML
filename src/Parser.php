@@ -15,10 +15,10 @@
 
 		# Returns the HTML formatted array of lines contained in the $HtmlFormattedMarkdown array...
 		function Parse() {
-			$array = explode("\n", $string);
+			$array = explode("\n", $this->OriginalFileContent);
 			foreach ($array as $line) {
 				# First to split the string by the markdown double space newline and append the HTML newline to the end of each of the strings in the resulting array...
-				$string = preg_replace($this->FindMDNewline, '<br>', $this->OriginalFileContent);
+				$line = preg_replace($this->FindMDNewline, '<br>', $line);
 				# Check for the Markdown Header level 1, remove it and add the h1 opening and closing tags for HTML...
 				if (preg_match($this->FindMDHeader1, $line)) {
 					preg_replace($this->FindMDHeader1, '<h1>', $line);
