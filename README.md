@@ -1,7 +1,7 @@
 # PHP MD Reader  
   
 > [!CAUTION]
-> This Composer library is in an **_early_ developmental stage**, usage of this library ***isn't*** recommended and is **done _at your own risk_**.  
+> This Composer library is in an **_early_ developmental stage**, usage of it ***isn't*** recommended and is **done _at your own risk_**.  
   
 ## Requires  
 A PHP enabled webserver that you also have file upload and command line access to.  
