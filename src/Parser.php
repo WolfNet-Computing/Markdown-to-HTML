@@ -5,7 +5,9 @@
 		public $OriginalFileContent;
 
 		private function ParseHTML() {
+			echo '<p>';
 			var_dump($OriginalFileContent);
+			echo '</p>';
 		}
 
 		public function __construct($file, $OutputType) {
