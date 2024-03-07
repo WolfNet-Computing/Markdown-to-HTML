@@ -10,7 +10,7 @@
 		private $FindMDHeader4 = '/^(#### )/';
 		private $FindMDHeader5 = '/^(##### )/';
 		private $FindMDHeader6 = '/^(###### )/';
-		private $FindMDLink = '/(\[.+\]\(((http|https):\/\/(.+))\))/';
+		private $FindMDLink = '/\[.+\]\(((http|https):\/\/(.+))\)/';
 
 		function __construct($file) {
 			$mdfile = fopen($file, 'r') or die('Unable to open file!');
@@ -74,7 +74,9 @@
 				}
 				# Check for any Markdown Links...
 				if (preg_match_all($this->FindMDLink, $array[$i], $linkarray) > 0) {
-					print_r($linkarray);
+					for ($i = 0; $i < count($linkarray); $i++) {
+						echo $linkarray[$i] . "<br>";
+					}
 				}
 				# Next to split the string by the markdown double space newline and append the HTML newline to the end of each of the strings in the resulting array...
 				$array[$i] = preg_replace($this->FindMDNewline, '<br>', $array[$i]);
