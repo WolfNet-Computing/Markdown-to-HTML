@@ -16,8 +16,9 @@
 		# Returns the HTML formatted array of lines contained in the $HtmlFormattedMarkdown array...
 		function Parse() {
 			$array = explode("\n", $this->OriginalFileContent);
-			echo gettype($array) . '<br>';
+			echo 'gettype($array) returns: ' . gettype($array) . '<br>';
 			foreach ($array as &$line) {
+				echo 'gettype($line) returns: ' . gettype($line) . '<br>';
 				echo $line;
 				# First to split the string by the markdown double space newline and append the HTML newline to the end of each of the strings in the resulting array...
 				$line = preg_replace($this->FindMDNewline, '<br>', $line);
