@@ -2,7 +2,7 @@
 	namespace WolfNet_Computing\MD_Reader;
 
 	class Parser {
-		private $FindMDNewline = '/\s{2}/';
+		private $FindMDNewline = '/ {2}/';
 		private $OriginalFileContent;
 
 		function __construct($file) {
