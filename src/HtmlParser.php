@@ -10,8 +10,7 @@
 		private $FindMDHeader4 = '/^(#### )/';
 		private $FindMDHeader5 = '/^(##### )/';
 		private $FindMDHeader6 = '/^(###### )/';
-		private $FindMDLink1 = '/\[[^\]]\]\((?:http|https)\:\/{2}[^)]\)/';
-		private $FindMDLink2 = '/\[[^\]]\]\(.{0,2}\/[^)]\)/';
+		private $FindMDLink = '/\[[^\]]\]\([^\]]\)/';
 
 		function __construct($file) {
 			$mdfile = fopen($file, 'r') or die('Unable to open file!');
@@ -74,16 +73,14 @@
 					$array[$i] = $array[$i] . '</h6><br>';
 				}
 				# Check for any Markdown Links...
-				if (preg_match_all($this->FindMDLink1, $array[$i], $linkarray) > 0) {
-					for ($j = 0; $j < count($linkarray); $j++) {
-						var_dump($linkarray[$j]);
-						echo "<br>";
-					}
-				}
-				if (preg_match_all($this->FindMDLink2, $array[$i], $linkarray) > 0) {
-					for ($j = 0; $j < count($linkarray); $j++) {
-						var_dump($linkarray[$j]);
-						echo "<br>";
+				if (preg_match_all($this->FindMDLink1, $array[$i], $firstpass) > 0) {
+					for ($j = 0; $j < count($firstpass); $j++) {
+						if (preg_match_all($this->FindMDLink1, $firstpass[$j], $linkarray) > 0) {
+							for ($k = 0; $k < count($linkarray); $k++) {
+								var_dump($linkarray[$k]);
+								echo "<br>";
+							}
+						}
 					}
 				}
 				# Next to split the string by the markdown double space newline and append the HTML newline to the end of each of the strings in the resulting array...
