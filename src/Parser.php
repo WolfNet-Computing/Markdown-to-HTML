@@ -24,7 +24,7 @@
 				# Check for the Markdown Header level 1, remove it and add the h1 opening and closing tags for HTML...
 				echo preg_match($this->FindMDHeader1, $array[$i]);
 				if (preg_match($this->FindMDHeader1, $array[$i]) == 1) {
-					echo "Got here!";
+					echo preg_replace($this->FindMDHeader1, '<h1>', $array[$i]);
 					preg_replace($this->FindMDHeader1, '<h1>', $array[$i]);
 					$array[$i] .= '</h1>';
 				}
