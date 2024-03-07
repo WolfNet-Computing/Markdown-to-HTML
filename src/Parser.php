@@ -3,6 +3,7 @@
 
 	class Parser {
 		private $FindMDNewline = '/ {2}/';
+		private $FindMDHeader1 = '/# /';
 		private $OriginalFileContent;
 
 		function __construct($file) {
@@ -19,8 +20,9 @@
 			$array = explode("\n", $string);
 			# Check for the Markdown Header level 1, remove it and add the h1 opening and closing tags for HTML...
 			foreach ($array as $line) {
-				if (preg_match('/#/', $line)) {
-					
+				if (preg_match($this->FindMDHeader1, $line)) {
+					preg_replace($this->FindMDHeader1, '<h1>', $line);
+					$line .= '</h1>';
 				}
 			}
 			return $array;
