@@ -74,8 +74,8 @@
 				}
 				# Check for any Markdown Links...
 				if (preg_match_all($this->FindMDLink, $array[$i], $linkarray) > 0) {
-					for ($i = 0; $i < count($linkarray); $i++) {
-						print_r($linkarray[$i]);
+					for ($j = 0; $j < count($linkarray); $j++) {
+						print_r($linkarray[$j]);
 						echo "<br>";
 						break;
 					}
