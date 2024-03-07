@@ -19,7 +19,7 @@
 			$array = explode('\n', $string);
 			# Check for the Markdown Header level 1, remove it and add the h1 opening and closing tags for HTML...
 			foreach ($array as $line) {
-				if (preg_match('#', $line)) {
+				if (preg_match('/#/', $line)) {
 					
 				}
 			}
