@@ -3,7 +3,7 @@
 
 	class HtmlParser {
 		private $FindMDNewline = '/\u{0020}{2}/';
-		private $FindMDHeader1 = "/^\u{0023}\u{0020}/u";
+		private $FindMDHeader1 = "/^\u{0023}\u{0020}/";
 		private $OriginalFileContent;
 
 		function __construct($file) {
