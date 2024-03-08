@@ -77,6 +77,7 @@
 				if (preg_match_all($this->FindMDLink1, $line[$i], $regexarray1) > 0) {
 					for ($j = 0; $j < count($regexarray1[0]); $j++) {
 						if (preg_match_all($this->FindMDLink2, $regexarray1[0][$j], $regexarray2) > 0) {
+							$finalstr = "";
 							for ($k = 0; $k < count($regexarray2[0]); $k++) {
 								$explodedlink = explode(substr($regexarray2[0][$k], 1, (strlen($regexarray2[0][$k]) - 2)), $regexarray1[0][$j]);
 								for ($l = 0; $l < count($explodedlink); $l++) {
