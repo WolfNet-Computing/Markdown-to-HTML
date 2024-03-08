@@ -89,9 +89,7 @@
 									$finalstr = $finalstr . "<a href=" . $linkcontent[1] . ">" . $linkcontent[0] . "</a>";
 								}
 							}
-							for ($k = 0; $k < count($regexarray2[0]); $k++) {
-								echo substr($regexarray2[0][$k], 1, (strlen($regexarray2[0][$k]) - 2)) . "<br>";
-							}
+							echo preg_replace($this->FindMDLink1, $finalstr, $line[$i]);
 						} else {
 							$str = substr($regexarray1[0][$j], 1, (strlen($regexarray1[0][$j]) - 2));
 							$linkcontent = explode("](", $str);
