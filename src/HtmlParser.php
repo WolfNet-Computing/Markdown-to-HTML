@@ -84,9 +84,9 @@
 									$str = substr($explodedlink[$l], 1, (strlen($explodedlink[$l]) - 2));
 									$linkcontent = explode("](", $str);
 									if ($l != 0) {
-										$finalstr .= substr($regexarray2[0][$k], 1, (strlen($regexarray2[0][$k]) - 2));
+										$finalstr = $finalstr . substr($regexarray2[0][$k], 1, (strlen($regexarray2[0][$k]) - 2));
 									}
-									$finalstr .= "<a href=" . $linkcontent[1] . ">" . $linkcontent[0] . "</a>";
+									$finalstr = $finalstr . "<a href=" . $linkcontent[1] . ">" . $linkcontent[0] . "</a>";
 								}
 							}
 							$line[$i] = preg_replace($this->FindMDLink2, $finalstr, $line[$i]);
