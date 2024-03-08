@@ -88,8 +88,8 @@
 							$prelimfoundlinks[] = $regexarray1[0][$j];
 						}
 					}
-					foreach ($prelimfoundlinks as $link) {
-						echo $link . "<br>";
+					for ($j = 0; $j < count($prelimfoundlinks); $j++) {
+						echo $prelimfoundlinks[$j] . "<br>";
 					}
 				}
 				# Next to split the string by the markdown double space newline and append the HTML newline to the end of each of the strings in the resulting array...
