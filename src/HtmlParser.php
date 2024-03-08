@@ -92,6 +92,7 @@
 						$str = substr($prelimfoundlinks[$j], 1, (strlen($prelimfoundlinks[$j]) - 2));
 						$linkcontent = explode("](", $str);
 						echo "Link data contains the label: " . $linkcontent[0] . " and the target address: " . $linkcontent[1] . "<br>";
+						echo "<a href=" . $linkcontent[1] . ">" . $linkcontent[0] . "</a>" . "<br>";
 					}
 				}
 				# Next to split the string by the markdown double space newline and append the HTML newline to the end of each of the strings in the resulting array...
