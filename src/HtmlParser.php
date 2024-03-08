@@ -84,6 +84,8 @@
 									$foundlinks[] = $link;
 								}
 							}
+						} else {
+							$foundlinks[] = $regexarray1[0][$j];
 						}
 					}
 					foreach ($foundlinks as $link) {
