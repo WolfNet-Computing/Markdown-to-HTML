@@ -75,18 +75,21 @@
 				}
 				# Check for any Markdown Links...
 				if (preg_match_all($this->FindMDLink1, $line[$i], $regexarray1) > 0) {
-					$finalstr = array();
 					for ($j = 0; $j < count($regexarray1[0]); $j++) {
 						if (preg_match_all($this->FindMDLink2, $regexarray1[0][$j], $regexarray2) > 0) {
+							$finalstr = array();
 							for ($k = 0; $k < count($regexarray2[0]); $k++) {
 								$explodedlink = explode(substr($regexarray2[0][$k], 1, (strlen($regexarray2[0][$k]) - 2)), $regexarray1[0][$j]);
-								foreach ($explodedlink as $link) {
-									$str = substr($link, 1, (strlen($link) - 2));
+								for ($l = 0; $l < count($explodedlink); $l++) {
+									$str = substr($explodedlink[$l], 1, (strlen($explodedlink[$l]) - 2));
 									$linkcontent = explode("](", $str);
-									echo "<a href=" . $linkcontent[1] . ">" . $linkcontent[0] . "</a>" . "<br>";
+									if ($l > 0) {
+										$finalstr .= substr($regexarray2[0][$k], 1, (strlen($regexarray2[0][$k]) - 2))
+									}
+									$finalstr .= preg_replace($this->FindMDLink2, "<a href=" . $linkcontent[1] . ">" . $linkcontent[0] . "</a>", $line[$i]);
 								}
-								
 							}
+							$line[$i] = $finalstr
 						} else {
 							$str = substr($regexarray1[0][$j], 1, (strlen($regexarray1[0][$j]) - 2));
 							$linkcontent = explode("](", $str);
