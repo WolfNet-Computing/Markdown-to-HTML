@@ -75,15 +75,24 @@
 				}
 				# Check for any Markdown Links...
 				if (preg_match_all($this->FindMDLink1, $array[$i], $temparray) > 0) {
+					echo "The size of \$Temparray[0] is: " . count($temparray[0]);
+					echo "<br>";
 					var_dump($temparray[0]);
 					echo "<br>";
-					echo "The size of \$Temparray is: " . count($temparray[0]);
-					echo "<br>";
 					for ($j = 0; $j < count($temparray[0]); $j++) {
-						echo "\$Temparray[\$j] has the type: " . gettype($temparray[0][$j]);
+						echo "The size of \$Temparray[0][\$j] is: " . count($temparray[0][$j]);
+						echo "<br>";
+						var_dump($temparray[0][$j]);
+						echo "<br>";
 						if (preg_match_all($this->FindMDLink2, $temparray[0][$j], $linkarray) > 0) {
-							for ($k = 0; $k < count($linkarray); $k++) {
-								var_dump($linkarray[$k]);
+							echo "The size of \$linkarray[0] is: " . count($linkarray[0]);
+							echo "<br>";
+							var_dump($linkarray[0]);
+							echo "<br>";
+							for ($k = 0; $k < count($linkarray[0]); $k++) {
+								echo "The size of \$linkarray[0][\$k] is: " . count($linkarray[0][$k]);
+								echo "<br>";
+								var_dump($linkarray[0][$k]);
 								echo "<br>";
 							}
 						}
