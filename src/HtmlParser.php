@@ -78,7 +78,7 @@
 					for ($j = 0; $j < count($temparray[0]); $j++) {
 						if (preg_match_all($this->FindMDLink2, $temparray[0][$j], $linkarray) > 0) {
 							for ($k = 0; $k < count($linkarray[0]); $k++) {
-								var_dump($linkarray[0][$k]);
+								echo substr($linkarray[0][$k], 1, strlen($linkarray[0][$k]) - 2);
 								echo "<br>";
 							}
 						}
