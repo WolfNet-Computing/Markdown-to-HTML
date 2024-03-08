@@ -75,16 +75,18 @@
 				}
 				# Check for any Markdown Links...
 				if (preg_match_all($this->FindMDLink1, $array[$i], $temparray) > 0) {
-					//var_dump($temparray);
-					//echo "<br>";
-					for ($j = 0; $j < count($temparray); $j++) {
-						echo "\$Temparray[\$j] has the type: " . gettype($temparray[$j]);
-						//if (preg_match_all($this->FindMDLink2, $temparray[$j], $linkarray) > 0) {
-						//	for ($k = 0; $k < count($linkarray); $k++) {
-						//		var_dump($linkarray[$k]);
-						//		echo "<br>";
-						//	}
-						//}
+					var_dump($temparray[0]);
+					echo "<br>";
+					echo "The size of \$Temparray is: " . count($temparray[0]);
+					echo "<br>";
+					for ($j = 0; $j < count($temparray[0]); $j++) {
+						echo "\$Temparray[\$j] has the type: " . gettype($temparray[0][$j]);
+						if (preg_match_all($this->FindMDLink2, $temparray[0][$j], $linkarray) > 0) {
+							for ($k = 0; $k < count($linkarray); $k++) {
+								var_dump($linkarray[$k]);
+								echo "<br>";
+							}
+						}
 					}
 				}
 				# Next to split the string by the markdown double space newline and append the HTML newline to the end of each of the strings in the resulting array...
