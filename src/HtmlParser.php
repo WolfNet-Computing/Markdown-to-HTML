@@ -10,7 +10,7 @@
 		private $FindMDHeader4 = '/^(#### )/';
 		private $FindMDHeader5 = '/^(##### )/';
 		private $FindMDHeader6 = '/^(###### )/';
-		private $FindMDLink1 = '/\[.+\]\(.+\)[^.]+/';
+		private $FindMDLink1 = '/\[.+\]\(.+\)/';
 		private $FindMDLink2 = '/\).+\[/';
 
 		function __construct($file) {
