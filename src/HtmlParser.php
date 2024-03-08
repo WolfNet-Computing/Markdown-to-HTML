@@ -22,72 +22,77 @@
 
 		# Returns the HTML formatted array of lines contained in the $HtmlFormattedMarkdown array...
 		function DisplayFormatted() {
-			$array = explode("\n", $this->OriginalFileContent);
-			for ($i = 0; $i < count($array); $i++) {
-				$array[$i] = str_replace(array("\r\n", "\n", "\r"), "", $array[$i]);
+			$line = explode("\n", $this->OriginalFileContent);
+			for ($i = 0; $i < count($line); $i++) {
+				$line[$i] = str_replace(array("\r\n", "\n", "\r"), "", $line[$i]);
 				# Check for the Markdown Header level 1, remove it and add the h1 opening and closing tags for HTML...
-				if (preg_match($this->FindMDHeader1, $array[$i]) == 1) {
+				if (preg_match($this->FindMDHeader1, $line[$i]) == 1) {
 					# Need to remove the carriage returns and line feeds...
-					$array[$i] = preg_replace($this->FindMDHeader1, '<h1>', $array[$i]);
+					$line[$i] = preg_replace($this->FindMDHeader1, '<h1>', $line[$i]);
 					# Need to remove the Markdown newline character so it isn't processed later as we are adding our own manually here...
-					$array[$i] = preg_replace($this->FindMDNewline, "", $array[$i]);
-					$array[$i] = $array[$i] . '</h1><br>';
+					$line[$i] = preg_replace($this->FindMDNewline, "", $line[$i]);
+					$line[$i] = $line[$i] . '</h1><br>';
 				}
 				# Check for the Markdown Header level 2, remove it and add the h1 opening and closing tags for HTML...
-				if (preg_match($this->FindMDHeader2, $array[$i]) == 1) {
+				if (preg_match($this->FindMDHeader2, $line[$i]) == 1) {
 					# Need to remove the carriage returns and line feeds...
-					$array[$i] = preg_replace($this->FindMDHeader2, '<h2>', $array[$i]);
+					$line[$i] = preg_replace($this->FindMDHeader2, '<h2>', $line[$i]);
 					# Need to remove the Markdown newline character so it isn't processed later as we are adding our own manually here...
-					$array[$i] = preg_replace($this->FindMDNewline, "", $array[$i]);
-					$array[$i] = $array[$i] . '</h2><br>';
+					$line[$i] = preg_replace($this->FindMDNewline, "", $line[$i]);
+					$line[$i] = $line[$i] . '</h2><br>';
 				}
 				# Check for the Markdown Header level 3, remove it and add the h1 opening and closing tags for HTML...
-				if (preg_match($this->FindMDHeader3, $array[$i]) == 1) {
+				if (preg_match($this->FindMDHeader3, $line[$i]) == 1) {
 					# Need to remove the carriage returns and line feeds...
-					$array[$i] = preg_replace($this->FindMDHeader3, '<h3>', $array[$i]);
+					$line[$i] = preg_replace($this->FindMDHeader3, '<h3>', $line[$i]);
 					# Need to remove the Markdown newline character so it isn't processed later as we are adding our own manually here...
-					$array[$i] = preg_replace($this->FindMDNewline, "", $array[$i]);
-					$array[$i] = $array[$i] . '</h3><br>';
+					$line[$i] = preg_replace($this->FindMDNewline, "", $line[$i]);
+					$line[$i] = $line[$i] . '</h3><br>';
 				}
 				# Check for the Markdown Header level 4, remove it and add the h1 opening and closing tags for HTML...
-				if (preg_match($this->FindMDHeader4, $array[$i]) == 1) {
+				if (preg_match($this->FindMDHeader4, $line[$i]) == 1) {
 					# Need to remove the carriage returns and line feeds...
-					$array[$i] = preg_replace($this->FindMDHeader4, '<h4>', $array[$i]);
+					$line[$i] = preg_replace($this->FindMDHeader4, '<h4>', $line[$i]);
 					# Need to remove the Markdown newline character so it isn't processed later as we are adding our own manually here...
-					$array[$i] = preg_replace($this->FindMDNewline, "", $array[$i]);
-					$array[$i] = $array[$i] . '</h4><br>';
+					$line[$i] = preg_replace($this->FindMDNewline, "", $line[$i]);
+					$line[$i] = $line[$i] . '</h4><br>';
 				}
 				# Check for the Markdown Header level 5, remove it and add the h1 opening and closing tags for HTML...
-				if (preg_match($this->FindMDHeader5, $array[$i]) == 1) {
+				if (preg_match($this->FindMDHeader5, $line[$i]) == 1) {
 					# Need to remove the carriage returns and line feeds...
-					$array[$i] = preg_replace($this->FindMDHeader5, '<h5>', $array[$i]);
+					$line[$i] = preg_replace($this->FindMDHeader5, '<h5>', $line[$i]);
 					# Need to remove the Markdown newline character so it isn't processed later as we are adding our own manually here...
-					$array[$i] = preg_replace($this->FindMDNewline, "", $array[$i]);
-					$array[$i] = $array[$i] . '</h5><br>';
+					$line[$i] = preg_replace($this->FindMDNewline, "", $line[$i]);
+					$line[$i] = $line[$i] . '</h5><br>';
 				}
 				# Check for the Markdown Header level 6, remove it and add the h1 opening and closing tags for HTML...
-				if (preg_match($this->FindMDHeader6, $array[$i]) == 1) {
+				if (preg_match($this->FindMDHeader6, $line[$i]) == 1) {
 					# Need to remove the carriage returns and line feeds...
-					$array[$i] = preg_replace($this->FindMDHeader6, '<h6>', $array[$i]);
+					$line[$i] = preg_replace($this->FindMDHeader6, '<h6>', $line[$i]);
 					# Need to remove the Markdown newline character so it isn't processed later as we are adding our own manually here...
-					$array[$i] = preg_replace($this->FindMDNewline, "", $array[$i]);
-					$array[$i] = $array[$i] . '</h6><br>';
+					$line[$i] = preg_replace($this->FindMDNewline, "", $line[$i]);
+					$line[$i] = $line[$i] . '</h6><br>';
 				}
 				# Check for any Markdown Links...
-				if (preg_match_all($this->FindMDLink1, $array[$i], $temparray) > 0) {
-					for ($j = 0; $j < count($temparray[0]); $j++) {
-						if (preg_match_all($this->FindMDLink2, $temparray[0][$j], $linkarray) > 0) {
-							for ($k = 0; $k < count($linkarray[0]); $k++) {
-								echo substr($linkarray[0][$k], 1, strlen($linkarray[0][$k]) - 2);
+				if (preg_match_all($this->FindMDLink1, $line[$i], $regexarray1) > 0) {
+					$FoundLinks = NULL;
+					for ($j = 0; $j < count($regexarray1[0]); $j++) {
+						if (preg_match_all($this->FindMDLink2, $regexarray1[0][$j], $regexarray2) > 0) {
+							for ($k = 0; $k < count($regexarray2[0]); $k++) {
+								echo substr($regexarray2[0][$k], 1, strlen($regexarray2[0][$k]) - 2);
 								echo "<br>";
+								$explodedlink = explode(substr($regexarray2[0][$k], 1, strlen($regexarray2[0][$k]) - 2), $regexarray2[0][$k]);
+								echo $explodedlink[0] . "<br>";
+								echo $explodedlink[1] . "<br>";
+								echo $explodedlink[2] . "<br>";
 							}
 						}
 					}
 				}
 				# Next to split the string by the markdown double space newline and append the HTML newline to the end of each of the strings in the resulting array...
-				$array[$i] = preg_replace($this->FindMDNewline, '<br>', $array[$i]);
+				$line[$i] = preg_replace($this->FindMDNewline, '<br>', $line[$i]);
 			}
-			return $array;
+			return $line;
 		}
 	}
 ?>
