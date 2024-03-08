@@ -75,6 +75,8 @@
 				}
 				# Check for any Markdown Links...
 				if (preg_match_all($this->FindMDLink1, $array[$i], $temparray) > 0) {
+					var_dump($temparray);
+					echo "<br>";
 					for ($j = 0; $j < count($temparray); $j++) {
 						var_dump($temparray[$j]);
 						echo "<br>";
