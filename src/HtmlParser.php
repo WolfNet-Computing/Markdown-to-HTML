@@ -75,16 +75,19 @@
 				}
 				# Check for any Markdown Links...
 				if (preg_match_all($this->FindMDLink1, $line[$i], $regexarray1) > 0) {
-					$FoundLinks = NULL;
+					$foundlinks = NULL;
 					for ($j = 0; $j < count($regexarray1[0]); $j++) {
 						if (preg_match_all($this->FindMDLink2, $regexarray1[0][$j], $regexarray2) > 0) {
 							for ($k = 0; $k < count($regexarray2[0]); $k++) {
 								$explodedlink = explode(substr($regexarray2[0][$k], 1, (strlen($regexarray2[0][$k]) - 2)), $regexarray2[0][$k]);
-								echo $explodedlink[0] . "<br>";
-								echo $explodedlink[1] . "<br>";
-								echo $explodedlink[2] . "<br>";
+								foreach ($explodedlink as $link) {
+									$foundlinks[] = $link;
+								}
 							}
 						}
+					}
+					foreach ($foundlinks as $link) {
+						echo $link . "<br>";
 					}
 				}
 				# Next to split the string by the markdown double space newline and append the HTML newline to the end of each of the strings in the resulting array...
