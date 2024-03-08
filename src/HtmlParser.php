@@ -75,20 +75,20 @@
 				}
 				# Check for any Markdown Links...
 				if (preg_match_all($this->FindMDLink1, $line[$i], $regexarray1) > 0) {
-					$foundlinks = array();
+					$prelimfoundlinks = array();
 					for ($j = 0; $j < count($regexarray1[0]); $j++) {
 						if (preg_match_all($this->FindMDLink2, $regexarray1[0][$j], $regexarray2) > 0) {
 							for ($k = 0; $k < count($regexarray2[0]); $k++) {
 								$explodedlink = explode(substr($regexarray2[0][$k], 1, (strlen($regexarray2[0][$k]) - 2)), $regexarray1[0][$j]);
 								foreach ($explodedlink as $link) {
-									$foundlinks[] = $link;
+									$prelimfoundlinks[] = $link;
 								}
 							}
 						} else {
-							$foundlinks[] = $regexarray1[0][$j];
+							$prelimfoundlinks[] = $regexarray1[0][$j];
 						}
 					}
-					foreach ($foundlinks as $link) {
+					foreach ($prelimfoundlinks as $link) {
 						echo $link . "<br>";
 					}
 				}
