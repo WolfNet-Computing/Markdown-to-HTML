@@ -86,7 +86,7 @@
 									if ($l != 0) {
 										$finalstr .= substr($regexarray2[0][$k], 1, (strlen($regexarray2[0][$k]) - 2))
 									}
-									$finalstr .= preg_replace($this->FindMDLink2, "<a href=" . $linkcontent[1] . ">" . $linkcontent[0] . "</a>", $line[$i]);
+									$finalstr .= "<a href=" . $linkcontent[1] . ">" . $linkcontent[0] . "</a>";
 								}
 							}
 							$line[$i] = $finalstr
