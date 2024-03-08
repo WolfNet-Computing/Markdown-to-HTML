@@ -90,7 +90,7 @@
 								}
 							}
 							for ($k = 0; $k < count($regexarray2[0]); $k++) {
-								echo $regexarray2[0][$k] . "<br>";
+								echo $substr($regexarray2[0][$k], 1, (strlen($regexarray2[0][$k]) - 2)) . "<br>";
 							}
 						} else {
 							$str = substr($regexarray1[0][$j], 1, (strlen($regexarray1[0][$j]) - 2));
