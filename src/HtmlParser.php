@@ -75,24 +75,24 @@
 				}
 				# Check for any Markdown Links...
 				if (preg_match_all($this->FindMDLink1, $line[$i], $regexarray1) > 0) {
-					$prelimfoundlinks = array();
+					$finalstr = array();
 					for ($j = 0; $j < count($regexarray1[0]); $j++) {
 						if (preg_match_all($this->FindMDLink2, $regexarray1[0][$j], $regexarray2) > 0) {
 							for ($k = 0; $k < count($regexarray2[0]); $k++) {
 								$explodedlink = explode(substr($regexarray2[0][$k], 1, (strlen($regexarray2[0][$k]) - 2)), $regexarray1[0][$j]);
 								foreach ($explodedlink as $link) {
-									$prelimfoundlinks[] = $link;
+									$str = substr($link, 1, (strlen($link) - 2));
+									$linkcontent = explode("](", $str);
+									echo "<a href=" . $linkcontent[1] . ">" . $linkcontent[0] . "</a>" . "<br>";
 								}
+								
 							}
 						} else {
-							$prelimfoundlinks[] = $regexarray1[0][$j];
+							$str = substr($regexarray1[0][$j], 1, (strlen($regexarray1[0][$j]) - 2));
+							$linkcontent = explode("](", $str);
+							echo "<a href=" . $linkcontent[1] . ">" . $linkcontent[0] . "</a>" . "<br>";
+							//preg_replace($this->FindMDLink1, 
 						}
-					}
-					for ($j = 0; $j < count($prelimfoundlinks); $j++) {
-						$str = substr($prelimfoundlinks[$j], 1, (strlen($prelimfoundlinks[$j]) - 2));
-						$linkcontent = explode("](", $str);
-						echo "Link data contains the label: " . $linkcontent[0] . " and the target address: " . $linkcontent[1] . "<br>";
-						echo "<a href=" . $linkcontent[1] . ">" . $linkcontent[0] . "</a>" . "<br>";
 					}
 				}
 				# Next to split the string by the markdown double space newline and append the HTML newline to the end of each of the strings in the resulting array...
