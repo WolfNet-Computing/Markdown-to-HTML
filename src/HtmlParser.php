@@ -80,12 +80,12 @@
 					for ($j = 0; $j < count($temparray); $j++) {
 						var_dump($temparray[$j]);
 						echo "<br>";
-						if (preg_match_all($this->FindMDLink2, $temparray[$j], $linkarray) > 0) {
-							for ($k = 0; $k < count($linkarray); $k++) {
-								var_dump($linkarray[$k]);
-								echo "<br>";
-							}
-						}
+						//if (preg_match_all($this->FindMDLink2, $temparray[$j], $linkarray) > 0) {
+						//	for ($k = 0; $k < count($linkarray); $k++) {
+						//		var_dump($linkarray[$k]);
+						//		echo "<br>";
+						//	}
+						//}
 					}
 				}
 				# Next to split the string by the markdown double space newline and append the HTML newline to the end of each of the strings in the resulting array...
