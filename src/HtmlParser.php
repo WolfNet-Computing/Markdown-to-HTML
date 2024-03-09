@@ -38,17 +38,17 @@
 				if (preg_match_all($this->FindMDUnorderedListItem, $FormattedOutput[$i], $regexarray1) > 0) {
 					if ($wasunorderedlist) {
 						$FormattedOutput[$i] = preg_replace($this->FindMDUnorderedListItem, "<li>", $FormattedOutput[$i]);
+						$FormattedOutput[$i] = $FormattedOutput[$i] . "</li>";
 					} else {
 						$wasunorderedlist = True;
-						$this->InsertIntoArray($FormattedOutput, $i, "<ul>\r\n");
-						$i--;
+						$this->InsertIntoArray($FormattedOutput, $i, "<ul>\n");
 						continue;
 					}
-					$FormattedOutput[$i] = $FormattedOutput[$i] . "</ul>";
 				} else {
 					if ($wasunorderedlist) {
 						$wasunorderedlist = False;
-						$FormattedOutput[$i - 1] = $FormattedOutput[$i - 1] . "</ul>";
+						$this->InsertIntoArray($FormattedOutput, $i, "</ul><br>");
+						continue
 					}
 				}
 				# Check for the Markdown Header level 1, remove it and add the h1 opening and closing tags for HTML...
