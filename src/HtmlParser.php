@@ -12,7 +12,7 @@
 		private $FindMDHeader6 = '/^(###### )/';
 		private $FindMDLink1 = '/\[.+\]\(.+\)/';
 		private $FindMDLink2 = '/\).+\[/';
-		private $FindMDUnorderedListItem = '/^( (?:-|\*|\+) )/';
+		private $FindMDUnorderedListItem = '/^( (?:-|\*|\+) .+)/';
 		private $FindMDOrderedListItem = '/^( [\d]+[\.] )/';
 		private $FindMDBoldItem = '/\*\*.+\*\*/';
 
