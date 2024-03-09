@@ -53,7 +53,6 @@
 					if ($wasunorderedlist) {
 						$wasunorderedlist = False;
 						$this->InsertIntoArray($FormattedOutput, $i, "</ul><br>");
-						$i--;
 						continue;
 					}
 				}
