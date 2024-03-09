@@ -24,7 +24,7 @@
 		function InsertIntoArray(&$array, $index, $data) {
 			$arraybegin = array_slice($array,0,$index - 1);
 			$arraybegin[] = $data;
-			$arrayend = array_slice($array,$index + 1);
+			$arrayend = array_slice($array,$index);
 			$array = array_merge($arraybegin, $arrayend);
 		}
 
@@ -41,7 +41,9 @@
 						$FormattedOutput[$i] = $FormattedOutput[$i] . "</li>";
 					} else {
 						$wasunorderedlist = True;
-						$this->InsertIntoArray($FormattedOutput, $i, "<ul>\n");
+						$this->InsertIntoArray($FormattedOutput, $i, "<ul>");
+						$FormattedOutput[$i + 1] = preg_replace($this->FindMDUnorderedListItem, "<li>", $FormattedOutput[$i]);
+						$i++;
 						continue;
 					}
 				} else {
