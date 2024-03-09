@@ -46,7 +46,6 @@
 					} else {
 						$wasunorderedlist = True;
 						$this->InsertIntoArray($FormattedOutput, $i, "<ul>");
-						$i--;
 						continue;
 					}
 				} else {
