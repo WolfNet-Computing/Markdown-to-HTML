@@ -24,11 +24,11 @@
 		}
 
 		function InsertIntoArray(&$array, $index, $data) {
-			echo $data . "<br>";
-			$arraybegin = array_slice($array,0,$index - 1);
-			$arrayend = array_slice($array,$index);
-			array_push($arraybegin, $data);
-			$array = array_merge($arraybegin, $arrayend);
+			$array = array_pad($array, count($array) + 1, "");
+			for ($i = count($array) - 1; $i > $index; $i--) {
+				$array[$i] = $array[$i - 1];
+			}
+			$array[$index] = $data;
 		}
 
 		# Returns the HTML formatted array of lines contained in the $HtmlFormattedMarkdown array...
