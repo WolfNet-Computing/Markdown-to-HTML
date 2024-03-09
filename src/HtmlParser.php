@@ -14,6 +14,7 @@
 		private $FindMDLink2 = '/\).+\[/';
 		private $FindMDUnorderedListItem = '/^( (?:-|\*|\+) )/';
 		private $FindMDOrderedListItem = '/^( [\d]+[\.] )/';
+		private $FindMDBoldItem = '/\*\*.+\*\*/';
 
 		function __construct($file) {
 			$mdfile = fopen($file, 'r') or die('Unable to open file!');
