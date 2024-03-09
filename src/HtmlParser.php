@@ -13,7 +13,7 @@
 		private $FindMDLink1 = '/\[.+\]\(.+\)/';
 		private $FindMDLink2 = '/\).+\[/';
 		private $FindMDUnorderedListItem = '/^( (?:-|*|+) )/';
-		private $FindMDOrderedListItem = '/^( [\d]+[\.] )/';
+		private $FindMDOrderedListItem = '/^( [\d][.] )/';
 
 		function __construct($file) {
 			$mdfile = fopen($file, 'r') or die('Unable to open file!');
