@@ -31,7 +31,7 @@
 				if (preg_match_all($this->FindMDUnorderedListItem, $line[$i], $regexarray1) > 0) {
 					if (!$wasunorderedlist) {
 						$wasunorderedlist = True;
-						$line[$i] = preg_replace($this->FindMDUnorderedListItem, "<ul><li>", $line[$i]);
+						$line[$i] = preg_replace($this->FindMDUnorderedListItem, "<ul>\n<li>", $line[$i]);
 					} else {
 						$line[$i] = preg_replace($this->FindMDUnorderedListItem, "<li>", $line[$i]);
 					}
