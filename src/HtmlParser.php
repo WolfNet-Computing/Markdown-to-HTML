@@ -36,7 +36,7 @@
 
 		# Returns the HTML formatted array of lines contained in the $HtmlFormattedMarkdown array...
 		function DisplayFormatted() {
-			for ($p = 0; $p < $NumberOfPasses; $p++) {
+			for ($p = 0; $p < $this->NumberOfPasses; $p++) {
 				$wasunorderedlist = False;
 				$wasorderedlist = False;
 				$FormattedOutput = explode("\n", $this->OriginalFileContent);
