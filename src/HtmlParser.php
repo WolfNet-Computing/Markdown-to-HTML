@@ -2,6 +2,8 @@
 	namespace WolfNet_Computing\MD_Reader;
 
 	class HtmlParser {
+		private $NumberOfPasses = 3;
+		
 		private $OriginalFileContent;
 		private $FindMDNewline = "/( ){2}/";
 		private $FindMDHeader1 = '/^(# )/';
