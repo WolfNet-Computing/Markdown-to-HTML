@@ -42,7 +42,7 @@
 					if ($wasunorderedlist) {
 						# Need to remove the Markdown newline character so it isn't processed later as we are adding our own manually here...
 						$FormattedOutput[$i] = preg_replace($this->FindMDNewline, "", $FormattedOutput[$i]);
-						$FormattedOutput[$i] = preg_replace($this->FindMDUnorderedListItem, "-li-", $FormattedOutput[$i])
+						$FormattedOutput[$i] = preg_replace($this->FindMDUnorderedListItem, "-li-", $FormattedOutput[$i]);
 						echo $FormattedOutput[$i] . "<br>";
 						$this->InsertIntoArray($FormattedOutput, $i, "-/li-");
 					} else {
