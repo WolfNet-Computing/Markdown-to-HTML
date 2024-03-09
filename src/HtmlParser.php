@@ -42,16 +42,16 @@
 					if ($wasunorderedlist) {
 						# Need to remove the Markdown newline character so it isn't processed later as we are adding our own manually here...
 						$FormattedOutput[$i] = preg_replace($this->FindMDNewline, "", $FormattedOutput[$i]);
-						$FormattedOutput[$i] = preg_replace($this->FindMDUnorderedListItem, "-li-", $FormattedOutput[$i]) . "-/li-";
+						$FormattedOutput[$i] = preg_replace($this->FindMDUnorderedListItem, "<li>", $FormattedOutput[$i]) . "</li>";
 					} else {
 						$wasunorderedlist = True;
-						$this->InsertIntoArray($FormattedOutput, $i, "-ul-");
+						$this->InsertIntoArray($FormattedOutput, $i, "<ul>");
 						continue;
 					}
 				} else {
 					if ($wasunorderedlist) {
 						$wasunorderedlist = False;
-						$this->InsertIntoArray($FormattedOutput, $i, "-/ul-<br>");
+						$this->InsertIntoArray($FormattedOutput, $i, "</ul><br>");
 						continue;
 					}
 				}
@@ -120,7 +120,6 @@
 								}
 							}
 							$FormattedOutput[$i] = preg_replace($this->FindMDLink1, $finalstr, $FormattedOutput[$i]);
-				# if not Markdown Link...
 						} else {
 							$str = substr($regexarray1[0][$j], 1, (strlen($regexarray1[0][$j]) - 2));
 							$linkcontent = explode("](", $str);
@@ -128,8 +127,14 @@
 						}
 					}
 				}
-				# Next to split the string by the markdown double space newline and append the HTML newline to the end of each of the strings in the resulting array...
+				# if Markdown New Line...
 				$FormattedOutput[$i] = preg_replace($this->FindMDNewline, '<br>', $FormattedOutput[$i]);
+			}
+			if ($i == count($FormattedOutput) - 1) {
+				if ($wasunorderedlist) {
+					$this->InsertIntoArray($FormattedOutput, $i, "</ul><br>");
+					continue;
+				}
 			}
 			return $FormattedOutput;
 		}
