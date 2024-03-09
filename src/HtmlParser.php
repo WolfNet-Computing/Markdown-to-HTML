@@ -42,7 +42,7 @@
 						$i--;
 						continue;
 					} else {
-						$FormattedOutput[$i] = preg_replace($this->FindMDUnorderedListItem, "<li>", $FormattedOutput[$i]) . "</li><br>";
+						$FormattedOutput[$i] = preg_replace($this->FindMDUnorderedListItem, "<li>", $FormattedOutput[$i]) . "</li>";
 					}
 				} else {
 					if ($wasunorderedlist) {
