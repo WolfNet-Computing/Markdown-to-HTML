@@ -38,7 +38,7 @@
 				if (preg_match_all($this->FindMDUnorderedListItem, $FormattedOutput[$i], $regexarray1) > 0) {
 					if (!$wasunorderedlist) {
 						$wasunorderedlist = True;
-						$this->InsertIntoArray(&FormattedOutput, $i, "<ul>");
+						$this->InsertIntoArray($FormattedOutput, $i, "<ul>\n");
 						continue;
 					} else {
 						$FormattedOutput[$i] = preg_replace($this->FindMDUnorderedListItem, "<li>", $FormattedOutput[$i]);
