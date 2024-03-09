@@ -26,8 +26,8 @@
 		function InsertIntoArray(&$array, $index, $data) {
 			echo $data . "<br>";
 			$arraybegin = array_slice($array,0,$index - 1);
-			array_push($arraybegin, $data);
 			$arrayend = array_slice($array,$index);
+			array_push($arraybegin, $data);
 			$array = array_merge($arraybegin, $arrayend);
 		}
 
