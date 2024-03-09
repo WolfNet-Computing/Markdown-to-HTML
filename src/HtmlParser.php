@@ -133,7 +133,6 @@
 			if ($i == count($FormattedOutput) - 1) {
 				if ($wasunorderedlist) {
 					$this->InsertIntoArray($FormattedOutput, $i, "</ul><br>");
-					continue;
 				}
 			}
 			return $FormattedOutput;
