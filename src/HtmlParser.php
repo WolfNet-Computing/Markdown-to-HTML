@@ -23,11 +23,11 @@
 
 		function InsertIntoArray(&$array, $index, $data) {
 			$arraybegin = array_slice($array,0,$index - 1);
-			$arraybegin[] = [$data];
+			$arraybegin[] = $data;
 			$arrayend = array_slice($array,$index);
 			$lastentry = $array[count($array) - 1];
 			$array = array_merge($arraybegin, $arrayend);
-			$array[] = [$lastentry];
+			$array[] = $lastentry;
 		}
 
 		# Returns the HTML formatted array of lines contained in the $HtmlFormattedMarkdown array...
