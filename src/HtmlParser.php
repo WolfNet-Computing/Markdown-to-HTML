@@ -37,13 +37,11 @@
 				# Check for any Markdown Unordered Lists...
 				if (preg_match_all($this->FindMDUnorderedListItem, $FormattedOutput[$i], $regexarray1) > 0) {
 					if ($wasunorderedlist) {
-						$FormattedOutput[$i] = preg_replace($this->FindMDUnorderedListItem, "<li>", $FormattedOutput[$i]);
-						$FormattedOutput[$i] = $FormattedOutput[$i] . "</li>";
+						$FormattedOutput[$i] = preg_replace($this->FindMDUnorderedListItem, "<li>", $FormattedOutput[$i]) . "</li>";
 					} else {
 						$wasunorderedlist = True;
 						$this->InsertIntoArray($FormattedOutput, $i, "<ul>");
-						$FormattedOutput[$i + 1] = preg_replace($this->FindMDUnorderedListItem, "<li>", $FormattedOutput[$i]);
-						$i++;
+						$FormattedOutput[$i + 1] = preg_replace($this->FindMDUnorderedListItem, "<li>", $FormattedOutput[$i]) . "</li";
 						continue;
 					}
 				} else {
