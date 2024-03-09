@@ -42,9 +42,6 @@
 					if ($wasunorderedlist) {
 						# Need to remove the Markdown newline character so it isn't processed later as we are adding our own manually here...
 						$FormattedOutput[$i] = preg_replace($this->FindMDNewline, "", $FormattedOutput[$i]);
-						preg_match_all($this->FindMDUnorderedListItem, $FormattedOutput[$i], $vararray);
-						print_r($vararray[0][0]);
-						echo "<br>";
 						$FormattedOutput[$i] = preg_replace($this->FindMDUnorderedListItem, "-li-", $FormattedOutput[$i]) . "-/li-";
 					} else {
 						$wasunorderedlist = True;
