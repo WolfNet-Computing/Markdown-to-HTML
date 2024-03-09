@@ -27,6 +27,7 @@
 			$arrayend = array_slice($array,$index);
 			$lastentry = $array[count($array - 1)];
 			$array = array_merge($arraybegin, $arrayend);
+			$array[] = $lastentry;
 		}
 
 		# Returns the HTML formatted array of lines contained in the $HtmlFormattedMarkdown array...
