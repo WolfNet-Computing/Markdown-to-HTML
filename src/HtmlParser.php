@@ -37,13 +37,13 @@
 			$FormattedOutput = explode("\n", $this->OriginalFileContent);
 			for ($i = 0; $i < count($FormattedOutput); $i++) {
 				$formatted[$i] = str_replace(array("\r\n", "\n", "\r"), "", $FormattedOutput[$i]);
-				# Check for any Markdown Unordered Lists...
+				# if Markdown Unordered List...
 				if (preg_match($this->FindMDUnorderedListItem, $FormattedOutput[$i], $regexarray1) == 1) {
 					if ($wasunorderedlist) {
 						# Need to remove the Markdown newline character so it isn't processed later as we are adding our own manually here...
 						$FormattedOutput[$i] = preg_replace($this->FindMDNewline, "", $FormattedOutput[$i]);
 						preg_match_all($this->FindMDUnorderedListItem, $FormattedOutput[$i], $vararray);
-						print_r($vararray);
+						print_r($vararray[0][0]);
 						echo "<br>";
 						$FormattedOutput[$i] = preg_replace($this->FindMDUnorderedListItem, "-li-", $FormattedOutput[$i]) . "-/li-";
 					} else {
@@ -58,7 +58,7 @@
 						continue;
 					}
 				}
-				# Check for the Markdown Header level 1, remove it and add the h1 opening and closing tags for HTML...
+				# if Markdown Header level 1...
 				if (preg_match($this->FindMDHeader1, $FormattedOutput[$i]) == 1) {
 					# Need to remove the carriage returns and line feeds...
 					$FormattedOutput[$i] = preg_replace($this->FindMDHeader1, '<h1>', $FormattedOutput[$i]);
@@ -66,7 +66,7 @@
 					$FormattedOutput[$i] = preg_replace($this->FindMDNewline, "", $FormattedOutput[$i]);
 					$FormattedOutput[$i] = $FormattedOutput[$i] . '</h1><br>';
 				}
-				# Check for the Markdown Header level 2, remove it and add the h1 opening and closing tags for HTML...
+				# if Markdown Header level 2...
 				if (preg_match($this->FindMDHeader2, $FormattedOutput[$i]) == 1) {
 					# Need to remove the carriage returns and line feeds...
 					$FormattedOutput[$i] = preg_replace($this->FindMDHeader2, '<h2>', $FormattedOutput[$i]);
@@ -74,7 +74,7 @@
 					$FormattedOutput[$i] = preg_replace($this->FindMDNewline, "", $FormattedOutput[$i]);
 					$FormattedOutput[$i] = $FormattedOutput[$i] . '</h2><br>';
 				}
-				# Check for the Markdown Header level 3, remove it and add the h1 opening and closing tags for HTML...
+				# if Markdown Header level 3...
 				if (preg_match($this->FindMDHeader3, $FormattedOutput[$i]) == 1) {
 					# Need to remove the carriage returns and line feeds...
 					$FormattedOutput[$i] = preg_replace($this->FindMDHeader3, '<h3>', $FormattedOutput[$i]);
@@ -82,7 +82,7 @@
 					$FormattedOutput[$i] = preg_replace($this->FindMDNewline, "", $FormattedOutput[$i]);
 					$FormattedOutput[$i] = $FormattedOutput[$i] . '</h3><br>';
 				}
-				# Check for the Markdown Header level 4, remove it and add the h1 opening and closing tags for HTML...
+				# if Markdown Header level 4...
 				if (preg_match($this->FindMDHeader4, $FormattedOutput[$i]) == 1) {
 					# Need to remove the carriage returns and line feeds...
 					$FormattedOutput[$i] = preg_replace($this->FindMDHeader4, '<h4>', $FormattedOutput[$i]);
@@ -90,7 +90,7 @@
 					$FormattedOutput[$i] = preg_replace($this->FindMDNewline, "", $FormattedOutput[$i]);
 					$FormattedOutput[$i] = $FormattedOutput[$i] . '</h4><br>';
 				}
-				# Check for the Markdown Header level 5, remove it and add the h1 opening and closing tags for HTML...
+				# if Markdown Header level 5...
 				if (preg_match($this->FindMDHeader5, $FormattedOutput[$i]) == 1) {
 					# Need to remove the carriage returns and line feeds...
 					$FormattedOutput[$i] = preg_replace($this->FindMDHeader5, '<h5>', $FormattedOutput[$i]);
@@ -98,7 +98,7 @@
 					$FormattedOutput[$i] = preg_replace($this->FindMDNewline, "", $FormattedOutput[$i]);
 					$FormattedOutput[$i] = $FormattedOutput[$i] . '</h5><br>';
 				}
-				# Check for the Markdown Header level 6, remove it and add the h1 opening and closing tags for HTML...
+				# if Markdown Header level 6...
 				if (preg_match($this->FindMDHeader6, $FormattedOutput[$i]) == 1) {
 					# Need to remove the carriage returns and line feeds...
 					$FormattedOutput[$i] = preg_replace($this->FindMDHeader6, '<h6>', $FormattedOutput[$i]);
@@ -106,7 +106,7 @@
 					$FormattedOutput[$i] = preg_replace($this->FindMDNewline, "", $FormattedOutput[$i]);
 					$FormattedOutput[$i] = $FormattedOutput[$i] . '</h6><br>';
 				}
-				# Check for any Markdown Links...
+				# if Markdown Link...
 				if (preg_match_all($this->FindMDLink1, $FormattedOutput[$i], $regexarray1) > 0) {
 					for ($j = 0; $j < count($regexarray1[0]); $j++) {
 						if (preg_match_all($this->FindMDLink2, $regexarray1[0][$j], $regexarray2) > 0) {
@@ -123,6 +123,7 @@
 								}
 							}
 							$FormattedOutput[$i] = preg_replace($this->FindMDLink1, $finalstr, $FormattedOutput[$i]);
+				# if not Markdown Link...
 						} else {
 							$str = substr($regexarray1[0][$j], 1, (strlen($regexarray1[0][$j]) - 2));
 							$linkcontent = explode("](", $str);
