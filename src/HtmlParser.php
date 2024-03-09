@@ -34,6 +34,7 @@
 		# Returns the HTML formatted array of lines contained in the $HtmlFormattedMarkdown array...
 		function DisplayFormatted() {
 			$wasunorderedlist = False;
+			$wasorderedlist = False;
 			$FormattedOutput = explode("\n", $this->OriginalFileContent);
 			for ($i = 0; $i < count($FormattedOutput); $i++) {
 				$formatted[$i] = str_replace(array("\r\n", "\n", "\r"), "", $FormattedOutput[$i]);
@@ -52,6 +53,24 @@
 					if ($wasunorderedlist) {
 						$wasunorderedlist = False;
 						$this->InsertIntoArray($FormattedOutput, $i, "</ul><br>");
+						continue;
+					}
+				}
+				# if Markdown Ordered List...
+				if (preg_match($this->FindMDOrderedListItem, $FormattedOutput[$i], $regexarray1) == 1) {
+					if ($wasorderedlist) {
+						# Need to remove the Markdown newline character so it isn't processed later as we are adding our own manually here...
+						$FormattedOutput[$i] = preg_replace($this->FindMDNewline, "", $FormattedOutput[$i]);
+						$FormattedOutput[$i] = preg_replace($this->FindMDUnorderedListItem, "<li>", $FormattedOutput[$i]) . "</li>";
+					} else {
+						$wasunorderedlist = True;
+						$this->InsertIntoArray($FormattedOutput, $i, "<ol>");
+						continue;
+					}
+				} else {
+					if ($wasunorderedlist) {
+						$wasunorderedlist = False;
+						$this->InsertIntoArray($FormattedOutput, $i, "</ol><br>");
 						continue;
 					}
 				}
@@ -133,6 +152,8 @@
 			if ($i == count($FormattedOutput) - 1) {
 				if ($wasunorderedlist) {
 					$this->InsertIntoArray($FormattedOutput, $i, "</ul><br>");
+				} elseif ($wasorderedlist) {
+					$this->InsertIntoArray($FormattedOutput, $i, "</ol><br>");
 				}
 			}
 			return $FormattedOutput;
