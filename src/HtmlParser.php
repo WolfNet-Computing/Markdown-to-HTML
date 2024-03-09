@@ -41,6 +41,7 @@
 					} else {
 						$wasunorderedlist = True;
 						$this->InsertIntoArray($FormattedOutput, $i, "<ul>\r\n");
+						$i--
 						continue;
 					}
 					$FormattedOutput[$i] = $FormattedOutput[$i] . "</ul>";
