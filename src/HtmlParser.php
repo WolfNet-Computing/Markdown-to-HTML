@@ -42,16 +42,16 @@
 						preg_match_all($this->FindMDUnorderedListItem, $FormattedOutput[$i], $vararray);
 						print_r($vararray);
 						echo "<br>";
-						$FormattedOutput[$i] = preg_replace($this->FindMDUnorderedListItem, "<li>", $FormattedOutput[$i]) . "</li>";
+						$FormattedOutput[$i] = preg_replace($this->FindMDUnorderedListItem, "-li-", $FormattedOutput[$i]) . "-/li-";
 					} else {
 						$wasunorderedlist = True;
-						$this->InsertIntoArray($FormattedOutput, $i, "<ul>");
+						$this->InsertIntoArray($FormattedOutput, $i, "-ul-");
 						continue;
 					}
 				} else {
 					if ($wasunorderedlist) {
 						$wasunorderedlist = False;
-						$this->InsertIntoArray($FormattedOutput, $i, "</ul><br>");
+						$this->InsertIntoArray($FormattedOutput, $i, "-/ul-<br>");
 						continue;
 					}
 				}
