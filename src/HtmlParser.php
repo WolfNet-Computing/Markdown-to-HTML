@@ -48,7 +48,7 @@
 					if ($wasunorderedlist) {
 						$wasunorderedlist = False;
 						$this->InsertIntoArray($FormattedOutput, $i, "</ul><br>");
-						continue
+						continue;
 					}
 				}
 				# Check for the Markdown Header level 1, remove it and add the h1 opening and closing tags for HTML...
