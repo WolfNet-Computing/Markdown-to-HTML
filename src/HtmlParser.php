@@ -12,6 +12,7 @@
 		private $FindMDHeader6 = '/^(###### )/';
 		private $FindMDLink1 = '/\[.+\]\(.+\)/';
 		private $FindMDLink2 = '/\).+\[/';
+		private $FindMDUnorderedListItem = '/^( - )/';
 
 		function __construct($file) {
 			$mdfile = fopen($file, 'r') or die('Unable to open file!');
@@ -22,9 +23,25 @@
 
 		# Returns the HTML formatted array of lines contained in the $HtmlFormattedMarkdown array...
 		function DisplayFormatted() {
+			$wasunorderedlist = False;
 			$line = explode("\n", $this->OriginalFileContent);
 			for ($i = 0; $i < count($line); $i++) {
 				$line[$i] = str_replace(array("\r\n", "\n", "\r"), "", $line[$i]);
+				# Check for any Markdown Unordered Lists...
+				if (preg_match_all($this->FindMDUnorderedListItem, $line[$i], $regexarray1) > 0) {
+					if (!$wasunorderedlist) {
+						$wasunorderedlist = True;
+						$line[$i] = preg_replace($this->FindMDUnorderedListItem, "<ul><li>", $line[$i]);
+					} else {
+						$line[$i] = preg_replace($this->FindMDUnorderedListItem, "<li>", $line[$i]);
+					}
+					$line[$i] = $line[$i] . "</ul>";
+				} else {
+					if ($wasunorderedlist) {
+						$wasunorderedlist = False;
+						$line[$i - 1] = $line[$i - 1] . "</ul>";
+					}
+				}
 				# Check for the Markdown Header level 1, remove it and add the h1 opening and closing tags for HTML...
 				if (preg_match($this->FindMDHeader1, $line[$i]) == 1) {
 					# Need to remove the carriage returns and line feeds...
