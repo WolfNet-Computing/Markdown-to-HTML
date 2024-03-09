@@ -38,6 +38,7 @@
 				$formatted[$i] = str_replace(array("\r\n", "\n", "\r"), "", $FormattedOutput[$i]);
 				# Check for any Markdown Unordered Lists...
 				if (preg_match($this->FindMDUnorderedListItem, $FormattedOutput[$i], $regexarray1) == 1) {
+					print_r(preg_match($this->FindMDUnorderedListItem, $FormattedOutput[$i], $regexarray1));
 					if ($wasunorderedlist == False) {
 						$wasunorderedlist = True;
 						$this->InsertIntoArray($FormattedOutput, $i, "<ul>");
