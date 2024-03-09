@@ -41,7 +41,6 @@
 					} else {
 						$wasunorderedlist = True;
 						$this->InsertIntoArray($FormattedOutput, $i, "<ul>");
-						$FormattedOutput[$i + 1] = preg_replace($this->FindMDUnorderedListItem, "<li>", $FormattedOutput[$i]) . "</li";
 						continue;
 					}
 				} else {
