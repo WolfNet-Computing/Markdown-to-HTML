@@ -12,6 +12,7 @@
 		private $FindMDHeader6 = '/^(###### )/';
 		private $FindMDLink1 = '/\[.+\]\(.+\)/';
 		private $FindMDLink2 = '/\).+\[/';
+		private $FindMDUnorderedListItem = '/^( (?:-|*|+) )/';
 		private $FindMDUnorderedListItem = '/^( - )/';
 
 		function __construct($file) {
