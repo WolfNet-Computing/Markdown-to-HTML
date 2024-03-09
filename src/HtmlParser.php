@@ -39,7 +39,8 @@
 				# Check for any Markdown Unordered Lists...
 				if (preg_match($this->FindMDUnorderedListItem, $FormattedOutput[$i], $regexarray1) == 1) {
 					if ($wasunorderedlist) {
-						print_r(preg_match_all($this->FindMDUnorderedListItem, $FormattedOutput[$i]));
+						$vararray = preg_match_all($this->FindMDUnorderedListItem, $FormattedOutput[$i]);
+						print_r($vararray);
 						$FormattedOutput[$i] = preg_replace($this->FindMDUnorderedListItem, "<li>", $FormattedOutput[$i]) . "</li>";
 					} else {
 						$wasunorderedlist = True;
