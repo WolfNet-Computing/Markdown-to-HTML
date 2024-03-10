@@ -50,7 +50,7 @@
 								$finalstr = "";
 								for ($k = 0; $k < count($regexarray2[0]); $k++) {
 									$boldremoved = explode($regexarray2[0][$k], $regexarray1[$j]);
-									echo $boldremoved . "<br>";
+									print_r($boldremoved);
 									//if ($k != 0) {
 									//	$finalstr = $finalstr . $boldremoved;
 									//}
