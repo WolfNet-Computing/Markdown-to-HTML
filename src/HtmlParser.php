@@ -152,12 +152,13 @@
 					}
 					# if Markdown New Line...
 					$FormattedOutput[$i] = preg_replace($this->FindMDNewline, '<br>', $FormattedOutput[$i]);
-				}
-				if ($i == count($FormattedOutput) - 1) {
-					if ($wasunorderedlist) {
-						$this->InsertIntoArray($FormattedOutput, $i, "</ul><br>");
-					} elseif ($wasorderedlist) {
-						$this->InsertIntoArray($FormattedOutput, $i, "</ol><br>");
+					# if we're on the last line and there still remain unclosed statements then close them for displaying...
+					if ($i == count($FormattedOutput) - 1) {
+						if ($wasunorderedlist) {
+							$this->InsertIntoArray($FormattedOutput, $i, "</ul><br>");
+						} elseif ($wasorderedlist) {
+							$this->InsertIntoArray($FormattedOutput, $i, "</ol><br>");
+						}
 					}
 				}
 				return $FormattedOutput;
