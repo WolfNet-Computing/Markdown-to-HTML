@@ -53,7 +53,7 @@
 								}
 								$FormattedOutput[$i] = preg_replace($this->FindMDBoldTextItem, $finalstr, $FormattedOutput[$i]);
 							} else {
-								$FormattedOutput[$i] = preg_replace('/[\*\_]{2}/', "<strong>", $FormattedOutput[$i]) . "</strong>"
+								$FormattedOutput[$i] = preg_replace('/[\*\_]{2}/', "<strong>", $FormattedOutput[$i]) . "</strong>";
 							}
 						}
 					}
