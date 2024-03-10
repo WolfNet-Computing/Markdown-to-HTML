@@ -5,7 +5,7 @@
 		private $NumberOfPasses = 3;
 		
 		private $OriginalFileContent;
-		private $FindMDNewline = "/( ){2}/";
+		private $FindMDNewline = "/[ ]{2}/";
 		private $FindMDHeader1 = '/^(# )/';
 		private $FindMDHeader2 = '/^(## )/';
 		private $FindMDHeader3 = '/^(### )/';
@@ -17,8 +17,8 @@
 		private $FindMDUnorderedListItem = '/^( (?:-|\*|\+) )/';
 		private $FindMDFirstOrderedListItem = '/^( [1][\.] )/';
 		private $FindMDAnyOrderedListItem = '/^( [\d]+[\.] )/';
-		private $FindMDBoldItem = '/[\*\_]{2}.+[\*\_]{2}/';
-		private $FindMDItalicItem = '/[\*\_].+[\*\_]/';
+		private $FindMDBoldTextItem = '/[\*\_]{2}.+[\*\_]{2}/';
+		private $FindMDItalicTextItem = '/[\*\_].+[\*\_]/';
 
 		function __construct($file) {
 			$mdfile = fopen($file, 'r') or die('Unable to open file!');
@@ -43,6 +43,10 @@
 				$FormattedOutput = explode("\n", $this->OriginalFileContent);
 				for ($i = 0; $i < count($FormattedOutput); $i++) {
 					$formatted[$i] = str_replace(array("\r\n", "\n", "\r"), "", $FormattedOutput[$i]);
+					# if Markdown Bold Text...
+					if (preg_match($this->FindMDBoldTextItem, $FormattedOutput[$i], $regexarray1) == 1) {
+						$FormattedOutput[$i] = preg_replace('/[\*\_]{2}/', "<strong>", $FormattedOutput[$i]) . "</strong>";
+					}
 					# if Markdown Unordered List...
 					if (preg_match($this->FindMDUnorderedListItem, $FormattedOutput[$i], $regexarray1) == 1) {
 						if ($wasunorderedlist) {
