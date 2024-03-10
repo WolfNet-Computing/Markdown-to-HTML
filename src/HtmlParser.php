@@ -18,7 +18,7 @@
 		private $FindMDFirstOrderedListItem = '/^( [1][\.] )/';
 		private $FindMDAnyOrderedListItem = '/^( [\d]+[\.] )/';
 		private $FindMDBoldTextItem = '/[\*\_]{2}.+[\*\_]{2}/';
-		private $FindMDItalicTextItem = '/[\*\_].+[\*\_]/';
+		private $FindMDItalicTextItem = '/[\*].+[\*]/';
 		private $FindMDEscape = '/[\\\]{1}/';
 
 		function __construct($file) {
