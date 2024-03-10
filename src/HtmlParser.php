@@ -49,10 +49,17 @@
 							if (preg_match_all($this->FindMDBoldTextItem, $regexarray1[$j], $regexarray2) > 0) {
 								$finalstr = "";
 								for ($k = 0; $k < count($regexarray2[0]); $k++) {
-									echo $regexarray2[$k][0] . "<br>";
-									//$finalstr = $finalstr . preg_replace('/(^[\*\_]{2})/', "<strong>", substr($FormattedOutput[$i], 2, strlen($FormattedOutput[$i]) - 2)) . "</strong>";
+									$explodedbold = explode($regexarray2[0][$k], $regexarray1[$j]);
+									for ($l = 0; $l < count($explodedbold); $l++) {
+										$str = substr($explodedbold[$l], 1, (strlen($explodedbold[$l]) - 2));
+										$linkcontent = explode($regexarray2[0][$k], $str);
+										if ($l != 0) {
+											$finalstr = $finalstr . substr($regexarray2[0][$k], 1, (strlen($regexarray2[0][$k]) - 2));
+										}
+										$finalstr = $finalstr . preg_replace('/(^[\*\_]{2})/', "<strong>", substr($FormattedOutput[$i], 2, strlen($FormattedOutput[$i]) - 2)) . "</strong>";
+									}
 								}
-								//$FormattedOutput[$i] = preg_replace($this->FindMDBoldTextItem, $finalstr, $FormattedOutput[$i]);
+								$FormattedOutput[$i] = preg_replace($this->FindMDBoldTextItem, $finalstr, $FormattedOutput[$i]);
 							} else {
 								$FormattedOutput[$i] = preg_replace('/(^[\*\_]{2})/', "<strong>", substr($FormattedOutput[$i], 2, strlen($FormattedOutput[$i] - 2))) . "</strong>";
 							}
