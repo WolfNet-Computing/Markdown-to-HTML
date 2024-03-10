@@ -49,7 +49,7 @@
 							if (preg_match_all($this->FindMDBoldTextItem, $regexarray1[$j], $regexarray2) > 0) {
 								$finalstr = "";
 								for ($k = 0; $k < count($regexarray2[0]); $k++) {
-									$finalstr = $finalstr . preg_replace('/(^[\*\_]{2})/', "<strong>", substr($FormattedOutput[$i], 2, strlen($FormattedOutput[$i] - 2))) . "</strong>";
+									$finalstr = $finalstr . preg_replace('/(^[\*\_]{2})/', "<strong>", substr($FormattedOutput[$i], 2, strlen($FormattedOutput[$i]) - 2)) . "</strong>";
 								}
 								$FormattedOutput[$i] = preg_replace($this->FindMDBoldTextItem, $finalstr, $FormattedOutput[$i]);
 							} else {
