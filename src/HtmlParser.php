@@ -75,12 +75,12 @@
 										if ($k != 0) {
 											$finalstr = $finalstr . $italicremoved[0];
 										}
-										$finalstr = $finalstr . preg_replace('/(^[\*\_])/', "<em>", substr($regexarray2[$k][$l], 0, strlen($regexarray2[$k][$l]) - 1)) . "</em>";
+										$finalstr = $finalstr . preg_replace('/(^[\*])/', "<em>", substr($regexarray2[$k][$l], 0, strlen($regexarray2[$k][$l]) - 1)) . "</em>";
 									}
 								}
 								$FormattedOutput[$i] = preg_replace($this->FindMDItalicTextItem, $finalstr, $FormattedOutput[$i]);
 							} else {
-								$FormattedOutput[$i] = preg_replace('/(^[\*\_])/', "<em>", substr($FormattedOutput[$i], 1, strlen($FormattedOutput[$i] - 2))) . "</em>";
+								$FormattedOutput[$i] = preg_replace('/(^[\*])/', "<em>", substr($FormattedOutput[$i], 1, strlen($FormattedOutput[$i] - 2))) . "</em>";
 							}
 						}
 					}
