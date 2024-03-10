@@ -19,6 +19,7 @@
 		private $FindMDAnyOrderedListItem = '/^( [\d]+[\.] )/';
 		private $FindMDBoldTextItem = '/[\*\_]{2}.+[\*\_]{2}/';
 		private $FindMDItalicTextItem = '/[\*\_].+[\*\_]/';
+		private $FindMDEscape = '/[\\]/';
 
 		function __construct($file) {
 			$mdfile = fopen($file, 'r') or die('Unable to open file!');
@@ -59,11 +60,30 @@
 								}
 								$FormattedOutput[$i] = preg_replace($this->FindMDBoldTextItem, $finalstr, $FormattedOutput[$i]);
 							} else {
-								$FormattedOutput[$i] = preg_replace('/(^[\*\_]{2})/', "<strong>", substr($FormattedOutput[$i], 2, strlen($FormattedOutput[$i] - 2))) . "</strong>";
+								$FormattedOutput[$i] = preg_replace('/(^[\*\_]{2})/', "<strong>", substr($FormattedOutput[$i], 2, strlen($FormattedOutput[$i] - 4))) . "</strong>";
 							}
 						}
 					}
-					# ITALIC TEXT CHECK GOES HERE!
+					# if Markdown Italic Text...
+					if (preg_match($this->FindMDItalicTextItem, $FormattedOutput[$i], $regexarray1) == 1) {
+						for ($j = 0; $j < count($regexarray1); $j++) {
+							if (preg_match_all($this->FindMDItalicTextItem, $regexarray1[$j], $regexarray2) > 0) {
+								$finalstr = "";
+								for ($k = 0; $k < count($regexarray2); $k++) {
+									for ($l = 0; $l < count($regexarray2[$k]); $l++) {
+										$italicremoved = explode($regexarray2[$k][$l], $regexarray1[$j]);
+										if ($k != 0) {
+											$finalstr = $finalstr . $italicremoved[0];
+										}
+										$finalstr = $finalstr . preg_replace('/(^[\*\_])/', "<em>", substr($regexarray2[$k][$l], 0, strlen($regexarray2[$k][$l]) - 1)) . "</em>";
+									}
+								}
+								$FormattedOutput[$i] = preg_replace($this->FindMDItalicTextItem, $finalstr, $FormattedOutput[$i]);
+							} else {
+								$FormattedOutput[$i] = preg_replace('/(^[\*\_])/', "<em>", substr($FormattedOutput[$i], 1, strlen($FormattedOutput[$i] - 2))) . "</em>";
+							}
+						}
+					}
 					# if Markdown Unordered List...
 					if (preg_match($this->FindMDUnorderedListItem, $FormattedOutput[$i], $regexarray1) == 1) {
 						if ($wasunorderedlist) {
@@ -178,6 +198,8 @@
 					}
 					# if Markdown New Line...
 					$FormattedOutput[$i] = preg_replace($this->FindMDNewline, '<br>', $FormattedOutput[$i]);
+					# if Markdown Escape Character...
+					$FormattedOutput[$i] = preg_replace($this->FindMDEscape, '', $FormattedOutput[$i]);
 					# if we're on the last line and there still remain unclosed statements then close them for displaying...
 					if ($i == count($FormattedOutput)) {
 						if ($wasunorderedlist) {
