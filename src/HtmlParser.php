@@ -49,14 +49,15 @@
 							if (preg_match_all($this->FindMDBoldTextItem, $regexarray1[$j], $regexarray2) > 0) {
 								$finalstr = "";
 								for ($k = 0; $k < count($regexarray2); $k++) {
-									
+									echo $regexarray2[$k] . "<br>";
 								}
 								$FormattedOutput[$i] = preg_replace($this->FindMDBoldTextItem, $finalstr, $FormattedOutput[$i]);
 							} else {
-								$FormattedOutput[$i] = preg_replace('/[\*\_]{2}/', "<strong>", $FormattedOutput[$i]) . "</strong>";
+								$FormattedOutput[$i] = preg_replace('/(^[\*\_]{2})/', "<strong>", substr($FormattedOutput[$i], 2, strlen($FormattedOutput[$i] - 2))) . "</strong>";
 							}
 						}
 					}
+					# ITALIC TEXT CHECK GOES HERE!
 					# if Markdown Unordered List...
 					if (preg_match($this->FindMDUnorderedListItem, $FormattedOutput[$i], $regexarray1) == 1) {
 						if ($wasunorderedlist) {
