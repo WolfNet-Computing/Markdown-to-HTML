@@ -239,6 +239,7 @@
 							$str = substr($regexarray1[0][$j], 1, (strlen($regexarray1[0][$j]) - 2));
 							$linkcontent = explode("](", $str);
 							$FormattedOutput[$i] = preg_replace($this->FindMDLink1, "<a href=" . $linkcontent[1] . ">" . $linkcontent[0] . "</a>", $FormattedOutput[$i]);
+							$FormattedOutput[$i] = preg_replace($this->FindMDEscape, "\\", $FormattedOutput[$i]);
 						}
 					}
 				}
