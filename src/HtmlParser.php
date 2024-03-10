@@ -54,7 +54,7 @@
 										if ($k != 0) {
 											$finalstr = $finalstr . $boldremoved[0];
 										}
-										$finalstr = $finalstr . preg_replace('/(^[\*\_]{2})/', "<strong>", $regexarray2[$k][$l] . "</strong>";
+										$finalstr = $finalstr . preg_replace('/(^[\*\_]{2})/', "<strong>", $regexarray2[$k][$l]) . "</strong>";
 									}
 								}
 								$FormattedOutput[$i] = preg_replace($this->FindMDBoldTextItem, $finalstr, $FormattedOutput[$i]);
