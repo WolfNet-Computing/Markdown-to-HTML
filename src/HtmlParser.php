@@ -50,10 +50,11 @@
 								$finalstr = "";
 								for ($k = 0; $k < count($regexarray2[0]); $k++) {
 									$boldremoved = explode($regexarray2[0][$k], $regexarray1[$j]);
-									if ($l != 0) {
-										$finalstr = $finalstr . $boldremoved;
-									}
-									$finalstr = $finalstr . preg_replace('/(^[\*\_]{2})/', "<strong>", substr($FormattedOutput[$i], 2, strlen($FormattedOutput[$i]) - 2)) . "</strong>";
+									echo $boldremoved . "<br>";
+									//if ($k != 0) {
+									//	$finalstr = $finalstr . $boldremoved;
+									//}
+									//$finalstr = $finalstr . preg_replace('/(^[\*\_]{2})/', "<strong>", substr($FormattedOutput[$i], 2, strlen($FormattedOutput[$i]) - 2)) . "</strong>";
 								}
 								$FormattedOutput[$i] = preg_replace($this->FindMDBoldTextItem, $finalstr, $FormattedOutput[$i]);
 							} else {
