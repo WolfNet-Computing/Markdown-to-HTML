@@ -53,6 +53,84 @@
 							$FormattedOutput[$i] = preg_replace('/([\\\][\*])/', "&#42", $FormattedOutput[$i]);
 						}
 					}
+					# if Markdown Bold Text...
+					if (preg_match($this->FindMDBoldTextItem1, $FormattedOutput[$i], $regexarray1) == 1) {
+						for ($j = 0; $j < count($regexarray1); $j++) {
+							if (preg_match_all($this->FindMDBoldTextItem1, $regexarray1[$j], $regexarray2) > 0) {
+								$finalstr = "";
+								for ($k = 0; $k < count($regexarray2); $k++) {
+									for ($l = 0; $l < count($regexarray2[$k]); $l++) {
+										$boldremoved = explode($regexarray2[$k][$l], $regexarray1[$j]);
+										if ($k != 0) {
+											$finalstr = $finalstr . $boldremoved[0];
+										}
+										$finalstr = $finalstr . preg_replace('/(^[\*]{2})/', "<strong>", substr($regexarray2[$k][$l], 0, strlen($regexarray2[$k][$l]) - 2)) . "</strong>";
+									}
+								}
+								$FormattedOutput[$i] = preg_replace($this->FindMDBoldTextItem1, $finalstr, $FormattedOutput[$i]);
+							} else {
+								$FormattedOutput[$i] = preg_replace('/(^[\*]{2})/', "<strong>", substr($FormattedOutput[$i], 2, strlen($FormattedOutput[$i] - 4))) . "</strong>";
+							}
+						}
+					}
+					if (preg_match($this->FindMDBoldTextItem2, $FormattedOutput[$i], $regexarray1) == 1) {
+						for ($j = 0; $j < count($regexarray1); $j++) {
+							if (preg_match_all($this->FindMDBoldTextItem2, $regexarray1[$j], $regexarray2) > 0) {
+								$finalstr = "";
+								for ($k = 0; $k < count($regexarray2); $k++) {
+									for ($l = 0; $l < count($regexarray2[$k]); $l++) {
+										$boldremoved = explode($regexarray2[$k][$l], $regexarray1[$j]);
+										if ($k != 0) {
+											$finalstr = $finalstr . $boldremoved[0];
+										}
+										$finalstr = $finalstr . preg_replace('/(^[\_]{2})/', "<strong>", substr($regexarray2[$k][$l], 0, strlen($regexarray2[$k][$l]) - 2)) . "</strong>";
+									}
+								}
+								$FormattedOutput[$i] = preg_replace($this->FindMDBoldTextItem2, $finalstr, $FormattedOutput[$i]);
+							} else {
+								$FormattedOutput[$i] = preg_replace('/(^[\_]{2})/', "<strong>", substr($FormattedOutput[$i], 2, strlen($FormattedOutput[$i] - 4))) . "</strong>";
+							}
+						}
+					}
+					# if Markdown Italic Text...
+					if (preg_match($this->FindMDItalicTextItem1, $FormattedOutput[$i], $regexarray1) == 1) {
+						for ($j = 0; $j < count($regexarray1); $j++) {
+							if (preg_match_all($this->FindMDItalicTextItem1, $regexarray1[$j], $regexarray2) > 0) {
+								$finalstr = "";
+								for ($k = 0; $k < count($regexarray2); $k++) {
+									for ($l = 0; $l < count($regexarray2[$k]); $l++) {
+										$italicremoved = explode($regexarray2[$k][$l], $regexarray1[$j]);
+										if ($k != 0) {
+											$finalstr = $finalstr . $italicremoved[0];
+										}
+										$finalstr = $finalstr . preg_replace('/(^[\*])/', "<em>", substr($regexarray2[$k][$l], 0, strlen($regexarray2[$k][$l]) - 1)) . "</em>";
+									}
+								}
+								$FormattedOutput[$i] = preg_replace($this->FindMDItalicTextItem1, $finalstr, $FormattedOutput[$i]);
+							} else {
+								$FormattedOutput[$i] = preg_replace('/(^[\*])/', "<em>", substr($FormattedOutput[$i], 1, strlen($FormattedOutput[$i] - 2))) . "</em>";
+							}
+						}
+					}
+					if (preg_match($this->FindMDItalicTextItem2, $FormattedOutput[$i], $regexarray1) == 1) {
+						for ($j = 0; $j < count($regexarray1); $j++) {
+							if (preg_match_all($this->FindMDItalicTextItem2, $regexarray1[$j], $regexarray2) > 0) {
+								$finalstr = "";
+								for ($k = 0; $k < count($regexarray2); $k++) {
+									for ($l = 0; $l < count($regexarray2[$k]); $l++) {
+										$italicremoved = explode($regexarray2[$k][$l], $regexarray1[$j]);
+										if ($k != 0) {
+											$finalstr = $finalstr . $italicremoved[0];
+										}
+										$finalstr = $finalstr . preg_replace('/(^[\_])/', "<em>", substr($regexarray2[$k][$l], 0, strlen($regexarray2[$k][$l]) - 1)) . "</em>";
+									}
+								}
+								$FormattedOutput[$i] = preg_replace($this->FindMDItalicTextItem2, $finalstr, $FormattedOutput[$i]);
+							} else {
+								$FormattedOutput[$i] = preg_replace('/(^[\_])/', "<em>", substr($FormattedOutput[$i], 1, strlen($FormattedOutput[$i] - 2))) . "</em>";
+							}
+						}
+					}
 					# if Markdown Unordered List...
 					if (preg_match($this->FindMDUnorderedListItem, $FormattedOutput[$i], $regexarray1) == 1) {
 						if ($wasunorderedlist) {
@@ -165,96 +243,8 @@
 							}
 						}
 					}
-					# if Markdown Bold Text...
-					if (preg_match($this->FindMDBoldTextItem1, $FormattedOutput[$i], $regexarray1) == 1) {
-						for ($j = 0; $j < count($regexarray1); $j++) {
-							if (preg_match_all($this->FindMDBoldTextItem1, $regexarray1[$j], $regexarray2) > 0) {
-								$finalstr = "";
-								for ($k = 0; $k < count($regexarray2); $k++) {
-									for ($l = 0; $l < count($regexarray2[$k]); $l++) {
-										$boldremoved = explode($regexarray2[$k][$l], $regexarray1[$j]);
-										if ($k != 0) {
-											$finalstr = $finalstr . $boldremoved[0];
-										}
-										$finalstr = $finalstr . preg_replace('/(^[\*]{2})/', "<strong>", substr($regexarray2[$k][$l], 0, strlen($regexarray2[$k][$l]) - 2)) . "</strong>";
-									}
-								}
-								$FormattedOutput[$i] = preg_replace($this->FindMDBoldTextItem1, $finalstr, $FormattedOutput[$i]);
-							} else {
-								$FormattedOutput[$i] = preg_replace('/(^[\*]{2})/', "<strong>", substr($FormattedOutput[$i], 2, strlen($FormattedOutput[$i] - 4))) . "</strong>";
-							}
-						}
-					}
-					if (preg_match($this->FindMDBoldTextItem2, $FormattedOutput[$i], $regexarray1) == 1) {
-						for ($j = 0; $j < count($regexarray1); $j++) {
-							if (preg_match_all($this->FindMDBoldTextItem2, $regexarray1[$j], $regexarray2) > 0) {
-								$finalstr = "";
-								for ($k = 0; $k < count($regexarray2); $k++) {
-									for ($l = 0; $l < count($regexarray2[$k]); $l++) {
-										$boldremoved = explode($regexarray2[$k][$l], $regexarray1[$j]);
-										if ($k != 0) {
-											$finalstr = $finalstr . $boldremoved[0];
-										}
-										$finalstr = $finalstr . preg_replace('/(^[\_]{2})/', "<strong>", substr($regexarray2[$k][$l], 0, strlen($regexarray2[$k][$l]) - 2)) . "</strong>";
-									}
-								}
-								$FormattedOutput[$i] = preg_replace($this->FindMDBoldTextItem2, $finalstr, $FormattedOutput[$i]);
-							} else {
-								$FormattedOutput[$i] = preg_replace('/(^[\_]{2})/', "<strong>", substr($FormattedOutput[$i], 2, strlen($FormattedOutput[$i] - 4))) . "</strong>";
-							}
-						}
-					}
-					# if Markdown Italic Text...
-					if (preg_match($this->FindMDItalicTextItem1, $FormattedOutput[$i], $regexarray1) == 1) {
-						for ($j = 0; $j < count($regexarray1); $j++) {
-							if (preg_match_all($this->FindMDItalicTextItem1, $regexarray1[$j], $regexarray2) > 0) {
-								$finalstr = "";
-								for ($k = 0; $k < count($regexarray2); $k++) {
-									for ($l = 0; $l < count($regexarray2[$k]); $l++) {
-										$italicremoved = explode($regexarray2[$k][$l], $regexarray1[$j]);
-										if ($k != 0) {
-											$finalstr = $finalstr . $italicremoved[0];
-										}
-										$finalstr = $finalstr . preg_replace('/(^[\*])/', "<em>", substr($regexarray2[$k][$l], 0, strlen($regexarray2[$k][$l]) - 1)) . "</em>";
-									}
-								}
-								$FormattedOutput[$i] = preg_replace($this->FindMDItalicTextItem1, $finalstr, $FormattedOutput[$i]);
-							} else {
-								$FormattedOutput[$i] = preg_replace('/(^[\*])/', "<em>", substr($FormattedOutput[$i], 1, strlen($FormattedOutput[$i] - 2))) . "</em>";
-							}
-						}
-					}
-					if (preg_match($this->FindMDItalicTextItem2, $FormattedOutput[$i], $regexarray1) == 1) {
-						for ($j = 0; $j < count($regexarray1); $j++) {
-							if (preg_match_all($this->FindMDItalicTextItem2, $regexarray1[$j], $regexarray2) > 0) {
-								$finalstr = "";
-								for ($k = 0; $k < count($regexarray2); $k++) {
-									for ($l = 0; $l < count($regexarray2[$k]); $l++) {
-										$italicremoved = explode($regexarray2[$k][$l], $regexarray1[$j]);
-										if ($k != 0) {
-											$finalstr = $finalstr . $italicremoved[0];
-										}
-										$finalstr = $finalstr . preg_replace('/(^[\_])/', "<em>", substr($regexarray2[$k][$l], 0, strlen($regexarray2[$k][$l]) - 1)) . "</em>";
-									}
-								}
-								$FormattedOutput[$i] = preg_replace($this->FindMDItalicTextItem2, $finalstr, $FormattedOutput[$i]);
-							} else {
-								$FormattedOutput[$i] = preg_replace('/(^[\_])/', "<em>", substr($FormattedOutput[$i], 1, strlen($FormattedOutput[$i] - 2))) . "</em>";
-							}
-						}
-					}
 					# if Markdown New Line...
 					$FormattedOutput[$i] = preg_replace($this->FindMDNewline, '<br>', $FormattedOutput[$i]);
-					# if we're on the last line and there still remain unclosed statements then close them for displaying...
-					if ($i == count($FormattedOutput)) {
-						if ($wasunorderedlist) {
-							$wasunorderedlist = True;
-							$this->InsertIntoArray($FormattedOutput, $i, "</ul><br>");
-						} elseif ($wasorderedlist) {
-							$wasorderedlist = True;
-							$this->InsertIntoArray($FormattedOutput, $i, "</ol><br>");
-						}
-					}
 				}
 				return $FormattedOutput;
 			}
