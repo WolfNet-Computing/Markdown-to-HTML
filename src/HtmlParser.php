@@ -240,6 +240,7 @@
 							$linkcontent = explode("](", $str);
 							$FormattedOutput[$i] = preg_replace($this->FindMDLink1, "<a href=" . $linkcontent[1] . ">" . $linkcontent[0] . "</a>", $FormattedOutput[$i]);
 							$FormattedOutput[$i] = preg_replace($this->FindMDEscape, "\\\\", $FormattedOutput[$i]);
+							$FormattedOutput[$i] = preg_replace('/[\\]{1}/', "\\\\", $FormattedOutput[$i]);
 						}
 					}
 				}
