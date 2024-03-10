@@ -48,8 +48,8 @@
 						for ($j = 0; $j < count($regexarray1); $j++) {
 							if (preg_match_all($this->FindMDBoldTextItem, $regexarray1[$j], $regexarray2) > 0) {
 								$finalstr = "";
-								for ($k = 0; $k < count($regexarray2[0]); $k++) {
-									$boldremoved = explode($regexarray2[0][$k], $regexarray1[$j]);
+								for ($k = 0; $k < count($regexarray2); $k++) {
+									$boldremoved = explode($regexarray2[$k], $regexarray1[$j]);
 									print_r($boldremoved);
 									//if ($k != 0) {
 									//	$finalstr = $finalstr . $boldremoved;
