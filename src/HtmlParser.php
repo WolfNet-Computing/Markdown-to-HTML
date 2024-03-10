@@ -45,7 +45,17 @@
 					$formatted[$i] = str_replace(array("\r\n", "\n", "\r"), "", $FormattedOutput[$i]);
 					# if Markdown Bold Text...
 					if (preg_match($this->FindMDBoldTextItem, $FormattedOutput[$i], $regexarray1) == 1) {
-						$FormattedOutput[$i] = preg_replace('/[\*\_]{2}/', "<strong>", $FormattedOutput[$i]) . "</strong>";
+						for ($j = 0; $j < count($regexarray1[0]); $j++) {
+							if (preg_match_all($this->FindMDBoldTextItem, $regexarray1[0][$j], $regexarray2) > 0) {
+								$finalstr = "";
+								for ($k = 0; $k < count($regexarray2[0]); $k++) {
+									
+								}
+								$FormattedOutput[$i] = preg_replace($this->FindMDBoldTextItem, $finalstr, $FormattedOutput[$i]);
+							} else {
+								$FormattedOutput[$i] = preg_replace('/[\*\_]{2}/', "<strong>", $FormattedOutput[$i]) . "</strong>"
+							}
+						}
 					}
 					# if Markdown Unordered List...
 					if (preg_match($this->FindMDUnorderedListItem, $FormattedOutput[$i], $regexarray1) == 1) {
