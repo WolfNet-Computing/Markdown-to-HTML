@@ -3,7 +3,7 @@
 
 	class HtmlParser {
 		private $NumberOfPasses = 3;
-		
+
 		private $OriginalFileContent;
 		private $FindMDNewline = "/[ ]{2}/";
 		private $FindMDHeader1 = '/^(# )/';
@@ -20,6 +20,7 @@
 		private $FindMDBoldTextItem = '/[\*\_]{2}.+[\*\_]{2}/';
 		private $FindMDItalicTextItem = '/[\*].+[\*]/';
 		private $FindMDEscape = '/[\\\]{1}/';
+		private $FindMDCodeLine = '/([`]{1}.+[`]{1})/';
 
 		function __construct($file) {
 			$mdfile = fopen($file, 'r') or die('Unable to open file!');
