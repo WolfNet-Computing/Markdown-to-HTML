@@ -47,7 +47,7 @@
 					# Check for escaped characters...
 					if (preg_match_all('/([\\\][\*])/', $FormattedOutput[$i], $regexarray1) > 0) {
 						for ($j = 0; $j < count($regexarray1); $j++) {
-							$FormattedOutput[$i] = preg_replace('/([\\\][\*])/', "*", $FormattedOutput[$i]);
+							$FormattedOutput[$i] = preg_replace('/([\\\][\*])/', "&#42", $FormattedOutput[$i]);
 						}
 					}
 					# if Markdown Bold Text...
