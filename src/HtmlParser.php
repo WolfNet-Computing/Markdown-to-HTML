@@ -153,7 +153,7 @@
 					# if Markdown New Line...
 					$FormattedOutput[$i] = preg_replace($this->FindMDNewline, '<br>', $FormattedOutput[$i]);
 					# if we're on the last line and there still remain unclosed statements then close them for displaying...
-					if ($i == count($FormattedOutput) - 1) {
+					if ($i == count($FormattedOutput)) {
 						if ($wasunorderedlist) {
 							$wasunorderedlist = True;
 							$this->InsertIntoArray($FormattedOutput, $i, "</ul><br>");
