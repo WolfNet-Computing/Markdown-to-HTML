@@ -45,9 +45,9 @@
 				for ($i = 0; $i < count($FormattedOutput); $i++) {
 					$formatted[$i] = str_replace(array("\r\n", "\n", "\r"), "", $FormattedOutput[$i]);
 					# Check for escaped characters...
-					if (preg_match_all('/([\\\]{1}[\*]{1})/', $FormattedOutput[$i], $regexarray1) > 0) {
+					if (preg_match_all('/([\\\][\*])/', $FormattedOutput[$i], $regexarray1) > 0) {
 						for ($j = 0; $j < count($regexarray1); $j++) {
-							$FormattedOutput[$i] = preg_replace('/([\\\]{1}[\*]{1})/', "*", $FormattedOutput[$i]);
+							$FormattedOutput[$i] = preg_replace('/([\\\][\*])/', "*", $FormattedOutput[$i]);
 						}
 					}
 					# if Markdown Bold Text...
