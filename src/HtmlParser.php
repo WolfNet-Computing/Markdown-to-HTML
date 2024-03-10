@@ -44,6 +44,8 @@
 				$FormattedOutput = explode("\n", $this->OriginalFileContent);
 				for ($i = 0; $i < count($FormattedOutput); $i++) {
 					$formatted[$i] = str_replace(array("\r\n", "\n", "\r"), "", $FormattedOutput[$i]);
+					# if Markdown Escape Character...
+					$FormattedOutput[$i] = preg_replace($this->FindMDEscape, '', $FormattedOutput[$i]);
 					# if Markdown Bold Text...
 					if (preg_match($this->FindMDBoldTextItem, $FormattedOutput[$i], $regexarray1) == 1) {
 						for ($j = 0; $j < count($regexarray1); $j++) {
@@ -198,8 +200,6 @@
 					}
 					# if Markdown New Line...
 					$FormattedOutput[$i] = preg_replace($this->FindMDNewline, '<br>', $FormattedOutput[$i]);
-					# if Markdown Escape Character...
-					$FormattedOutput[$i] = preg_replace($this->FindMDEscape, '', $FormattedOutput[$i]);
 					# if we're on the last line and there still remain unclosed statements then close them for displaying...
 					if ($i == count($FormattedOutput)) {
 						if ($wasunorderedlist) {
