@@ -19,7 +19,7 @@
 		private $FindMDAnyOrderedListItem = '/^( [\d]+[\.] )/';
 		private $FindMDBoldTextItem = '/[\*\_]{2}.+[\*\_]{2}/';
 		private $FindMDItalicTextItem = '/[\*\_].+[\*\_]/';
-		private $FindMDEscape = '/[\\]/';
+		private $FindMDEscape = '/[\]/';
 
 		function __construct($file) {
 			$mdfile = fopen($file, 'r') or die('Unable to open file!');
