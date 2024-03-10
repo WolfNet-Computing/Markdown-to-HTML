@@ -67,13 +67,13 @@
 							$FormattedOutput[$i] = preg_replace($this->FindMDNewline, "", $FormattedOutput[$i]);
 							$FormattedOutput[$i] = preg_replace($this->FindMDOrderedListItem, "<li>", $FormattedOutput[$i]) . "</li>";
 						} else {
-							$wasunorderedlist = True;
+							$wasorderedlist = True;
 							$this->InsertIntoArray($FormattedOutput, $i, "<ol>");
 							continue;
 						}
 					} else {
-						if ($wasunorderedlist) {
-							$wasunorderedlist = False;
+						if ($wasorderedlist) {
+							$wasorderedlist = False;
 							$this->InsertIntoArray($FormattedOutput, $i, "</ol><br>");
 							continue;
 						}
@@ -155,8 +155,10 @@
 					# if we're on the last line and there still remain unclosed statements then close them for displaying...
 					if ($i == count($FormattedOutput) - 1) {
 						if ($wasunorderedlist) {
+							$wasunorderedlist = True;
 							$this->InsertIntoArray($FormattedOutput, $i, "</ul><br>");
 						} elseif ($wasorderedlist) {
+							$wasorderedlist = True;
 							$this->InsertIntoArray($FormattedOutput, $i, "</ol><br>");
 						}
 					}
