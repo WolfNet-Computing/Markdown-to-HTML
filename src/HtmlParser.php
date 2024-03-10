@@ -15,7 +15,8 @@
 		private $FindMDLink1 = '/\[.+\]\(.+\)/';
 		private $FindMDLink2 = '/\).+\[/';
 		private $FindMDUnorderedListItem = '/^( (?:-|\*|\+) )/';
-		private $FindMDOrderedListItem = '/^( [\d]+[\.] )/';
+		private $FindMDFirstOrderedListItem = '/^( [\d]+[\.] )/';
+		private $FindMDAnyOrderedListItem = '/^( [\d]+[\.] )/';
 		private $FindMDBoldItem = '/[\*\_]{2}.+[\*\_]{2}/';
 		private $FindMDItalicItem = '/[\*\_].+[\*\_]/';
 
@@ -61,22 +62,26 @@
 						}
 					}
 					# if Markdown Ordered List...
-					if (preg_match($this->FindMDOrderedListItem, $FormattedOutput[$i], $regexarray1) == 1) {
+					if (preg_match($this->FindMDFirstOrderedListItem, $FormattedOutput[$i], $regexarray1) == 1) {
 						if ($wasorderedlist) {
 							# Need to remove the Markdown newline character so it isn't processed later as we are adding our own manually here...
 							$FormattedOutput[$i] = preg_replace($this->FindMDNewline, "", $FormattedOutput[$i]);
-							$FormattedOutput[$i] = preg_replace($this->FindMDOrderedListItem, "<li>", $FormattedOutput[$i]) . "</li>";
+							$FormattedOutput[$i] = preg_replace($this->FindMDFirstOrderedListItem, "<li>", $FormattedOutput[$i]) . "</li>";
 						} else {
 							$wasorderedlist = True;
 							$this->InsertIntoArray($FormattedOutput, $i, "<ol>");
 							continue;
 						}
-					} else {
+					} elseif ((preg_match($this->FindMDAnyOrderedListItem, $FormattedOutput[$i], $regexarray1) == 1) && $wasorderedlist) {
 						if ($wasorderedlist) {
-							$wasorderedlist = False;
-							$this->InsertIntoArray($FormattedOutput, $i, "</ol><br>");
-							continue;
+							# Need to remove the Markdown newline character so it isn't processed later as we are adding our own manually here...
+							$FormattedOutput[$i] = preg_replace($this->FindMDNewline, "", $FormattedOutput[$i]);
+							$FormattedOutput[$i] = preg_replace($this->FindMDAnyOrderedListItem, "<li>", $FormattedOutput[$i]) . "</li>";
 						}
+					} elseif ($wasorderedlist) {
+						$wasorderedlist = False;
+						$this->InsertIntoArray($FormattedOutput, $i, "</ol><br>");
+						continue;
 					}
 					# if Markdown Header level 1...
 					if (preg_match($this->FindMDHeader1, $FormattedOutput[$i]) == 1) {
