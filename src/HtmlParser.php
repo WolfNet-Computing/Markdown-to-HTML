@@ -15,7 +15,7 @@
 		private $FindMDLink1 = '/\[.+\]\(.+\)/';
 		private $FindMDLink2 = '/\).+\[/';
 		private $FindMDUnorderedListItem = '/^( (?:-|\*|\+) )/';
-		private $FindMDFirstOrderedListItem = '/^( [\d]+[\.] )/';
+		private $FindMDFirstOrderedListItem = '/^( [1][\.] )/';
 		private $FindMDAnyOrderedListItem = '/^( [\d]+[\.] )/';
 		private $FindMDBoldItem = '/[\*\_]{2}.+[\*\_]{2}/';
 		private $FindMDItalicItem = '/[\*\_].+[\*\_]/';
