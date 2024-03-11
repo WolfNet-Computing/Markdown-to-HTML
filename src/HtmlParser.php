@@ -49,7 +49,22 @@
 				# Check for escaped characters...
 				if (preg_match_all('/([\\\][\*])/', $FormattedOutput[$i], $regexarray1) > 0) {
 					for ($j = 0; $j < count($regexarray1); $j++) {
-						$FormattedOutput[$i] = preg_replace('/([\\\][\*])/', "&#42", $FormattedOutput[$i]);
+						$FormattedOutput[$i] = preg_replace('/([\\\][\*])/', "&ast", $FormattedOutput[$i]);
+					}
+				}
+				if (preg_match_all('/([\\\][\_])/', $FormattedOutput[$i], $regexarray1) > 0) {
+					for ($j = 0; $j < count($regexarray1); $j++) {
+						$FormattedOutput[$i] = preg_replace('/([\\\][\_])/', "&lowbar", $FormattedOutput[$i]);
+					}
+				}
+				if (preg_match_all('/([\\\][\\\])/', $FormattedOutput[$i], $regexarray1) > 0) {
+					for ($j = 0; $j < count($regexarray1); $j++) {
+						$FormattedOutput[$i] = preg_replace('/([\\\][\\\])/', "&bsol", $FormattedOutput[$i]);
+					}
+				}
+				if (preg_match_all('/([\\\][!])/', $FormattedOutput[$i], $regexarray1) > 0) {
+					for ($j = 0; $j < count($regexarray1); $j++) {
+						$FormattedOutput[$i] = preg_replace('/([\\\][!])/', "&excl", $FormattedOutput[$i]);
 					}
 				}
 				# if Markdown Bold Text...
@@ -239,9 +254,6 @@
 							$str = substr($regexarray1[0][$j], 1, (strlen($regexarray1[0][$j]) - 2));
 							$linkcontent = explode("](", $str);
 							$FormattedOutput[$i] = preg_replace($this->FindMDLink1, "<a href=" . $linkcontent[1] . ">" . $linkcontent[0] . "</a>", $FormattedOutput[$i]);
-							$FormattedOutput[$i] = preg_replace($this->FindMDEscape, "\\\\", $FormattedOutput[$i]);
-							$FormattedOutput[$i] = preg_replace('/[\\\]{1}[\*]{1}/', "\\*", $FormattedOutput[$i]);
-							$FormattedOutput[$i] = preg_replace('/[\\\]{1}[\_]{1}/', "\\_", $FormattedOutput[$i]);
 						}
 					}
 				}
