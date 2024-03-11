@@ -99,7 +99,7 @@
 						echo "\$regexarray1:";
 						print_r($regexarray1);
 						echo "<br>";
-						$FormattedOutput[$i] = preg_replace($this->FindMDCodeLine, "<code>" . substr($regexarray1[0], 0, strlen($regexarray1[0]) - 2)) . "</code>", $FormattedOutput[$i]);
+						//$FormattedOutput[$i] = preg_replace($this->FindMDCodeLine, "<code>", substr($regexarray1[0], 1, strlen($regexarray1[0]) - 2)) . "</code>";
 					}
 				}
 				# if Markdown Bold Text...
