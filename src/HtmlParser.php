@@ -51,6 +51,10 @@
 			$wascodeblock = False;
 			for ($i = 0; $i < count($FormattedOutput); $i++) {
 				$formatted[$i] = str_replace(array("\r\n", "\n", "\r"), "", $FormattedOutput[$i]);
+				if ($this->Configuration["method"] == "POST") {
+					$this->InsertIntoArray($FormattedOutput, 0, "<script type=\"text/javascript\" src=\"http://jqueryjs.googlecode.com/files/jquery-1.3.2.js\"></script>");
+					continue;
+				}
 				# Check for escaped characters...
 				if (preg_match('/[`]{3}/', $FormattedOutput[$i], $regexarray1) == 1) {
 					if ($wascodeblock == False) {
@@ -296,7 +300,7 @@
 										$fileinfo = pathinfo($linkcontent[1]);
 										if ($fileinfo["extension"] == "md") {
 											if ($this->Configuration["method"] == "POST") {
-												$finalstr = $finalstr . "<script type=\"text/javascript\" src=\"http://jqueryjs.googlecode.com/files/jquery-1.3.2.js\"></script>\n<script type=\"text/javascript\">\n\t$(document).ready(function() {\n\t\t$('#Link').click(function() {\n\t\t\t$.post(" . $this->Configuration["doc_handler"] . ", {" . $this->Configuration["method_var"] . ": " . $linkcontent[1] . "});\n\t\t});\n\t});</script>\n<a id=\"Link\" href=\"#\">" . $linkcontent[0] . "</a>";
+												$finalstr = $finalstr . "<script type=\"text/javascript\">\n\t$(document).ready(function() {\n\t\t$('#Link').click(function() {\n\t\t\t$.post(" . $this->Configuration["doc_handler"] . ", {" . $this->Configuration["method_var"] . ": " . $linkcontent[1] . "});\n\t\t});\n\t});</script>\n<a id=\"Link\" href=\"#\">" . $linkcontent[0] . "</a>";
 											} else {
 												$finalstr = $finalstr . "<a href=" . $this->Configuration["doc_handler"] . "?" . $this->Configuration["method_var"] . "=" . $linkcontent[1] . ">" . $linkcontent[0] . "</a>";
 											}
