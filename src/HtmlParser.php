@@ -295,7 +295,6 @@
 											echo $fileinfo["extension"] . "<br>";
 											$finalstr = $finalstr . "<a href=" . $linkcontent[1] . ">" . $linkcontent[0] . "</a>";
 										} else {
-											echo $fileinfo["extension"] . "<br>";
 											$finalstr = $finalstr . "<a href=" . $linkcontent[1] . ">" . $linkcontent[0] . "</a>";
 										}
 									}
@@ -313,7 +312,6 @@
 									echo $fileinfo["extension"] . "<br>";
 									$FormattedOutput[$i] = preg_replace($this->FindMDLink1, "<a href=" . $linkcontent[1] . ">" . $linkcontent[0] . "</a>", $FormattedOutput[$i]);
 								} else {
-									echo $fileinfo["extension"] . "<br>";
 									$FormattedOutput[$i] = preg_replace($this->FindMDLink1, "<a href=" . $linkcontent[1] . ">" . $linkcontent[0] . "</a>", $FormattedOutput[$i]);
 								}
 							}
