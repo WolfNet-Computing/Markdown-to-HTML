@@ -77,6 +77,7 @@
 				if (preg_match($this->FindMDCodeLine, $FormattedOutput[$i]) == 1) {
 					if (preg_match_all($this->FindMDCodeLine, $FormattedOutput[$i], $regexarray1) > 0) {
 						$finalstr = "";
+						echo "count(\$regexarray1) is: " . count($regexarray1) . "<br>";
 						for ($k = 0; $k < count($regexarray1); $k++) {
 							var_dump($regexarray1[$k]);
 							//$finalstr = $finalstr . preg_replace($this->FindMDCodeLine, "<code>", substr($regexarray1[$k][$l], 1, strlen($regexarray1[$k][$l]) - 2)) . "</code>";
