@@ -8,15 +8,17 @@
 		public $Configuration;
 
 		function __construct($configarray) {
-			$Configuration = $DefaultConfiguration;
+			$this->Configuration = $this->DefaultConfiguration;
 			foreach ($configarray as $index => $configitem) {
 				echo "\$configarray['" . $index . "'] is: " . $configitem . " and has the type: " . gettype($configitem) . "<br>";
-				foreach ($DefaultConfiguration as $DefaultConfigurationIndex => $DefaultConfigurationItem) {
+				foreach ($this->DefaultConfiguration as $DefaultConfigurationIndex => $DefaultConfigurationItem) {
 					if ($index == $DefaultConfigurationIndex) {
 						echo "Found a match in the default configuration.<br>";
 					}
-					$Configuration[$index] = $configitem;
+					$this->Configuration[$index] = $configitem;
 				}
+				print_r($this->Configuration);
+				echo "<br>";
 			}
 		}
 	}
