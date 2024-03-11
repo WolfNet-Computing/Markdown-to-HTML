@@ -76,6 +76,7 @@
 				# if Markdown Code Snippet...
 				if (preg_match($this->FindMDCodeLine, $FormattedOutput[$i], $regexarray1) == 1) {
 					if (preg_match_all($this->FindMDCodeLine, substr($regexarray1[0], 1, strlen($regexarray1[0]) - 2), $regexarray2)  > 0) {
+						$finalstr = "";
 						for ($j = 0; $j < count($regexarray1); $j++) {
 							$coderemoved = explode("`", $regexarray1[$j]);
 							for ($l = 0; $l < count($coderemoved); $l++) {
@@ -86,18 +87,19 @@
 							for ($l = 0; $l < count($coderemoved); $l += 2) {
 								if (array_key_exists($l + 1, $coderemoved)) {
 									echo "The code content is: " . $coderemoved[$l] . " and preceeds: " . $coderemoved[$l + 1] . "<br>";
+									$finalstr = $finalstr . preg_replace('/^[`]/', "<code>", substr($regexarray1[$j], 0, strlen($regexarray1[$j]) - 1)) . "</code>" . $coderemoved[$l + 1];
 								} else {
 									echo "The code content is: " . $coderemoved[$l] . "<br>";
+									$finalstr = $finalstr . preg_replace('/^[`]/', "<code>", substr($regexarray1[$j], 0, strlen($regexarray1[$j]) - 1)) . "</code>";
 								}
-								//if ($k != 0) {
-								//	$finalstr = $finalstr . $coderemoved[1];
-								//}
-								//$finalstr = $finalstr . preg_replace('/^[`]/', "<code>", substr($regexarray1[$j], 0, strlen($regexarray1[$j]) - 1)) . "</code>";
 							}
 							//$FormattedOutput[$i] = preg_replace($this->FindMDCodeLine, $finalstr, $FormattedOutput[$i]);
 						}
 					} else {
-						$FormattedOutput[$i] = preg_replace($this->FindMDCodeLine, "<code>", substr($regexarray1[0], 1, strlen($regexarray1[0]) - 2)) . "</code>";
+						echo "\$regexarray1:";
+						print_r($regexarray1);
+						echo "<br>";
+						$FormattedOutput[$i] = preg_replace($this->FindMDCodeLine, "<code>" . substr($regexarray1[0], 1, strlen($regexarray1[0]) - 2)) . "</code>", ;
 					}
 				}
 				# if Markdown Bold Text...
