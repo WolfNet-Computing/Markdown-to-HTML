@@ -75,12 +75,10 @@
 				}
 				# if Markdown Code Snippet...
 				if (preg_match($this->FindMDCodeLine, $FormattedOutput[$i], $regexarray1) == 1) {
-					print_r($regexarray1);
-					echo "<br>";
 					if (preg_match_all($this->FindMDCodeLine, substr($regexarray1[0], 1, strlen($regexarray1[0]) - 2), $regexarray2)  > 0) {
 						$finalstr = "";
 						for ($j = 0; $j < count($regexarray1); $j++) {
-							$coderemoved = explode("`", $regexarray1[$j]);
+							$coderemoved = explode("`", substr($regexarray1[$j], 1, strlen($regexarray1[$j]) - 2));
 							for ($l = 0; $l < count($coderemoved); $l++) {
 								if ($coderemoved[$l] == "") {
 									array_splice($coderemoved, $l, 1);
