@@ -50,11 +50,11 @@
 			$wasorderedlist = False;
 			$wascodeblock = False;
 			for ($i = 0; $i < count($FormattedOutput); $i++) {
-				$formatted[$i] = str_replace(array("\r\n", "\n", "\r"), "", $FormattedOutput[$i]);
-				if ($this->Configuration["method"] == "POST") {
-					$this->InsertIntoArray($FormattedOutput, 0, "<script type=\"text/javascript\" src=\"http://jqueryjs.googlecode.com/files/jquery-1.3.2.js\"></script>");
+				if (($this->Configuration["method"] == "POST") && ($i == 0)) {
+					$this->InsertIntoArray($FormattedOutput, $i, "<script type=\"text/javascript\" src=\"http://jqueryjs.googlecode.com/files/jquery-1.3.2.js\"></script>");
 					continue;
 				}
+				$formatted[$i] = str_replace(array("\r\n", "\n", "\r"), "", $FormattedOutput[$i]);
 				# Check for escaped characters...
 				if (preg_match('/[`]{3}/', $FormattedOutput[$i], $regexarray1) == 1) {
 					if ($wascodeblock == False) {
