@@ -17,9 +17,9 @@
 					}
 					$this->Configuration[$index] = $configitem;
 				}
-				print_r($this->Configuration);
-				echo "<br>";
 			}
+			print_r($this->Configuration);
+			echo "<br>";
 		}
 	}
 ?>
