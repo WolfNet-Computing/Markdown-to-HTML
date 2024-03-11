@@ -10,16 +10,22 @@
 		function __construct($configarray) {
 			$this->Configuration = $this->DefaultConfiguration;
 			foreach ($configarray as $index => $configitem) {
-				echo "\$configarray['" . $index . "'] is: " . $configitem . " and has the type: " . gettype($configitem) . "<br>";
 				foreach ($this->DefaultConfiguration as $DefaultConfigurationIndex => $DefaultConfigurationItem) {
-					if ($index == $DefaultConfigurationIndex) {
-						echo "Found a match in the default configuration.<br>";
-					}
 					$this->Configuration[$index] = $configitem;
 				}
 			}
-			print_r($this->Configuration);
-			echo "<br>";
+			if ($this->Configuration["method"] != "GET" && $this->Configuration["method"] != "POST") {
+				throw new Exception("class MD_Reader\Configuration contains an invalid method.");
+			}
+			if (array_key_exists("method_var") != True) {
+				throw new Exception("class MD_Reader\Configuration doesn't contain a method_var key.");
+			}
+			if (array_key_exists("doc_handler") != True) {
+				throw new Exception("class MD_Reader\Configuration doesn't contain a doc_handler key.");
+			}
+			if (array_key_exists("doc_file") != True) {
+				throw new Exception("class MD_Reader\Configuration doesn't contain a doc_file key.");
+			}
 		}
 	}
 ?>
