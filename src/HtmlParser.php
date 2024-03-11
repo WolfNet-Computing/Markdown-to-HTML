@@ -75,7 +75,7 @@
 				}
 				# if Markdown Code Snippet...
 				if (preg_match($this->FindMDCodeLine, $FormattedOutput[$i]) == 1) {
-					if (preg_match_all($this->FindMDCodeLine, $FormattedOutput[$i], $regexarray1) > 1) {
+					if (preg_match_all($this->FindMDCodeLine, $FormattedOutput[$i], $regexarray1) > 0) {
 						$finalstr = "";
 						for ($k = 0; $k < count($regexarray1); $k++) {
 							var_dump($regexarray1[$k]);
