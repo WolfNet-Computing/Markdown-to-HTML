@@ -77,9 +77,14 @@
 				if (preg_match($this->FindMDCodeLine, $FormattedOutput[$i], $regexarray1) == 1) {
 					if (preg_match_all($this->FindMDCodeLine, substr($regexarray1[0], 1, strlen($regexarray1[0]) - 2), $regexarray2)  > 0) {
 						for ($j = 0; $j < count($regexarray1); $j++) {
-							$firstexplode = explode("`", $regexarray1[$j]);
-							for ($l = 0; $l < count($firstexplode); $l++) {
-								echo "\$firstexplode[$l] is: " . $firstexplode[$l] . " and has the type: " . gettype($firstexplode[$l]) . "<br>";
+							$coderemoved = explode("`", $regexarray1[$j]);
+							for ($l = 0; $l < count($coderemoved); $l++) {
+								if ($coderemoved[$l] == "") {
+									array_splice($coderemoved, $l, 1);
+								}
+							}
+							for ($l = 0; $l < count($coderemoved); $l++) {
+								echo "\$coderemoved[$l] is: " . $coderemoved[$l] . " and has the type: " . gettype($coderemoved[$l]) . "<br>";
 								//if ($k != 0) {
 								//	$finalstr = $finalstr . $coderemoved[1];
 								//}
