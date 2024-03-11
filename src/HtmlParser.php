@@ -76,13 +76,16 @@
 				# if Markdown Code Snippet...
 				if (preg_match($this->FindMDCodeLine, $FormattedOutput[$i], $regexarray1) == 1) {
 					for ($j = 0; $j < count($regexarray1); $j++) {
+						echo "print_r(\$regexarray1[\$j])<br>";
+						print_r($regexarray1[$j]);
+						echo "<br>";
 						if (preg_match_all($this->FindMDCodeLine, $regexarray1[$j], $regexarray2)  > 0) {
 							$finalstr = "";
 							for ($k = 0; $k < count($regexarray2); $k++) {
+								echo "print_r(\$regexarray2[\$k])<br>";
+								print_r($regexarray2[$k]);
+								echo "<br>";
 								for ($l = 0; $l < count($regexarray2[$k]); $l++) {
-									$coderemoved = explode("`", $regexarray1[$j]);
-									print_r($coderemoved);
-									echo "<br>";
 									if ($k != 0) {
 										$finalstr = $finalstr . $coderemoved[0];
 									}
