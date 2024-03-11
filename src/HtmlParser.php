@@ -80,17 +80,11 @@
 							$finalstr = "";
 							for ($k = 0; $k < count($regexarray2); $k++) {
 								for ($l = 0; $l < count($regexarray2[$k]); $l++) {
-									$boldremoved = explode("`", $regexarray1[$j]);
-									foreach ($boldremoved as $text) {
-										echo $text . "<br>";
-									}
-									//if ($k != 0) {
-										//$finalstr = $finalstr . $boldremoved[1];
-									//}
+									echo $regexarray2[$k][$l];
 									//$finalstr = $finalstr . preg_replace($this->FindMDCodeLine, "<code>", substr($regexarray2[$k][$l], 1, strlen($regexarray2[$k][$l]) - 2)) . "</code>";
 								}
 							}
-							//$FormattedOutput[$i] = preg_replace($this->FindMDCodeLine, $finalstr, $FormattedOutput[$i]);
+							$FormattedOutput[$i] = preg_replace($this->FindMDCodeLine, $finalstr, $FormattedOutput[$i]);
 						} else {
 							$FormattedOutput[$i] = preg_replace($this->FindMDCodeLine, "<code>", substr($FormattedOutput[$i], 1, strlen($FormattedOutput[$i] - 2))) . "</code>";
 						}
