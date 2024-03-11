@@ -84,6 +84,7 @@
 							for ($l = 0; $l < count($coderemoved); $l++) {
 								if ($coderemoved[$l] == "") {
 									array_splice($coderemoved, $l, 1);
+									$l--;
 								}
 							}
 							for ($l = 0; $l < count($coderemoved); $l += 2) {
