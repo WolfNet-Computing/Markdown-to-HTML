@@ -83,7 +83,7 @@
 									array_splice($coderemoved, $l, 1);
 								}
 							}
-							for ($l = 0; $l < count($coderemoved); $l + 2) {
+							for ($l = 0; $l < count($coderemoved); $l += 2) {
 								echo "The code content is: " . $coderemoved[$l] . " and preceeds: " . $coderemoved[$l + 1] . "<br>";
 								//if ($k != 0) {
 								//	$finalstr = $finalstr . $coderemoved[1];
