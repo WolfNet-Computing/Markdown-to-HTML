@@ -49,22 +49,22 @@
 				# Check for escaped characters...
 				if (preg_match_all('/([\\\][\*])/', $FormattedOutput[$i], $regexarray1) > 0) {
 					for ($j = 0; $j < count($regexarray1); $j++) {
-						$FormattedOutput[$i] = preg_replace('/([\\\][\*])/', "&ast", $FormattedOutput[$i]);
+						$FormattedOutput[$i] = preg_replace('/([\\\][\*])/', "&ast;", $FormattedOutput[$i]);
 					}
 				}
 				if (preg_match_all('/([\\\][\_])/', $FormattedOutput[$i], $regexarray1) > 0) {
 					for ($j = 0; $j < count($regexarray1); $j++) {
-						$FormattedOutput[$i] = preg_replace('/([\\\][\_])/', "&lowbar", $FormattedOutput[$i]);
+						$FormattedOutput[$i] = preg_replace('/([\\\][\_])/', "&lowbar;", $FormattedOutput[$i]);
 					}
 				}
 				if (preg_match_all('/([\\\][\\\])/', $FormattedOutput[$i], $regexarray1) > 0) {
 					for ($j = 0; $j < count($regexarray1); $j++) {
-						$FormattedOutput[$i] = preg_replace('/([\\\][\\\])/', "&bsol", $FormattedOutput[$i]);
+						$FormattedOutput[$i] = preg_replace('/([\\\][\\\])/', "&bsol;", $FormattedOutput[$i]);
 					}
 				}
 				if (preg_match_all('/([\\\][!])/', $FormattedOutput[$i], $regexarray1) > 0) {
 					for ($j = 0; $j < count($regexarray1); $j++) {
-						$FormattedOutput[$i] = preg_replace('/([\\\][!])/', "&excl", $FormattedOutput[$i]);
+						$FormattedOutput[$i] = preg_replace('/([\\\][!])/', "&excl;", $FormattedOutput[$i]);
 					}
 				}
 				# if Markdown Bold Text...
