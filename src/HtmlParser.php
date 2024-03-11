@@ -301,6 +301,7 @@
 								if ($fileinfo["extension"] == "md") {
 									echo $linkcontent[1] . "<br>";
 								} else {
+									echo $fileinfo["extension"] . "<br>";
 									$FormattedOutput[$i] = preg_replace($this->FindMDLink1, "<a href=" . $linkcontent[1] . ">" . $linkcontent[0] . "</a>", $FormattedOutput[$i]);
 								}
 							}
