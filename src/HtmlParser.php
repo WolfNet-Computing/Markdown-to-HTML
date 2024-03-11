@@ -28,9 +28,9 @@
 		private $FindMDCodeBlock = '/[`]{3}/';
 
 		function __construct($configref) {
-			$Configuration = $configref->Configuration;
-			$mdfile = fopen($Configuration["doc_file"], 'r') or die('Unable to open file!');
-			$this->OriginalFileContent = fread($mdfile, filesize($Configuration["doc_file"]));
+			$this->Configuration = $configref->Configuration;
+			$mdfile = fopen($this->Configuration["doc_file"], 'r') or die('Unable to open file!');
+			$this->OriginalFileContent = fread($mdfile, filesize($this->Configuration["doc_file"]));
 			fclose($mdfile);
 			clearstatcache();
 		}
