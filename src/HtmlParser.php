@@ -308,6 +308,7 @@
 							if (preg_match('/^(http)/', $linkcontent[1]) == 1) {
 								$FormattedOutput[$i] = preg_replace($this->FindMDLink1, "<a href=" . $linkcontent[1] . " target=\"_top\">" . $linkcontent[0] . "</a>", $FormattedOutput[$i]);
 							} else {
+								$fileinfo = pathinfo($linkcontent[1]);
 								if ($fileinfo["extension"] == "md") {
 									
 								} else {
