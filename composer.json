@@ -25,7 +25,7 @@
 		"php": ">=8.0"
 	},
 	"autoload": {
-		"psr-4": {"WolfNet_Computing\\MD_Reader\\": "src/"}
+		"psr-4": {"MD_Reader\\": "src/"}
 	},
 	"archive": {
         "name": "PHP-MD-Reader",
