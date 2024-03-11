@@ -82,7 +82,7 @@
 								for ($l = 0; $l < count($regexarray2[$k]); $l++) {
 									$boldremoved = explode("`", $regexarray1[$j]);
 									foreach ($boldremoved as $text) {
-										echo $boldremoved . "<br>";
+										echo $text . "<br>";
 									}
 									//if ($k != 0) {
 										//$finalstr = $finalstr . $boldremoved[1];
