@@ -84,7 +84,11 @@
 								}
 							}
 							for ($l = 0; $l < count($coderemoved); $l += 2) {
-								echo "The code content is: " . $coderemoved[$l] . " and preceeds: " . $coderemoved[$l + 1] . "<br>";
+								if (array_key_exists($l + 1, $coderemoved)) {
+									echo "The code content is: " . $coderemoved[$l] . " and preceeds: " . $coderemoved[$l + 1] . "<br>";
+								} else {
+									echo "The code content is: " . $coderemoved[$l] . "<br>";
+								}
 								//if ($k != 0) {
 								//	$finalstr = $finalstr . $coderemoved[1];
 								//}
