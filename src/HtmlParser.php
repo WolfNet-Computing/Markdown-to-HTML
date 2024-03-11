@@ -79,10 +79,8 @@
 						if (preg_match_all($this->FindMDCodeLine, $regexarray1[$j], $regexarray2) > 0) {
 							$finalstr = "";
 							for ($k = 0; $k < count($regexarray2); $k++) {
-								for ($l = 0; $l < count($regexarray2[$k]); $l++) {
-									echo $regexarray2[$k][$l];
-									//$finalstr = $finalstr . preg_replace($this->FindMDCodeLine, "<code>", substr($regexarray2[$k][$l], 1, strlen($regexarray2[$k][$l]) - 2)) . "</code>";
-								}
+								echo $regexarray2[$k];
+								//$finalstr = $finalstr . preg_replace($this->FindMDCodeLine, "<code>", substr($regexarray2[$k][$l], 1, strlen($regexarray2[$k][$l]) - 2)) . "</code>";
 							}
 							$FormattedOutput[$i] = preg_replace($this->FindMDCodeLine, $finalstr, $FormattedOutput[$i]);
 						} else {
