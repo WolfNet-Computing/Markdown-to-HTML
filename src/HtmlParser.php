@@ -80,7 +80,7 @@
 							for ($k = 0; $k < count($regexarray2[$j]); $k++) {
 								$firstexplode = explode("`", $regexarray2[$j][$k]);
 								for ($l = 0; $l < count($firstexplode); $l++) {
-									echo "\$firstexplode[$l] is: " $firstexplode[$l] . " and has the type: " . gettype($firstexplode[$l]) . "<br>";
+									echo "\$firstexplode[$l] is: " . $firstexplode[$l] . " and has the type: " . gettype($firstexplode[$l]) . "<br>";
 									//if ($k != 0) {
 									//	$finalstr = $finalstr . $coderemoved[1];
 									//}
