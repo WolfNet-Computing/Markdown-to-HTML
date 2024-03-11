@@ -288,7 +288,7 @@
 									$str = substr($explodedlink[$l], 1, (strlen($explodedlink[$l]) - 2));
 									$linkcontent = explode("](", $str);
 									if ($l != 0) {
-										$finalstr = $finalstr . substr($regexarray2[0][$k], 1, (strlen($regexarray2[0][$k]) - 2));
+										$finalstr = $finalstr . $str;
 									}
 									if (preg_match('/^(http)/', $linkcontent[1]) == 1) {
 										$finalstr = $finalstr . "<a href=" . $linkcontent[1] . " target=\"_top\">" . $linkcontent[0] . "</a>";
