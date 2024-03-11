@@ -93,7 +93,7 @@
 					}
 					$FormattedOutput[$i] = preg_replace($this->FindMDCodeLine, $finalstr, $FormattedOutput[$i]);
 				} else {
-					$FormattedOutput[$i] = preg_replace($this->FindMDCodeLine, substr($FormattedOutput[$i], 1, strlen($FormattedOutput[$i]) - 2)) . "</code>";
+					$FormattedOutput[$i] = preg_replace($this->FindMDCodeLine, "<code>", substr($FormattedOutput[$i], 1, strlen($FormattedOutput[$i]) - 2)) . "</code>";
 				}
 				# if Markdown Bold Text...
 				if (preg_match($this->FindMDBoldTextItem1, $FormattedOutput[$i], $regexarray1) == 1) {
