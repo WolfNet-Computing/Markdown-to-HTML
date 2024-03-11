@@ -80,9 +80,11 @@
 							$finalstr = "";
 							for ($k = 0; $k < count($regexarray2); $k++) {
 								for ($l = 0; $l < count($regexarray2[$k]); $l++) {
-									$boldremoved = explode($regexarray2[$k][$l], $regexarray1[$j]);
+									$coderemoved = explode($regexarray2[$k][$l], $regexarray1[$j]);
+									print_r($coderemoved);
+									echo "<br>";
 									if ($k != 0) {
-										$finalstr = $finalstr . $boldremoved[0];
+										$finalstr = $finalstr . $coderemoved[0];
 									}
 									$finalstr = $finalstr . preg_replace('/^[`]/', "<code>", substr($regexarray2[$k][$l], 0, strlen($regexarray2[$k][$l]) - 1)) . "</code>";
 								}
