@@ -74,19 +74,16 @@
 					}
 				}
 				# if Markdown Code Snippet...
-				if (preg_match($this->FindMDCodeLine, $FormattedOutput[$i], $regexarray1) == 1) {
-					print_r($regexarray1);
-					for ($j = 0; $j < count($regexarray1); $j++) {
-						if (preg_match_all($this->FindMDCodeLine, $regexarray1[$j], $regexarray2) > 0) {
-							$finalstr = "";
-							for ($k = 0; $k < count($regexarray2); $k++) {
-								print_r($regexarray2[$k]);
-								//$finalstr = $finalstr . preg_replace($this->FindMDCodeLine, "<code>", substr($regexarray2[$k][$l], 1, strlen($regexarray2[$k][$l]) - 2)) . "</code>";
-							}
-							$FormattedOutput[$i] = preg_replace($this->FindMDCodeLine, $finalstr, $FormattedOutput[$i]);
-						} else {
-							$FormattedOutput[$i] = preg_replace($this->FindMDCodeLine, "<code>", substr($FormattedOutput[$i], 1, strlen($FormattedOutput[$i] - 2))) . "</code>";
+				if (preg_match($this->FindMDCodeLine, $FormattedOutput[$i]) == 1) {
+					if (preg_match_all($this->FindMDCodeLine, $FormattedOutput[$i], $regexarray1) > 0) {
+						$finalstr = "";
+						for ($k = 0; $k < count($regexarray1); $k++) {
+							var_dump($regexarray1[$k]);
+							//$finalstr = $finalstr . preg_replace($this->FindMDCodeLine, "<code>", substr($regexarray1[$k][$l], 1, strlen($regexarray1[$k][$l]) - 2)) . "</code>";
 						}
+						$FormattedOutput[$i] = preg_replace($this->FindMDCodeLine, $finalstr, $FormattedOutput[$i]);
+					} else {
+						$FormattedOutput[$i] = preg_replace($this->FindMDCodeLine, "<code>", substr($FormattedOutput[$i], 1, strlen($FormattedOutput[$i] - 2))) . "</code>";
 					}
 				}
 				# if Markdown Bold Text...
