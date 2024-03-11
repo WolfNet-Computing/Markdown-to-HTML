@@ -76,7 +76,7 @@
 				# if Markdown Code Snippet...
 				if (preg_match($this->FindMDCodeLine, $FormattedOutput[$i], $regexarray1) == 1) {
 					for ($j = 0; $j < count($regexarray1); $j++) {
-						if (preg_match_all($this->FindMDCodeLine, $regexarray1[$j], $regexarray2) > 1) {
+						if (preg_match_all($this->FindMDCodeLine, $regexarray1[$j], $regexarray2) > 0) {
 							$finalstr = "";
 							for ($k = 0; $k < count($regexarray2); $k++) {
 								print_r($regexarray2[$k]);
@@ -91,7 +91,7 @@
 				# if Markdown Bold Text...
 				if (preg_match($this->FindMDBoldTextItem1, $FormattedOutput[$i], $regexarray1) == 1) {
 					for ($j = 0; $j < count($regexarray1); $j++) {
-						if (preg_match_all($this->FindMDBoldTextItem1, $regexarray1[$j], $regexarray2) > 1) {
+						if (preg_match_all($this->FindMDBoldTextItem1, $regexarray1[$j], $regexarray2) > 0) {
 							$finalstr = "";
 							for ($k = 0; $k < count($regexarray2); $k++) {
 								for ($l = 0; $l < count($regexarray2[$k]); $l++) {
@@ -110,7 +110,7 @@
 				}
 				if (preg_match($this->FindMDBoldTextItem2, $FormattedOutput[$i], $regexarray1) == 1) {
 					for ($j = 0; $j < count($regexarray1); $j++) {
-						if (preg_match_all($this->FindMDBoldTextItem2, $regexarray1[$j], $regexarray2) > 1) {
+						if (preg_match_all($this->FindMDBoldTextItem2, $regexarray1[$j], $regexarray2) > 0) {
 							$finalstr = "";
 							for ($k = 0; $k < count($regexarray2); $k++) {
 								for ($l = 0; $l < count($regexarray2[$k]); $l++) {
@@ -130,7 +130,7 @@
 				# if Markdown Italic Text...
 				if (preg_match($this->FindMDItalicTextItem1, $FormattedOutput[$i], $regexarray1) == 1) {
 					for ($j = 0; $j < count($regexarray1); $j++) {
-						if (preg_match_all($this->FindMDItalicTextItem1, $regexarray1[$j], $regexarray2) > 1) {
+						if (preg_match_all($this->FindMDItalicTextItem1, $regexarray1[$j], $regexarray2) > 0) {
 							$finalstr = "";
 							for ($k = 0; $k < count($regexarray2); $k++) {
 								for ($l = 0; $l < count($regexarray2[$k]); $l++) {
@@ -149,7 +149,7 @@
 				}
 				if (preg_match($this->FindMDItalicTextItem2, $FormattedOutput[$i], $regexarray1) == 1) {
 					for ($j = 0; $j < count($regexarray1); $j++) {
-						if (preg_match_all($this->FindMDItalicTextItem2, $regexarray1[$j], $regexarray2) > 1) {
+						if (preg_match_all($this->FindMDItalicTextItem2, $regexarray1[$j], $regexarray2) > 0) {
 							$finalstr = "";
 							for ($k = 0; $k < count($regexarray2); $k++) {
 								for ($l = 0; $l < count($regexarray2[$k]); $l++) {
@@ -257,7 +257,7 @@
 				# if Markdown Link...
 				if (preg_match_all($this->FindMDLink1, $FormattedOutput[$i], $regexarray1) > 0) {
 					for ($j = 0; $j < count($regexarray1[0]); $j++) {
-						if (preg_match_all($this->FindMDLink2, $regexarray1[0][$j], $regexarray2) > 1) {
+						if (preg_match_all($this->FindMDLink2, $regexarray1[0][$j], $regexarray2) > 0) {
 							$finalstr = "";
 							for ($k = 0; $k < count($regexarray2[0]); $k++) {
 								$explodedlink = explode(substr($regexarray2[0][$k], 1, (strlen($regexarray2[0][$k]) - 2)), $regexarray1[0][$j]);
