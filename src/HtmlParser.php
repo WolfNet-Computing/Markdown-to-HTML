@@ -25,9 +25,9 @@
 		private $FindMDCodeLine = '/[`]{1}.+[`]{1}/';
 		private $FindMDCodeBlock = '/[`]{3}/';
 
-		function __construct($config) {
-			$mdfile = fopen($config["doc_file"], 'r') or die('Unable to open file!');
-			$this->OriginalFileContent = fread($mdfile, filesize($config["doc_file"]));
+		function __construct($configref) {
+			$mdfile = fopen($configref->Configuration["doc_file"], 'r') or die('Unable to open file!');
+			$this->OriginalFileContent = fread($mdfile, filesize($configref->Configuration["doc_file"]));
 			fclose($mdfile);
 			clearstatcache();
 		}
