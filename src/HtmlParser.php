@@ -78,12 +78,12 @@
 					if (preg_match_all($this->FindMDCodeLine, substr($regexarray1[0], 1, strlen($regexarray1[0]) - 2), $regexarray2)  > 0) {
 						$finalstr = "";
 						for ($j = 0; $j < count($regexarray2); $j++) {
+							var_dump($regexarray2[$j]);
+							echo "<br>";
 							for ($k = 0; $k < count($regexarray2[$j]); $k++) {
-								var_dump($regexarray2[$j][$k]);
-								echo "<br>";
 								$firstexplode = explode("`", $regexarray2[$j][$k]);
 								for ($l = 0; $l < count($firstexplode); $l++) {
-									echo $firstexplode[$l] . "<br>";
+									//echo $firstexplode[$l] . "<br>";
 									//if ($k != 0) {
 									//	$finalstr = $finalstr . $coderemoved[1];
 									//}
