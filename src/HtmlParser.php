@@ -46,27 +46,6 @@
 			$wasorderedlist = False;
 			for ($i = 0; $i < count($FormattedOutput); $i++) {
 				$formatted[$i] = str_replace(array("\r\n", "\n", "\r"), "", $FormattedOutput[$i]);
-				# Check for escaped characters...
-				if (preg_match_all('/([\\\][\*])/', $FormattedOutput[$i], $regexarray1) > 0) {
-					for ($j = 0; $j < count($regexarray1); $j++) {
-						$FormattedOutput[$i] = preg_replace('/([\\\][\*])/', "&ast;", $FormattedOutput[$i]);
-					}
-				}
-				if (preg_match_all('/([\\\][\_])/', $FormattedOutput[$i], $regexarray1) > 0) {
-					for ($j = 0; $j < count($regexarray1); $j++) {
-						$FormattedOutput[$i] = preg_replace('/([\\\][\_])/', "&lowbar;", $FormattedOutput[$i]);
-					}
-				}
-				if (preg_match_all('/([\\\][\\\])/', $FormattedOutput[$i], $regexarray1) > 0) {
-					for ($j = 0; $j < count($regexarray1); $j++) {
-						$FormattedOutput[$i] = preg_replace('/([\\\][\\\])/', "&bsol;", $FormattedOutput[$i]);
-					}
-				}
-				if (preg_match_all('/([\\\][!])/', $FormattedOutput[$i], $regexarray1) > 0) {
-					for ($j = 0; $j < count($regexarray1); $j++) {
-						$FormattedOutput[$i] = preg_replace('/([\\\][!])/', "&excl;", $FormattedOutput[$i]);
-					}
-				}
 				# if Markdown Bold Text...
 				if (preg_match($this->FindMDBoldTextItem1, $FormattedOutput[$i], $regexarray1) == 1) {
 					for ($j = 0; $j < count($regexarray1); $j++) {
@@ -259,6 +238,27 @@
 				}
 				# if Markdown New Line...
 				$FormattedOutput[$i] = preg_replace($this->FindMDNewline, '<br>', $FormattedOutput[$i]);
+				# Check for escaped characters...
+				if (preg_match_all('/([\\\][\*])/', $FormattedOutput[$i], $regexarray1) > 0) {
+					for ($j = 0; $j < count($regexarray1); $j++) {
+						$FormattedOutput[$i] = preg_replace('/([\\\][\*])/', "&ast;", $FormattedOutput[$i]);
+					}
+				}
+				if (preg_match_all('/([\\\][\_])/', $FormattedOutput[$i], $regexarray1) > 0) {
+					for ($j = 0; $j < count($regexarray1); $j++) {
+						$FormattedOutput[$i] = preg_replace('/([\\\][\_])/', "&lowbar;", $FormattedOutput[$i]);
+					}
+				}
+				if (preg_match_all('/([\\\][\\\])/', $FormattedOutput[$i], $regexarray1) > 0) {
+					for ($j = 0; $j < count($regexarray1); $j++) {
+						$FormattedOutput[$i] = preg_replace('/([\\\][\\\])/', "&bsol;", $FormattedOutput[$i]);
+					}
+				}
+				if (preg_match_all('/([\\\][!])/', $FormattedOutput[$i], $regexarray1) > 0) {
+					for ($j = 0; $j < count($regexarray1); $j++) {
+						$FormattedOutput[$i] = preg_replace('/([\\\][!])/', "&excl;", $FormattedOutput[$i]);
+					}
+				}
 			}
 			return $FormattedOutput;
 		}
