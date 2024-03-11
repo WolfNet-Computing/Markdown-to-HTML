@@ -1,6 +1,12 @@
 <?php
 	namespace WolfNet_Computing\MD_Reader;
 
+	class Configuration {
+		function __construct($configarray) {
+			echo gettype($configarray) . "<br>";
+		}
+	}
+
 	class HtmlParser {
 		private $NumberOfPasses = 3;
 
@@ -292,7 +298,6 @@
 									} else {
 										$fileinfo = pathinfo($linkcontent[1]);
 										if ($fileinfo["extension"] == "md") {
-											echo $fileinfo["extension"] . "<br>";
 											$finalstr = $finalstr . "<a href=" . $linkcontent[1] . ">" . $linkcontent[0] . "</a>";
 										} else {
 											$finalstr = $finalstr . "<a href=" . $linkcontent[1] . ">" . $linkcontent[0] . "</a>";
@@ -309,7 +314,6 @@
 							} else {
 								$fileinfo = pathinfo($linkcontent[1]);
 								if ($fileinfo["extension"] == "md") {
-									echo $fileinfo["extension"] . "<br>";
 									$FormattedOutput[$i] = preg_replace($this->FindMDLink1, "<a href=" . $linkcontent[1] . ">" . $linkcontent[0] . "</a>", $FormattedOutput[$i]);
 								} else {
 									$FormattedOutput[$i] = preg_replace($this->FindMDLink1, "<a href=" . $linkcontent[1] . ">" . $linkcontent[0] . "</a>", $FormattedOutput[$i]);
