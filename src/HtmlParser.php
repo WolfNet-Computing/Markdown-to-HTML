@@ -79,7 +79,8 @@
 						$finalstr = "";
 						for ($j = 0; $j < count($regexarray2); $j++) {
 							for ($k = 0; $k < count($regexarray2[$j]); $k++) {
-								$boldremoved = explode($regexarray2[$j][$k], $regexarray1[0]);
+								$firstexplode = explode($regexarray2[$j][$k], $regexarray1[0]);
+								$coderemoved = explode("`", $firstexplode[0]);
 								if ($k != 0) {
 									$finalstr = $finalstr . $coderemoved[0];
 								}
