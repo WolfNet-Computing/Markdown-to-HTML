@@ -78,6 +78,8 @@
 					print_r($regextemp);
 					echo "<br>";
 					if (preg_match_all($this->FindMDCodeLine, $FormattedOutput[$i], $regexarray1) > 0) {
+						print_r($regexarray1);
+						echo "<br>";
 						$finalstr = "";
 						for ($j = 0; $j < count($regexarray1); $j++) {
 							for ($k = 0; $k < count($regexarray1[$j]); $k++) {
