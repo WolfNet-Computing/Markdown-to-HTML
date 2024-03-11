@@ -4,7 +4,9 @@
 	class HtmlParser {
 		private $NumberOfPasses = 3;
 
+		private $Configuration;
 		private $OriginalFileContent;
+
 		private $FindMDNewline = "/[ ]{2}/";
 		private $FindMDHeader1 = '/^(# )/';
 		private $FindMDHeader2 = '/^(## )/';
@@ -26,8 +28,9 @@
 		private $FindMDCodeBlock = '/[`]{3}/';
 
 		function __construct($configref) {
-			$mdfile = fopen($configref->Configuration["doc_file"], 'r') or die('Unable to open file!');
-			$this->OriginalFileContent = fread($mdfile, filesize($configref->Configuration["doc_file"]));
+			$Configuration = $configref->Configuration;
+			$mdfile = fopen($Configuration["doc_file"], 'r') or die('Unable to open file!');
+			$this->OriginalFileContent = fread($mdfile, filesize($Configuration["doc_file"]));
 			fclose($mdfile);
 			clearstatcache();
 		}
@@ -308,7 +311,11 @@
 							} else {
 								$fileinfo = pathinfo($linkcontent[1]);
 								if ($fileinfo["extension"] == "md") {
-									$FormattedOutput[$i] = preg_replace($this->FindMDLink1, "<a href=" . $linkcontent[1] . ">" . $linkcontent[0] . "</a>", $FormattedOutput[$i]);
+									if ($this->Configuration["method"] == "POST") {
+										echo "<form style=\"display: none\" action=" . $this->Configuration["doc_handler"] . " method=\"post\"><input type=\"hidden\" name=" . $this->Configuration["method_var"] . " value=" . $linkcontent[1] . "><button type=\"submit\" id=\"button_link\"> </button></form><label style=\"text-decoration: underline\" for=\"button_link\">" . $linkcontent[0] . "</label>";
+									} else {
+										$FormattedOutput[$i] = preg_replace($this->FindMDLink1, "<a href=" . $this->Configuration["doc_handler"] . "?" . $this->Configuration["method_var"] . "=" . $linkcontent[1] . ">" . $linkcontent[0] . "</a>", $FormattedOutput[$i]);
+									}
 								} else {
 									$FormattedOutput[$i] = preg_replace($this->FindMDLink1, "<a href=" . $linkcontent[1] . ">" . $linkcontent[0] . "</a>", $FormattedOutput[$i]);
 								}
