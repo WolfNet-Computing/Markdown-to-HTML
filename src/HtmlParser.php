@@ -45,9 +45,19 @@
 			$FormattedOutput = explode("\n", $this->OriginalFileContent);
 			$wasunorderedlist = False;
 			$wasorderedlist = False;
+			$wascodeblock = False;
 			for ($i = 0; $i < count($FormattedOutput); $i++) {
 				$formatted[$i] = str_replace(array("\r\n", "\n", "\r"), "", $FormattedOutput[$i]);
 				# Check for escaped characters...
+				if (preg_match('/[`]{3}/', $FormattedOutput[$i], $regexarray1) == 1) {
+					if ($wascodeblock == False) {
+						$wascodeblock = True;
+						$FormattedOutput[$i] = "<code>";
+					} else {
+						$wascodeblock = False;
+						$FormattedOutput[$i] = "</code>";
+					}
+				}
 				if (preg_match_all('/([\\\][\*])/', $FormattedOutput[$i], $regexarray1) > 0) {
 					for ($j = 0; $j < count($regexarray1); $j++) {
 						$FormattedOutput[$i] = preg_replace('/([\\\][\*])/', "&ast;", $FormattedOutput[$i]);
