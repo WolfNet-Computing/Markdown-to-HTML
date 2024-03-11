@@ -287,7 +287,17 @@
 									if ($l != 0) {
 										$finalstr = $finalstr . substr($regexarray2[0][$k], 1, (strlen($regexarray2[0][$k]) - 2));
 									}
-									$finalstr = $finalstr . "<a href=" . $linkcontent[1] . ">" . $linkcontent[0] . "</a>";
+									if (preg_match('/^(http)/', $linkcontent[1]) == 1) {
+										$finalstr = $finalstr . "<a href=" . $linkcontent[1] . " target=\"_top\">" . $linkcontent[0] . "</a>";
+									} else {
+										$fileinfo = pathinfo($linkcontent[1]);
+										if ($fileinfo["extension"] == "md") {
+											//$finalstr = $finalstr . "<a href=" . $linkcontent[1] . ">" . $linkcontent[0] . "</a>";
+										} else {
+											echo $fileinfo["extension"] . "<br>";
+											$finalstr = $finalstr . "<a href=" . $linkcontent[1] . ">" . $linkcontent[0] . "</a>";
+										}
+									}
 								}
 							}
 							$FormattedOutput[$i] = preg_replace($this->FindMDLink1, $finalstr, $FormattedOutput[$i]);
@@ -298,11 +308,9 @@
 							if (preg_match('/^(http)/', $linkcontent[1]) == 1) {
 								$FormattedOutput[$i] = preg_replace($this->FindMDLink1, "<a href=" . $linkcontent[1] . " target=\"_top\">" . $linkcontent[0] . "</a>", $FormattedOutput[$i]);
 							} else {
-								$fileinfo = pathinfo($linkcontent[1]);
 								if ($fileinfo["extension"] == "md") {
 									
 								} else {
-									echo $fileinfo["extension"] . "<br>";
 									$FormattedOutput[$i] = preg_replace($this->FindMDLink1, "<a href=" . $linkcontent[1] . ">" . $linkcontent[0] . "</a>", $FormattedOutput[$i]);
 								}
 							}
