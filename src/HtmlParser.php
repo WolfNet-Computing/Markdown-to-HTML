@@ -86,7 +86,7 @@
 									//}
 									//$finalstr = $finalstr . preg_replace('/^[`]/', "<code>", substr($regexarray2[$j][$k], 0, strlen($regexarray2[$j][$k]) - 1)) . "</code>";
 								}
-								$FormattedOutput[$i] = preg_replace($this->FindMDCodeLine, $finalstr, $FormattedOutput[$i]);
+								//$FormattedOutput[$i] = preg_replace($this->FindMDCodeLine, $finalstr, $FormattedOutput[$i]);
 							}
 						}
 					} else {
