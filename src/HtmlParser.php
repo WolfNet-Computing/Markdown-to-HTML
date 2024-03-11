@@ -22,8 +22,8 @@
 		private $FindMDItalicTextItem1 = '/[\*].+[\*]/';
 		private $FindMDItalicTextItem2 = '/[\_].+[\_]/';
 		private $FindMDEscape = '/[\\\]{1}/';
-		private $FindMDCodeLine = '/([`]{1}.+[`]{1})/';
-		private $FindMDCodeBlock = '/([`]{3})/';
+		private $FindMDCodeLine = '/[`]{1}.+[`]{1}/';
+		private $FindMDCodeBlock = '/[`]{3}/';
 
 		function __construct($file) {
 			$mdfile = fopen($file, 'r') or die('Unable to open file!');
