@@ -80,15 +80,21 @@
 						for ($j = 0; $j < count($regexarray2); $j++) {
 							for ($k = 0; $k < count($regexarray2[$j]); $k++) {
 								$firstexplode = explode($regexarray2[$j][$k], $regexarray1[0]);
-								$coderemoved = explode("`", $firstexplode[0]);
-								var_dump($coderemoved);
-								echo "<br>";
-								if ($k != 0) {
-									$finalstr = $finalstr . $coderemoved[0];
+								for ($l = 0; $l < count($firstexplode); $l++) {
+									var_dump($firstexplode);
+									echo "<br>";
+									$coderemoved = explode("`", $firstexplode[0]);
+									var_dump($coderemoved);
+									echo "<br>";
+									var_dump($coderemoved);
+									echo "<br>";
+									if ($k != 0) {
+										$finalstr = $finalstr . $coderemoved[1];
+									}
+									$finalstr = $finalstr . preg_replace('/^[`]/', "<code>", substr($regexarray2[$j][$k], 0, strlen($regexarray2[$j][$k]) - 1)) . "</code>";
 								}
-								$finalstr = $finalstr . preg_replace('/^[`]/', "<code>", substr($regexarray2[$j][$k], 0, strlen($regexarray2[$j][$k]) - 1)) . "</code>";
+								$FormattedOutput[$i] = preg_replace($this->FindMDCodeLine, $finalstr, $FormattedOutput[$i]);
 							}
-							$FormattedOutput[$i] = preg_replace($this->FindMDCodeLine, $finalstr, $FormattedOutput[$i]);
 						}
 					} else {
 						$FormattedOutput[$i] = preg_replace($this->FindMDCodeLine, "<code>", substr($regexarray1[0], 1, strlen($regexarray1[0]) - 2)) . "</code>";
