@@ -81,6 +81,8 @@
 							for ($k = 0; $k < count($regexarray2[$j]); $k++) {
 								$firstexplode = explode($regexarray2[$j][$k], $regexarray1[0]);
 								$coderemoved = explode("`", $firstexplode[0]);
+								var_dump($coderemoved);
+								echo "<br>";
 								if ($k != 0) {
 									$finalstr = $finalstr . $coderemoved[0];
 								}
