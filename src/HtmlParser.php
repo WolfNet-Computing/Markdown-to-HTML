@@ -1,5 +1,5 @@
 <?php
-	namespace WolfNet_Computing\MD_Reader;
+	namespace MD_Reader;
 
 	class Configuration {
 		function __construct($configarray) {
