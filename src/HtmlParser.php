@@ -79,9 +79,7 @@
 						$finalstr = "";
 						for ($j = 0; $j < count($regexarray2); $j++) {
 							for ($k = 0; $k < count($regexarray2[$j]); $k++) {
-								echo "print_r(\$regexarray2[\$j][\$k])<br>";
-								print_r($regexarray2[$j][$k]);
-								echo "<br>";
+								$boldremoved = explode($regexarray2[$j][$k], $regexarray1[0]);
 								if ($k != 0) {
 									$finalstr = $finalstr . $coderemoved[0];
 								}
