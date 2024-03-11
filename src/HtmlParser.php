@@ -77,13 +77,13 @@
 				if (preg_match($this->FindMDCodeLine, $FormattedOutput[$i]) == 1) {
 					if (preg_match_all($this->FindMDCodeLine, $FormattedOutput[$i], $regexarray1) > 0) {
 						$finalstr = "";
-						for ($k = 0; $k < count($regexarray2); $k++) {
-							for ($l = 0; $l < count($regexarray2[$k]); $l++) {
-								$boldremoved = explode($regexarray2[$k][$l], $regexarray1[$j]);
+						for ($j = 0; $j < count($regexarray1); $j++) {
+							for ($k = 0; $k < count($regexarray1[$j]); $k++ {
+								$boldremoved = explode($regexarray1[$j][$k], $FormattedOutput[$i]);
 								if ($k != 0) {
 									$finalstr = $finalstr . $boldremoved[0];
 								}
-								$finalstr = $finalstr . preg_replace($this->FindMDCodeLine, "<strong>", substr($regexarray2[$k][$l], 0, strlen($regexarray2[$k][$l]) - 2)) . "</strong>";
+								$finalstr = $finalstr . preg_replace($this->FindMDCodeLine, "<strong>", substr($regexarray1[$j][$k], 0, strlen($regexarray1[$j][$k]) - 2)) . "</strong>";
 							}
 						}
 						$FormattedOutput[$i] = preg_replace($this->FindMDCodeLine, $finalstr, $FormattedOutput[$i]);
