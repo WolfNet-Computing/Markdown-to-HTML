@@ -78,7 +78,7 @@
 					if (preg_match_all($this->FindMDCodeLine, $FormattedOutput[$i], $regexarray1) > 0) {
 						$finalstr = "";
 						for ($j = 0; $j < count($regexarray1); $j++) {
-							for ($k = 0; $k < count($regexarray1[$j]); $k++ {
+							for ($k = 0; $k < count($regexarray1[$j]); $k++) {
 								$boldremoved = explode($regexarray1[$j][$k], $FormattedOutput[$i]);
 								if ($k != 0) {
 									$finalstr = $finalstr . $boldremoved[0];
