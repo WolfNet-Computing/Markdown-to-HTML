@@ -295,9 +295,13 @@
 									} else {
 										$fileinfo = pathinfo($linkcontent[1]);
 										if ($fileinfo["extension"] == "md") {
-											$finalstr = $finalstr . "<a href=" . $linkcontent[1] . ">" . $linkcontent[0] . "</a>";
+											if ($this->Configuration["method"] == "POST") {
+												$finalstr = $finalstr .  "<form style=\"display: none\" action=" . $this->Configuration["doc_handler"] . " method=\"post\"><input type=\"hidden\" name=" . $this->Configuration["method_var"] . " value=" . $linkcontent[1] . "><button type=\"submit\" id=\"button_link\"> </button></form><label style=\"color: blue; text-decoration: underline;\" for=\"button_link\">" . $linkcontent[0] . "</label>";
+											} else {
+												$finalstr = $finalstr . preg_replace($this->FindMDLink1, "<a href=" . $this->Configuration["doc_handler"] . "?" . $this->Configuration["method_var"] . "=" . $linkcontent[1] . ">" . $linkcontent[0] . "</a>", $FormattedOutput[$i]);
+											}
 										} else {
-											$finalstr = $finalstr . "<a href=" . $linkcontent[1] . ">" . $linkcontent[0] . "</a>";
+											$finalstr = $finalstr . preg_replace($this->FindMDLink1, "<a href=" . $linkcontent[1] . ">" . $linkcontent[0] . "</a>", $FormattedOutput[$i]);
 										}
 									}
 								}
@@ -312,7 +316,7 @@
 								$fileinfo = pathinfo($linkcontent[1]);
 								if ($fileinfo["extension"] == "md") {
 									if ($this->Configuration["method"] == "POST") {
-										echo "<form style=\"display: none\" action=" . $this->Configuration["doc_handler"] . " method=\"post\"><input type=\"hidden\" name=" . $this->Configuration["method_var"] . " value=" . $linkcontent[1] . "><button type=\"submit\" id=\"button_link\"> </button></form><label style=\"text-decoration: underline\" for=\"button_link\">" . $linkcontent[0] . "</label>";
+										$FormattedOutput[$i] =  "<form style=\"display: none\" action=" . $this->Configuration["doc_handler"] . " method=\"post\"><input type=\"hidden\" name=" . $this->Configuration["method_var"] . " value=" . $linkcontent[1] . "><button type=\"submit\" id=\"button_link\"> </button></form><label style=\"color: blue; text-decoration: underline;\" for=\"button_link\">" . $linkcontent[0] . "</label>";
 									} else {
 										$FormattedOutput[$i] = preg_replace($this->FindMDLink1, "<a href=" . $this->Configuration["doc_handler"] . "?" . $this->Configuration["method_var"] . "=" . $linkcontent[1] . ">" . $linkcontent[0] . "</a>", $FormattedOutput[$i]);
 									}
