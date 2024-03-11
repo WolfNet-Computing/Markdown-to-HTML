@@ -79,6 +79,8 @@
 						$finalstr = "";
 						for ($j = 0; $j < count($regexarray2); $j++) {
 							for ($k = 0; $k < count($regexarray2[$j]); $k++) {
+								var_dump($regexarray2[$j][$k]);
+								echo "<br>";
 								$firstexplode = explode("`", $regexarray2[$j][$k]);
 								for ($l = 0; $l < count($firstexplode); $l++) {
 									echo $firstexplode[$l] . "<br>";
