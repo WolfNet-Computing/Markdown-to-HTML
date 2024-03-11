@@ -74,7 +74,9 @@
 					}
 				}
 				# if Markdown Code Snippet...
-				if (preg_match($this->FindMDCodeLine, $FormattedOutput[$i]) == 1) {
+				if (preg_match($this->FindMDCodeLine, $FormattedOutput[$i], $regextemp) == 1) {
+					print_r($regextemp);
+					echo "<br>";
 					if (preg_match_all($this->FindMDCodeLine, $FormattedOutput[$i], $regexarray1) > 0) {
 						$finalstr = "";
 						for ($j = 0; $j < count($regexarray1); $j++) {
@@ -83,7 +85,7 @@
 								if ($k != 0) {
 									$finalstr = $finalstr . $boldremoved[0];
 								}
-								$finalstr = $finalstr . preg_replace($this->FindMDCodeLine, "<strong>", substr($regexarray1[$j][$k], 0, strlen($regexarray1[$j][$k]) - 2)) . "</strong>";
+								$finalstr = $finalstr . preg_replace($this->FindMDCodeLine, "<strong>", substr($regexarray1[$j][$k], 0, strlen($regexarray1[$j][$k]) - 1)) . "</strong>";
 							}
 						}
 						$FormattedOutput[$i] = preg_replace($this->FindMDCodeLine, $finalstr, $FormattedOutput[$i]);
