@@ -2,7 +2,7 @@
 	namespace MD_Reader;
 
 	class Configuration {
-		$DefaultConfiguration = [
+		private $DefaultConfiguration = [
 				'method'			=>	"POST",
 			];
 
