@@ -296,7 +296,7 @@
 										$fileinfo = pathinfo($linkcontent[1]);
 										if ($fileinfo["extension"] == "md") {
 											if ($this->Configuration["method"] == "POST") {
-												$finalstr = $finalstr . "<form style=\"display: none\" action=" . $this->Configuration["doc_handler"] . " method=\"post\"><input type=\"hidden\" name=" . $this->Configuration["method_var"] . " value=" . $linkcontent[1] . "><button type=\"submit\" id=\"button_link\"> </button></form><label style=\"color: blue; text-decoration: underline;\" for=\"button_link\">" . $linkcontent[0] . "</label>";
+												$finalstr = $finalstr . "<script type=\"text/javascript\" src=\"http://jqueryjs.googlecode.com/files/jquery-1.3.2.js\"></script><script type=\"text/javascript\">$(document).ready(function() { $('#Link').click(function() { $.post(" . $this->Configuration["doc_handler"] . ", { " . $this->Configuration["method_var"] . ": " . $linkcontent[1] . "} );} ); } ); </script><a id=\"Link\" href=\"#\">" . $linkcontent[0] . "</a>";
 											} else {
 												$finalstr = $finalstr . "<a href=" . $this->Configuration["doc_handler"] . "?" . $this->Configuration["method_var"] . "=" . $linkcontent[1] . ">" . $linkcontent[0] . "</a>";
 											}
