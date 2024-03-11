@@ -79,19 +79,13 @@
 						$finalstr = "";
 						for ($j = 0; $j < count($regexarray2); $j++) {
 							for ($k = 0; $k < count($regexarray2[$j]); $k++) {
-								$firstexplode = explode($regexarray2[$j][$k], $regexarray1[0]);
+								$firstexplode = explode("`", $regexarray2[$j][$k]);
 								for ($l = 0; $l < count($firstexplode); $l++) {
-									var_dump($firstexplode);
-									echo "<br>";
-									$coderemoved = explode("`", $firstexplode[0]);
-									var_dump($coderemoved);
-									echo "<br>";
-									var_dump($coderemoved);
-									echo "<br>";
-									if ($k != 0) {
-										$finalstr = $finalstr . $coderemoved[1];
-									}
-									$finalstr = $finalstr . preg_replace('/^[`]/', "<code>", substr($regexarray2[$j][$k], 0, strlen($regexarray2[$j][$k]) - 1)) . "</code>";
+									echo $firstexplode[$l] . "<br>";
+									//if ($k != 0) {
+									//	$finalstr = $finalstr . $coderemoved[1];
+									//}
+									//$finalstr = $finalstr . preg_replace('/^[`]/', "<code>", substr($regexarray2[$j][$k], 0, strlen($regexarray2[$j][$k]) - 1)) . "</code>";
 								}
 								$FormattedOutput[$i] = preg_replace($this->FindMDCodeLine, $finalstr, $FormattedOutput[$i]);
 							}
