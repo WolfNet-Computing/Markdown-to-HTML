@@ -87,9 +87,9 @@
 							}
 							for ($l = 0; $l < count($coderemoved); $l += 2) {
 								if (array_key_exists($l + 1, $coderemoved)) {
-									$finalstr = $finalstr . preg_replace('/^[`]/', "<code>", substr($regexarray1[$j], 0, strlen($regexarray1[$j]) - 1)) . "</code>" . $coderemoved[$l + 1];
+									$finalstr = $finalstr . preg_replace('/^[`]/', "<code>", $coderemoved[$l] . "</code>" . $coderemoved[$l + 1];
 								} else {
-									$finalstr = $finalstr . preg_replace('/^[`]/', "<code>", substr($regexarray1[$j], 0, strlen($regexarray1[$j]) - 1)) . "</code>";
+									$finalstr = $finalstr . preg_replace('/^[`]/', "<code>", $coderemoved[$l] . "</code>";
 								}
 							}
 							$FormattedOutput[$i] = preg_replace($this->FindMDCodeLine, $finalstr, $FormattedOutput[$i]);
