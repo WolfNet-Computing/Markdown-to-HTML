@@ -80,7 +80,7 @@
 							$finalstr = "";
 							for ($k = 0; $k < count($regexarray2); $k++) {
 								for ($l = 0; $l < count($regexarray2[$k]); $l++) {
-									$coderemoved = explode($regexarray2[$k][$l], $regexarray1[$j]);
+									$coderemoved = explode("`", $regexarray1[$j]);
 									print_r($coderemoved);
 									echo "<br>";
 									if ($k != 0) {
