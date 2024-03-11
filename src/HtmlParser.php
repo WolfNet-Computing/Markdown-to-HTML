@@ -76,18 +76,15 @@
 				# if Markdown Code Snippet...
 				if (preg_match($this->FindMDCodeLine, $FormattedOutput[$i], $regexarray1) == 1) {
 					if (preg_match_all($this->FindMDCodeLine, substr($regexarray1[0], 1, strlen($regexarray1[0]) - 2), $regexarray2)  > 0) {
-						$finalstr = "";
-						for ($j = 0; $j < count($regexarray2); $j++) {
-							var_dump($regexarray2[$j]);
-							echo "<br>";
-							for ($k = 0; $k < count($regexarray2[$j]); $k++) {
-								$firstexplode = explode("`", $regexarray2[$j][$k]);
+						for ($j = 0; $j < count($regexarray1); $j++) {
+							for ($k = 0; $k < count($regexarray1[$j]); $k++) {
+								$firstexplode = explode("`", $regexarray1[$j][$k]);
 								for ($l = 0; $l < count($firstexplode); $l++) {
-									//echo $firstexplode[$l] . "<br>";
+									echo "\$firstexplode[$l] is: " $firstexplode[$l] . " and has the type: " . gettype($firstexplode[$l]) . "<br>";
 									//if ($k != 0) {
 									//	$finalstr = $finalstr . $coderemoved[1];
 									//}
-									//$finalstr = $finalstr . preg_replace('/^[`]/', "<code>", substr($regexarray2[$j][$k], 0, strlen($regexarray2[$j][$k]) - 1)) . "</code>";
+									//$finalstr = $finalstr . preg_replace('/^[`]/', "<code>", substr($regexarray1[$j][$k], 0, strlen($regexarray1[$j][$k]) - 1)) . "</code>";
 								}
 								$FormattedOutput[$i] = preg_replace($this->FindMDCodeLine, $finalstr, $FormattedOutput[$i]);
 							}
