@@ -23,6 +23,7 @@
 		private $FindMDItalicTextItem2 = '/[\_].+[\_]/';
 		private $FindMDEscape = '/[\\\]{1}/';
 		private $FindMDCodeLine = '/([`]{1}.+[`]{1})/';
+		private $FindMDCodeBlock = '/([`]{3})/';
 
 		function __construct($file) {
 			$mdfile = fopen($file, 'r') or die('Unable to open file!');
@@ -79,9 +80,9 @@
 							$finalstr = "";
 							for ($k = 0; $k < count($regexarray2); $k++) {
 								for ($l = 0; $l < count($regexarray2[$k]); $l++) {
-									$boldremoved = explode($regexarray2[$k][$l], $regexarray1[$j]);
+									$boldremoved = explode("`", $regexarray1[$j]);
 									if ($k != 0) {
-										$finalstr = $finalstr . $boldremoved[0];
+										$finalstr = $finalstr . $boldremoved[1];
 									}
 									$finalstr = $finalstr . preg_replace('/(^[`].+)/', "<code>", substr($regexarray2[$k][$l], 1, strlen($regexarray2[$k][$l]) - 2)) . "</code>";
 								}
