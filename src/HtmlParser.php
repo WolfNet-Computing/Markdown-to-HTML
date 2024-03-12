@@ -312,7 +312,7 @@
 							} else {
 								$fileinfo = pathinfo($linkcontent[1]);
 								if ($fileinfo["extension"] == "md") {
-									echo $linkcontent[1] . "<br>";
+									$path = explode("/", preg_replace('/([.]{1}[/]{1})/', "/", $fileinfo["dirname"]));
 									$FormattedOutput[$i] = preg_replace($this->FindMDLink1, "<a href=\"" . $this->Configuration["doc_handler"] . "?" . $this->Configuration["method_var"] . "=" . $linkcontent[1] . "\">" . $linkcontent[0] . "</a>", $FormattedOutput[$i]);
 								} else {
 									$FormattedOutput[$i] = preg_replace($this->FindMDLink1, "<a href=\"" . $linkcontent[1] . "\">" . $linkcontent[0] . "</a>", $FormattedOutput[$i]);
