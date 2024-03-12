@@ -328,15 +328,17 @@
 			if (isset($this->Configuration["head_data"])) {
 				$counter = 0;
 				for ($i = count($this->Configuration["head_data"]) - 1; $i >= 0; $i--) {
-					if (preg_match_all('/(["])/', $this->Configuration["head_data"][$i], $regexarray1) > 0) {
-						for ($j = 0; $j < count($regexarray1); $j++) {
-							$this->Configuration["head_data"][$i] = preg_replace('/(["])/', '&quot;', $this->Configuration["head_data"][$i]);
-						}
-					}
 					$this->InsertIntoArray($FormattedOutput, 0, $this->Configuration["head_data"][$i]);
 				}
 			}
 			$this->InsertIntoArray($FormattedOutput,0, "<head>");
+			for ($i = 0; $i < count($FormattedOutput); $i++) {
+				if (preg_match_all('/(["])/', $FormattedOutput[$i], $regexarray1) > 0) {
+					for ($j = 0; $j < count($regexarray1); $j++) {
+						$FormattedOutput[$i] = preg_replace('/(["])/', '&quot;', $FormattedOutput[$i]);
+					}
+				}
+			}
 			return $FormattedOutput;
 		}
 	}
