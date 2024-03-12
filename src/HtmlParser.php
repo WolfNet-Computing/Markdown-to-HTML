@@ -29,7 +29,7 @@
 
 		function __construct($configref) {
 			$this->Configuration = $configref->Configuration;
-			$mdfile = fopen($this->Configuration["doc_file"], 'r') or die('Unable to open file!');
+			$mdfile = fopen($this->Configuration["doc_root"] . "/" . $this->Configuration["doc_file"], 'r') or die('Unable to open file!');
 			$this->OriginalFileContent = fread($mdfile, filesize($this->Configuration["doc_file"]));
 			fclose($mdfile);
 			clearstatcache();
