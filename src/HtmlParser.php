@@ -319,7 +319,7 @@
 										}
 									}
 									$linkcontent[1] = preg_replace('#([.][/])#', "/", $linkcontent[1]);
-									$FormattedOutput[$i] = preg_replace($this->FindMDLink1, "<a href=\"" . $this->Configuration["doc_handler"] . "?" . $this->Configuration["method_var"] . "=" . $linkcontent[1] . "\">" . $linkcontent[0] . "</a>", $FormattedOutput[$i]);
+									$FormattedOutput[$i] = preg_replace($this->FindMDLink1, "<a href=\"" . $this->Configuration["doc_handler"] . "?" . $this->Configuration["method_var"] . "=" . $this->Configuration["doc_root"] . $linkcontent[1] . "\">" . $linkcontent[0] . "</a>", $FormattedOutput[$i]);
 								} else {
 									$FormattedOutput[$i] = preg_replace($this->FindMDLink1, "<a href=\"" . $linkcontent[1] . "\">" . $linkcontent[0] . "</a>", $FormattedOutput[$i]);
 								}
