@@ -11,8 +11,10 @@
 			$this->Configuration = $this->DefaultConfiguration;
 			$mdinfo = pathinfo($configarray["doc_file"]);
 			$this->Configuration["doc_file"] = $mdinfo["basename"];
+			echo $this->Configuration["doc_file"] . "<br>";
 			$this->Configuration["doc_root"] = dirname($mdinfo["dirname"]);
 			$this->Configuration["doc_root"] = preg_replace('/( [\.][\/] )/', "/", $this->Configuration["doc_root"]);
+			echo $this->Configuration["doc_root"] . "<br>";
 			foreach ($configarray as $index => $configitem) {
 				$this->Configuration[$index] = $configitem;
 			}
