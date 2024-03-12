@@ -322,6 +322,12 @@
 				# if Markdown New Line...
 				$FormattedOutput[$i] = preg_replace($this->FindMDNewline, '<br>', $FormattedOutput[$i]);
 			}
+			if (isset($this->Configuration["head_data"])) {
+				$counter = 0;
+				foreach ($this->Configuration["head_data"] as $headitem) {
+					$this->InsertIntoArray($FormattedOutput, $counter, $headitem);
+				}
+			}
 			return $FormattedOutput;
 		}
 	}
