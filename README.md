@@ -3,8 +3,10 @@
 > [!CAUTION]
 > This Composer library is in an **_early_ developmental stage**, usage of it ***isn't*** recommended and is **done _at your own risk_**.  
   
+This Composer library is for usage on a PHP enabled web server and translates Markdown files into HTML Output.  
+  
 ## Requires  
-A PHP enabled webserver that you also have file upload and command line access to.  
+A PHP enabled web server that you also have file upload and command line access to.  
    
 ## Installation  
 To install simply:  
