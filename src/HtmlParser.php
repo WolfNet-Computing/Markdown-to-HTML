@@ -324,8 +324,9 @@
 			}
 			if (isset($this->Configuration["head_data"])) {
 				$counter = 0;
-				foreach ($this->Configuration["head_data"] as $headitem) {
-					$this->InsertIntoArray($FormattedOutput, $counter, $headitem);
+				//foreach ($this->Configuration["head_data"] as $headitem) {
+				for ($i = count($this->Configuration["head_data"]) - 1; $i == 0; $i--)
+					$this->InsertIntoArray($FormattedOutput, 0, $headitem);
 				}
 			}
 			return $FormattedOutput;
