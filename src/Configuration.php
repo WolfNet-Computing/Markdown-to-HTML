@@ -12,7 +12,7 @@
 			foreach ($configarray as $index => $configitem) {
 				$this->Configuration[$index] = $configitem;
 			}
-			if ($this->Configuration["method"] != "GET" && $this->Configuration["method"] != "POST") {
+			if ($this->Configuration["method"] != "GET") {
 				throw new Exception("class MD_Reader\Configuration contains an invalid method.");
 			}
 			if (array_key_exists("method_var", $this->Configuration) != True) {
