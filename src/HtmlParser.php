@@ -296,7 +296,7 @@
 									} else {
 										$fileinfo = pathinfo($linkcontent[1]);
 										if ($fileinfo["extension"] == "md") {
-											$finalstr = $finalstr . "<a href=\"" . $this->Configuration["doc_handler"] . "?" . $this->Configuration["method_var"] . "=" . $linkcontent[1] . "\">" . $linkcontent[0] . "</a>";
+											$finalstr = $finalstr . "<a href=\"" . $this->Configuration["doc_handler"] . "?" . $this->Configuration["method_var"] . "=" . $this->Configuration["doc_root"] . "/" . $fileinfo["basename"] . "\" target=\"_top\">" . $linkcontent[0] . "</a>";
 										} else {
 											$finalstr = $finalstr . "<a href=\"" . $linkcontent[1] . "\">" . $linkcontent[0] . "</a>";
 										}
