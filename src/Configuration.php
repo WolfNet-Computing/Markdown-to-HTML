@@ -10,7 +10,7 @@
 		function __construct($configarray) {
 			$this->Configuration = $this->DefaultConfiguration;
 			$mdinfo = pathinfo($configarray["doc_file"]);
-			$this->Configuration["doc_root"] = $mdinfo["dirname"];
+			$this->Configuration["doc_root"] = dirname($mdinfo["dirname"]);
 			foreach ($configarray as $index => $configitem) {
 				$this->Configuration[$index] = $configitem;
 			}
