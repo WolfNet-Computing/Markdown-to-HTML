@@ -8,10 +8,6 @@
 		public $Configuration;
 
 		function __construct($configarray) {
-			$this->Configuration = $this->DefaultConfiguration;
-			foreach ($configarray as $index => $configitem) {
-				$this->Configuration[$index] = $configitem;
-			}
 			if ($this->Configuration["method"] != "GET") {
 				throw new Exception("class MD_Reader\Configuration contains an invalid method.");
 			}
@@ -23,6 +19,12 @@
 			}
 			if (array_key_exists("doc_file", $this->Configuration) != True) {
 				throw new Exception("class MD_Reader\Configuration doesn't contain a doc_file key.");
+			}
+			$this->Configuration = $this->DefaultConfiguration;
+			$mdinfo = pathinfo($configarray["doc_file"]);
+			$this->Configuration["doc_root"] = $mdinfo["dirname"];
+			foreach ($configarray as $index => $configitem) {
+				$this->Configuration[$index] = $configitem;
 			}
 		}
 	}
