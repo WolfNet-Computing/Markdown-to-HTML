@@ -320,7 +320,7 @@
 								$fileinfo = pathinfo($linkcontent[1]);
 								if ($fileinfo["extension"] == "md") {
 									if ($this->Configuration["method"] == "POST") {
-										$FormattedOutput[$i] =  "<script type=\"text/javascript\">\n\tfunction click" . $i . "() {\n\t\t$.post(" . $this->Configuration["doc_handler"] . ", {" . $this->Configuration["method_var"] . ": \"" . $linkcontent[1] . "\"});\n\t\t});\n\t});\n</script>\n<a href=\"javascript:void(0)\" onclick=\"click" . $i . "()\">" . $linkcontent[0] . "</a>";
+										$FormattedOutput[$i] =  "<script type=\"text/javascript\">\n\tfunction click" . $i . "() {\n\t\t$.post(" . $this->Configuration["doc_handler"] . ", {" . $this->Configuration["method_var"] . ": \"" . $linkcontent[1] . "\"});\n\t}\n</script>\n<a href=\"javascript:void(0)\" onclick=\"click" . $i . "()\">" . $linkcontent[0] . "</a>";
 									} else {
 										$FormattedOutput[$i] = preg_replace($this->FindMDLink1, "<a href=" . $this->Configuration["doc_handler"] . "?" . $this->Configuration["method_var"] . "=" . $linkcontent[1] . ">" . $linkcontent[0] . "</a>", $FormattedOutput[$i]);
 									}
