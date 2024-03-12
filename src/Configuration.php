@@ -3,16 +3,14 @@
 
 	class Configuration {
 		private $DefaultConfiguration = [
-			'method'	=>	"POST",
+			'method'	=>	"GET",
 		];
 		public $Configuration;
 
 		function __construct($configarray) {
 			$this->Configuration = $this->DefaultConfiguration;
 			foreach ($configarray as $index => $configitem) {
-				foreach ($this->DefaultConfiguration as $DefaultConfigurationIndex => $DefaultConfigurationItem) {
-					$this->Configuration[$index] = $configitem;
-				}
+				$this->Configuration[$index] = $configitem;
 			}
 			if ($this->Configuration["method"] != "GET" && $this->Configuration["method"] != "POST") {
 				throw new Exception("class MD_Reader\Configuration contains an invalid method.");
