@@ -49,6 +49,7 @@
 			$wasunorderedlist = False;
 			$wasorderedlist = False;
 			$wascodeblock = False;
+			$this->InsertIntoArray($FormattedOutput, 0, "<body>");
 			for ($i = 0; $i < count($FormattedOutput); $i++) {
 				$formatted[$i] = str_replace(array("\r\n", "\n", "\r"), "", $FormattedOutput[$i]);
 				# Check for escaped characters...
@@ -322,12 +323,15 @@
 				# if Markdown New Line...
 				$FormattedOutput[$i] = preg_replace($this->FindMDNewline, '<br>', $FormattedOutput[$i]);
 			}
+			$this->InsertIntoArray($FormattedOutput, count($FormattedOutput), "<body>");
+			$this->InsertIntoArray($FormattedOutput,0, "</head>");
 			if (isset($this->Configuration["head_data"])) {
 				$counter = 0;
 				for ($i = count($this->Configuration["head_data"]) - 1; $i >= 0; $i--) {
 					$this->InsertIntoArray($FormattedOutput, 0, $this->Configuration["head_data"][$i]);
 				}
 			}
+			$this->InsertIntoArray($FormattedOutput,0, "<head>");
 			return $FormattedOutput;
 		}
 	}
