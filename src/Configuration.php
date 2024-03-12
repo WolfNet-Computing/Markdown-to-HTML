@@ -3,7 +3,7 @@
 
 	class Configuration {
 		private $DefaultConfiguration = [
-			'method'	=>	"GET",
+			'method'	=>	"GET"
 		];
 		public $Configuration;
 
