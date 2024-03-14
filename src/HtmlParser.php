@@ -51,7 +51,7 @@
 			$wascodeblock = False;
 			$this->InsertIntoArray($FormattedOutput, 0, "<body>");
 			for ($i = 0; $i < count($FormattedOutput); $i++) {
-				$formatted[$i] = str_replace(array("\r\n", "\n", "\r"), "", $FormattedOutput[$i]);
+				$FormattedOutput[$i] = str_replace(array("\r\n", "\n", "\r"), "", $FormattedOutput[$i]);
 				# Check for escaped characters...
 				if (preg_match('/[`]{3}/', $FormattedOutput[$i], $regexarray1) == 1) {
 					if ($wascodeblock == False) {
@@ -193,8 +193,6 @@
 				# if Markdown Unordered List...
 				if (preg_match($this->FindMDUnorderedListItem, $FormattedOutput[$i], $regexarray1) == 1) {
 					if ($wasunorderedlist) {
-						# Need to remove the Markdown newline character so it isn't processed later as we are adding our own manually here...
-						$FormattedOutput[$i] = preg_replace($this->FindMDNewline, "", $FormattedOutput[$i]);
 						$FormattedOutput[$i] = preg_replace($this->FindMDUnorderedListItem, "<li>", $FormattedOutput[$i]) . "</li>";
 					} else {
 						$wasunorderedlist = True;
@@ -211,8 +209,6 @@
 				# if Markdown Ordered List...
 				if (preg_match($this->FindMDFirstOrderedListItem, $FormattedOutput[$i], $regexarray1) == 1) {
 					if ($wasorderedlist) {
-						# Need to remove the Markdown newline character so it isn't processed later as we are adding our own manually here...
-						$FormattedOutput[$i] = preg_replace($this->FindMDNewline, "", $FormattedOutput[$i]);
 						$FormattedOutput[$i] = preg_replace($this->FindMDFirstOrderedListItem, "<li>", $FormattedOutput[$i]) . "</li>";
 					} else {
 						$wasorderedlist = True;
@@ -221,8 +217,6 @@
 					}
 				} elseif ((preg_match($this->FindMDAnyOrderedListItem, $FormattedOutput[$i], $regexarray1) == 1) && $wasorderedlist) {
 					if ($wasorderedlist) {
-						# Need to remove the Markdown newline character so it isn't processed later as we are adding our own manually here...
-						$FormattedOutput[$i] = preg_replace($this->FindMDNewline, "", $FormattedOutput[$i]);
 						$FormattedOutput[$i] = preg_replace($this->FindMDAnyOrderedListItem, "<li>", $FormattedOutput[$i]) . "</li>";
 					}
 				} elseif ($wasorderedlist) {
@@ -234,48 +228,36 @@
 				if (preg_match($this->FindMDHeader1, $FormattedOutput[$i]) == 1) {
 					# Need to remove the carriage returns and line feeds...
 					$FormattedOutput[$i] = preg_replace($this->FindMDHeader1, '<h1>', $FormattedOutput[$i]);
-					# Need to remove the Markdown newline character so it isn't processed later as we are adding our own manually here...
-					$FormattedOutput[$i] = preg_replace($this->FindMDNewline, "", $FormattedOutput[$i]);
 					$FormattedOutput[$i] = $FormattedOutput[$i] . '</h1><br>';
 				}
 				# if Markdown Header level 2...
 				if (preg_match($this->FindMDHeader2, $FormattedOutput[$i]) == 1) {
 					# Need to remove the carriage returns and line feeds...
 					$FormattedOutput[$i] = preg_replace($this->FindMDHeader2, '<h2>', $FormattedOutput[$i]);
-					# Need to remove the Markdown newline character so it isn't processed later as we are adding our own manually here...
-					$FormattedOutput[$i] = preg_replace($this->FindMDNewline, "", $FormattedOutput[$i]);
 					$FormattedOutput[$i] = $FormattedOutput[$i] . '</h2><br>';
 				}
 				# if Markdown Header level 3...
 				if (preg_match($this->FindMDHeader3, $FormattedOutput[$i]) == 1) {
 					# Need to remove the carriage returns and line feeds...
 					$FormattedOutput[$i] = preg_replace($this->FindMDHeader3, '<h3>', $FormattedOutput[$i]);
-					# Need to remove the Markdown newline character so it isn't processed later as we are adding our own manually here...
-					$FormattedOutput[$i] = preg_replace($this->FindMDNewline, "", $FormattedOutput[$i]);
 					$FormattedOutput[$i] = $FormattedOutput[$i] . '</h3><br>';
 				}
 				# if Markdown Header level 4...
 				if (preg_match($this->FindMDHeader4, $FormattedOutput[$i]) == 1) {
 					# Need to remove the carriage returns and line feeds...
 					$FormattedOutput[$i] = preg_replace($this->FindMDHeader4, '<h4>', $FormattedOutput[$i]);
-					# Need to remove the Markdown newline character so it isn't processed later as we are adding our own manually here...
-					$FormattedOutput[$i] = preg_replace($this->FindMDNewline, "", $FormattedOutput[$i]);
 					$FormattedOutput[$i] = $FormattedOutput[$i] . '</h4><br>';
 				}
 				# if Markdown Header level 5...
 				if (preg_match($this->FindMDHeader5, $FormattedOutput[$i]) == 1) {
 					# Need to remove the carriage returns and line feeds...
 					$FormattedOutput[$i] = preg_replace($this->FindMDHeader5, '<h5>', $FormattedOutput[$i]);
-					# Need to remove the Markdown newline character so it isn't processed later as we are adding our own manually here...
-					$FormattedOutput[$i] = preg_replace($this->FindMDNewline, "", $FormattedOutput[$i]);
 					$FormattedOutput[$i] = $FormattedOutput[$i] . '</h5><br>';
 				}
 				# if Markdown Header level 6...
 				if (preg_match($this->FindMDHeader6, $FormattedOutput[$i]) == 1) {
 					# Need to remove the carriage returns and line feeds...
 					$FormattedOutput[$i] = preg_replace($this->FindMDHeader6, '<h6>', $FormattedOutput[$i]);
-					# Need to remove the Markdown newline character so it isn't processed later as we are adding our own manually here...
-					$FormattedOutput[$i] = preg_replace($this->FindMDNewline, "", $FormattedOutput[$i]);
 					$FormattedOutput[$i] = $FormattedOutput[$i] . '</h6><br>';
 				}
 				# if Markdown Link...
