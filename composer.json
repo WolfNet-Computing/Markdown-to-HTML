@@ -1,5 +1,5 @@
 {
-	"name": "wolfnet-computing/md-reader",
+	"name": "wolfnet-computing/md-to-html",
 	"description": "A basic Markdown reader for PHP",
 	"homepage": "https://wolfnet-computing.com/index.php?page=/projects/PHP-MD-Reader",
 	"license": "Apache-2.0",
@@ -11,9 +11,9 @@
     ],
 	"support": {
         "email": "wolfnet-computing@outlook.com",
-		"wiki": "https://github.com/WolfNet-Computing/PHP-MD-Reader/wiki",
+		"wiki": "https://github.com/WolfNet-Computing/md-to-html/wiki",
         "source": "https://github.com/WolfNet-Computing/PHP-MD-Reader",
-		"docs": "https://github.com/WolfNet-Computing/PHP-MD-Reader/wiki"
+		"docs": "https://github.com/WolfNet-Computing/md-to-html/wiki"
     },
 	"funding": [
         {
