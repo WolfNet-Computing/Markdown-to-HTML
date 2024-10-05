@@ -1,4 +1,4 @@
-# PHP MD Reader  
+# Markdown to HTML  
   
 > [!CAUTION]
 > This Composer library is in an **_early_ developmental stage**, usage of it ***isn't*** recommended and is **done _at your own risk_**.  
