@@ -11,4 +11,4 @@ A PHP enabled web server that you also have file upload and command line access 
 ## Installation  
 To install simply:  
  - Download and install [Composer](https://getcomposer.org/download/).  
- - Run `composer require wolfnet-computing/md-reader`  
+ - Run `composer require wolfnet-computing/md-to-html`  
